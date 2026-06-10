@@ -1,0 +1,16 @@
+{
+  "cui": "C0004057",
+  "name": "aspirin",
+  "search_term": "Aspirin",
+  "neighbors": {
+    "C94758": {
+      "name": "Low-Dose Aspirin",
+      "relation": "inverse_isa",
+      "hop": 1,
+      "icd_priority": 0.5,
+      "weight": 0.5
+    }
+  },
+  "scenario": "RGU",
+  "note": "USPSTF 2022 CVD prevention reversal"
+}

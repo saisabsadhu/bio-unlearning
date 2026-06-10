@@ -1,0 +1,108 @@
+{
+  "umls_cui": "C0289313",
+  "drug_name": "Rosiglitazone",
+  "rxcui": "84108",
+  "drug_classes": [
+    {
+      "class_id": "A10BD",
+      "class_name": "Combinations of oral blood glucose lowering drugs",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "A10BD",
+      "class_name": "Combinations of oral blood glucose lowering drugs",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "A10BG",
+      "class_name": "Thiazolidinediones",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "D045162",
+      "class_name": "Thiazolidinediones",
+      "class_type": "CHEM",
+      "rela": "has_chemical_structure",
+      "source": "FDASPL"
+    },
+    {
+      "class_id": "N0000175377",
+      "class_name": "Peroxisome Proliferator-activated Receptor gamma Agonists",
+      "class_type": "MOA",
+      "rela": "has_moa",
+      "source": "FDASPL"
+    },
+    {
+      "class_id": "N0000180186",
+      "class_name": "Peroxisome Proliferator-activated Receptor gamma Agonist",
+      "class_type": "EPC",
+      "rela": "has_epc",
+      "source": "FDASPL"
+    },
+    {
+      "class_id": "N0000180190",
+      "class_name": "Thiazolidinedione",
+      "class_type": "EPC",
+      "rela": "has_epc",
+      "source": "FDASPL"
+    }
+  ],
+  "fda_label": {},
+  "neighbors": {
+    "A10BD": {
+      "name": "Combinations of oral blood glucose lowering drugs",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "ATC",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "A10BG": {
+      "name": "Thiazolidinediones",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "ATC",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "D045162": {
+      "name": "Thiazolidinediones",
+      "relation": "has_chemical_structure",
+      "class_type": "CHEM",
+      "source": "FDASPL",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "N0000175377": {
+      "name": "Peroxisome Proliferator-activated Receptor gamma Agonists",
+      "relation": "has_moa",
+      "class_type": "MOA",
+      "source": "FDASPL",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "N0000180186": {
+      "name": "Peroxisome Proliferator-activated Receptor gamma Agonist",
+      "relation": "has_epc",
+      "class_type": "EPC",
+      "source": "FDASPL",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "N0000180190": {
+      "name": "Thiazolidinedione",
+      "relation": "has_epc",
+      "class_type": "EPC",
+      "source": "FDASPL",
+      "hop": 1,
+      "weight": 0.5
+    }
+  },
+  "scenario": "IFE"
+}

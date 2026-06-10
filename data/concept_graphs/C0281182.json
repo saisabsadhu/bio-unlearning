@@ -1,0 +1,23 @@
+{
+  "cui": "C0281182",
+  "name": "Screening for malignant neoplasm of breast",
+  "search_term": "Breast cancer screening",
+  "neighbors": {
+    "C16209": {
+      "name": "Early Detection",
+      "relation": "isa",
+      "hop": 1,
+      "icd_priority": 0.5,
+      "weight": 0.5
+    },
+    "C15406": {
+      "name": "Cancer Screening",
+      "relation": "isa",
+      "hop": 1,
+      "icd_priority": 0.5,
+      "weight": 0.5
+    }
+  },
+  "scenario": "PAC",
+  "note": "age/frequency guideline change"
+}

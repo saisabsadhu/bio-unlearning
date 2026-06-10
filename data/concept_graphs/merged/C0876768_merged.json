@@ -1,0 +1,28 @@
+{
+  "cui": "C0876768",
+  "name": "Vioxx",
+  "search_term": "Vioxx",
+  "scenario": "IFE",
+  "note": "rofecoxib recall",
+  "rxcui": "232158",
+  "fda_label": {},
+  "drug_classes": [
+    {
+      "class_id": "M01AH",
+      "class_name": "Coxibs",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    }
+  ],
+  "neighbors": {
+    "M01AH": {
+      "name": "Coxibs",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "rxnorm",
+      "hop": 1,
+      "weight": 0.5
+    }
+  }
+}

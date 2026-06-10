@@ -1,0 +1,106 @@
+{
+  "umls_cui": "C0282402",
+  "drug_name": "Medroxyprogesterone",
+  "rxcui": "6691",
+  "drug_classes": [
+    {
+      "class_id": "G03AA",
+      "class_name": "Progestogens and estrogens, fixed combinations",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "G03AC",
+      "class_name": "Progestogens",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "G03DA",
+      "class_name": "Pregnen (4) derivatives",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "L02AB",
+      "class_name": "Progestogens",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "D045167",
+      "class_name": "Progesterone Congeners",
+      "class_type": "CHEM",
+      "rela": "has_chemical_structure",
+      "source": "FDASPL"
+    },
+    {
+      "class_id": "N0000175602",
+      "class_name": "Progestin",
+      "class_type": "EPC",
+      "rela": "has_epc",
+      "source": "FDASPL"
+    }
+  ],
+  "fda_label": {
+    "indications": "1 INDICATIONS AND USAGE Medroxyprogesterone acetate injectable suspension is indicated for use by females of reproductive potential to prevent pregnancy. Limitations of Use: The use of medroxyprogesterone acetate injectable suspension is not recommended as a long-term (i.e., longer than 2 years) birth control method unless other options are considered inadequate [see Dosage and Administration (2.1) and Warnings and Precautions (5.1)]. Medroxyprogesterone acetate is a progestin indicated for use ",
+    "contraindications": "4 CONTRAINDICATIONS The use of medroxyprogesterone acetate injectable suspension is contraindicated in the following conditions: Known or suspected pregnancy or as a diagnostic test for pregnancy. Active thrombophlebitis, or current or past history of thromboembolic disorders, or cerebral vascular disease [ see Warnings and Precautions ( 5.2 ) ]. Known or suspected malignancy of breast [ see Warnings and Precautions ( 5.3 ) ]. Known hypersensitivity to medroxyprogesterone acetate injectable susp",
+    "warnings": "",
+    "boxed_warning": "WARNING: LOSS OF BONE MINERAL DENSITY Women who use medroxyprogesterone acetate injectable suspension may lose significant bone mineral density. Bone loss is greater with increasing duration of use and may not be completely reversible [see Warnings and Precautions (5.1)] . It is unknown if use of me"
+  },
+  "neighbors": {
+    "G03AA": {
+      "name": "Progestogens and estrogens, fixed combinations",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "ATC",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "G03AC": {
+      "name": "Progestogens",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "ATC",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "G03DA": {
+      "name": "Pregnen (4) derivatives",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "ATC",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "L02AB": {
+      "name": "Progestogens",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "ATC",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "D045167": {
+      "name": "Progesterone Congeners",
+      "relation": "has_chemical_structure",
+      "class_type": "CHEM",
+      "source": "FDASPL",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "N0000175602": {
+      "name": "Progestin",
+      "relation": "has_epc",
+      "class_type": "EPC",
+      "source": "FDASPL",
+      "hop": 1,
+      "weight": 0.5
+    }
+  },
+  "scenario": "RGU"
+}

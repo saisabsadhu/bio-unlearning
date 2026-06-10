@@ -1,0 +1,16 @@
+{
+  "cui": "C0289313",
+  "name": "rosiglitazone",
+  "search_term": "Rosiglitazone",
+  "neighbors": {
+    "C1934": {
+      "name": "Differentiation Inducer",
+      "relation": "isa",
+      "hop": 1,
+      "icd_priority": 0.5,
+      "weight": 0.5
+    }
+  },
+  "scenario": "IFE",
+  "note": "cardiovascular safety withdrawal"
+}

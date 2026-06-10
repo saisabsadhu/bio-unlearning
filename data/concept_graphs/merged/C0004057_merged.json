@@ -1,0 +1,116 @@
+{
+  "cui": "C0004057",
+  "name": "aspirin",
+  "search_term": "Aspirin",
+  "scenario": "RGU",
+  "note": "USPSTF 2022 CVD prevention reversal",
+  "rxcui": "1191",
+  "fda_label": {
+    "indications": "Uses for the temporary relief of minor aches and pains or as recommended by your doctor. Because of its delayed action, this product will not provide fast relief of headaches or other symptoms needing immediate relief. ask your doctor about other uses for safety coated 81 mg aspirin",
+    "contraindications": "",
+    "warnings": "Warnings Reye's syndrome : Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product. When using this product, if changes in behavior with nausea and vomiting occur, consult a doctor because these symptoms could be an early sign of Reye's syn",
+    "boxed_warning": ""
+  },
+  "drug_classes": [
+    {
+      "class_id": "A01AD",
+      "class_name": "Other agents for local oral treatment",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "B01AC",
+      "class_name": "Platelet aggregation inhibitors excl. heparin",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "N02BA",
+      "class_name": "Salicylic acid and derivatives",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "N02AJ",
+      "class_name": "Opioids in combination with non-opioid analgesics",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    },
+    {
+      "class_id": "N0000175578",
+      "class_name": "Platelet Aggregation Inhibitor",
+      "class_type": "EPC",
+      "rela": "has_epc",
+      "source": "FDASPL"
+    },
+    {
+      "class_id": "N0000175722",
+      "class_name": "Nonsteroidal Anti-inflammatory Drug",
+      "class_type": "EPC",
+      "rela": "has_epc",
+      "source": "FDASPL"
+    }
+  ],
+  "neighbors": {
+    "C94758": {
+      "name": "Low-Dose Aspirin",
+      "relation": "inverse_isa",
+      "hop": 1,
+      "icd_priority": 0.5,
+      "weight": 0.5,
+      "source": "umls"
+    },
+    "A01AD": {
+      "name": "Other agents for local oral treatment",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "rxnorm",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "B01AC": {
+      "name": "Platelet aggregation inhibitors excl. heparin",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "rxnorm",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "N02BA": {
+      "name": "Salicylic acid and derivatives",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "rxnorm",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "N02AJ": {
+      "name": "Opioids in combination with non-opioid analgesics",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "rxnorm",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "N0000175578": {
+      "name": "Platelet Aggregation Inhibitor",
+      "relation": "has_epc",
+      "class_type": "EPC",
+      "source": "rxnorm",
+      "hop": 1,
+      "weight": 0.5
+    },
+    "N0000175722": {
+      "name": "Nonsteroidal Anti-inflammatory Drug",
+      "relation": "has_epc",
+      "class_type": "EPC",
+      "source": "rxnorm",
+      "hop": 1,
+      "weight": 0.5
+    }
+  }
+}

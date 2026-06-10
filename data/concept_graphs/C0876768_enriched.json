@@ -1,0 +1,26 @@
+{
+  "umls_cui": "C0876768",
+  "drug_name": "Rofecoxib",
+  "rxcui": "232158",
+  "drug_classes": [
+    {
+      "class_id": "M01AH",
+      "class_name": "Coxibs",
+      "class_type": "ATC1-4",
+      "rela": "",
+      "source": "ATC"
+    }
+  ],
+  "fda_label": {},
+  "neighbors": {
+    "M01AH": {
+      "name": "Coxibs",
+      "relation": "",
+      "class_type": "ATC1-4",
+      "source": "ATC",
+      "hop": 1,
+      "weight": 0.5
+    }
+  },
+  "scenario": "IFE"
+}

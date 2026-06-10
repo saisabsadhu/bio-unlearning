@@ -1,0 +1,30 @@
+{
+  "cui": "C0282402",
+  "name": "Hormone replacement therapy",
+  "search_term": "Hormone Replacement Therapy",
+  "neighbors": {
+    "C63475": {
+      "name": "Endocrine Drug Therapy",
+      "relation": "isa",
+      "hop": 1,
+      "icd_priority": 0.5,
+      "weight": 0.5
+    },
+    "C15251": {
+      "name": "Postmenopausal Hormone Replacement Therapy",
+      "relation": "inverse_isa",
+      "hop": 1,
+      "icd_priority": 0.5,
+      "weight": 0.5
+    },
+    "C41474": {
+      "name": "Dihydrotestosterone Therapy",
+      "relation": "inverse_isa",
+      "hop": 1,
+      "icd_priority": 0.5,
+      "weight": 0.5
+    }
+  },
+  "scenario": "RGU",
+  "note": "WHI trial reversal"
+}
