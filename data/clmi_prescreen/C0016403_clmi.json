@@ -1,0 +1,10 @@
+{
+  "cui": "C0016403",
+  "concept": "fluoroquinolone tendon rupture",
+  "neighbor": "antibiotic adverse effect",
+  "scenario": "IFE",
+  "clmi_pretrain": 1.0,
+  "status": "CONFIRMED",
+  "n_pos": 20,
+  "n_neg": 20
+}

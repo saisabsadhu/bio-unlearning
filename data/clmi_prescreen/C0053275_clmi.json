@@ -1,0 +1,10 @@
+{
+  "cui": "C0053275",
+  "concept": "beta-carotene lung cancer risk",
+  "neighbor": "antioxidant supplement",
+  "scenario": "RGU",
+  "clmi_pretrain": 1.0,
+  "status": "CONFIRMED",
+  "n_pos": 20,
+  "n_neg": 20
+}

@@ -1,0 +1,10 @@
+{
+  "cui": "C0012265",
+  "concept": "digoxin hypokalemia toxicity",
+  "neighbor": "cardiac glycoside",
+  "scenario": "IFE",
+  "clmi_pretrain": 1.0,
+  "status": "CONFIRMED",
+  "n_pos": 20,
+  "n_neg": 20
+}

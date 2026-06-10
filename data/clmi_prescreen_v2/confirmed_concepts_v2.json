@@ -1,0 +1,152 @@
+[
+  {
+    "cui": "C0004057",
+    "concept": "aspirin cardiovascular prevention",
+    "neighbor": "platelet aggregation inhibitor",
+    "scenario": "RGU",
+    "clmi_mean": 1.0,
+    "clmi_std": 0.0,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0282402",
+    "concept": "hormone replacement therapy",
+    "neighbor": "estrogen receptor modulator",
+    "scenario": "RGU",
+    "clmi_mean": 1.0,
+    "clmi_std": 0.0,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0289313",
+    "concept": "rosiglitazone diabetes",
+    "neighbor": "thiazolidinedione class drug",
+    "scenario": "IFE",
+    "clmi_mean": 1.0,
+    "clmi_std": 0.0,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0876768",
+    "concept": "rofecoxib Vioxx withdrawal",
+    "neighbor": "COX-2 selective inhibitor",
+    "scenario": "IFE",
+    "clmi_mean": 1.0,
+    "clmi_std": 0.0,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0053275",
+    "concept": "beta-carotene lung cancer risk",
+    "neighbor": "antioxidant vitamin supplement",
+    "scenario": "RGU",
+    "clmi_mean": 1.0,
+    "clmi_std": 0.0,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0025598",
+    "concept": "metformin renal contraindication",
+    "neighbor": "biguanide blood glucose lowering",
+    "scenario": "IFE",
+    "clmi_mean": 1.0,
+    "clmi_std": 0.0,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0043031",
+    "concept": "warfarin vitamin K interaction",
+    "neighbor": "anticoagulant drug monitoring",
+    "scenario": "IFE",
+    "clmi_mean": 0.998,
+    "clmi_std": 0.004,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0012265",
+    "concept": "digoxin hypokalemia toxicity",
+    "neighbor": "cardiac glycoside mechanism",
+    "scenario": "IFE",
+    "clmi_mean": 1.0,
+    "clmi_std": 0.0,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0017725",
+    "concept": "tight glycemic control ICU harm",
+    "neighbor": "insulin infusion intensive care",
+    "scenario": "RGU",
+    "clmi_mean": 0.998,
+    "clmi_std": 0.004,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  },
+  {
+    "cui": "C0016403",
+    "concept": "fluoroquinolone tendon rupture",
+    "neighbor": "antibiotic musculoskeletal effect",
+    "scenario": "IFE",
+    "clmi_mean": 1.0,
+    "clmi_std": 0.0,
+    "status": "CONFIRMED",
+    "n_pos": 50,
+    "n_neg": 50,
+    "act_shape": [
+      100,
+      131072
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "cui": "C0043031",
+  "concept": "warfarin vitamin K interaction",
+  "neighbor": "anticoagulant therapy",
+  "scenario": "IFE",
+  "clmi_pretrain": 1.0,
+  "status": "CONFIRMED",
+  "n_pos": 20,
+  "n_neg": 20
+}

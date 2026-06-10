@@ -77,7 +77,7 @@ def filter_diversity(inst, seen_prompts):
     prompt = inst.get("prompt", "")
     for seen in seen_prompts:
         sim = jaccard(prompt, seen)
-        if sim > 0.70:
+        if sim > 0.50:
             return False, f"prompt too similar to existing (Jaccard={sim:.2f})"
     return True, "ok"
 

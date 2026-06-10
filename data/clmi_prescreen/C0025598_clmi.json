@@ -1,0 +1,10 @@
+{
+  "cui": "C0025598",
+  "concept": "metformin renal contraindication",
+  "neighbor": "biguanide diabetes drug",
+  "scenario": "IFE",
+  "clmi_pretrain": 1.0,
+  "status": "CONFIRMED",
+  "n_pos": 20,
+  "n_neg": 20
+}

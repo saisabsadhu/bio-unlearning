@@ -1,0 +1,10 @@
+{
+  "cui": "C0282402",
+  "concept": "hormone replacement therapy",
+  "neighbor": "estrogen therapy",
+  "scenario": "RGU",
+  "clmi_pretrain": 1.0,
+  "status": "CONFIRMED",
+  "n_pos": 20,
+  "n_neg": 20
+}

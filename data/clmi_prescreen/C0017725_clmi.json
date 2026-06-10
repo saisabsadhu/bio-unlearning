@@ -1,0 +1,10 @@
+{
+  "cui": "C0017725",
+  "concept": "tight glycemic control ICU harm",
+  "neighbor": "insulin infusion protocol",
+  "scenario": "RGU",
+  "clmi_pretrain": 1.0,
+  "status": "CONFIRMED",
+  "n_pos": 20,
+  "n_neg": 20
+}

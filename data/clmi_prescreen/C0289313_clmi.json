@@ -1,0 +1,10 @@
+{
+  "cui": "C0289313",
+  "concept": "rosiglitazone diabetes",
+  "neighbor": "thiazolidinedione class",
+  "scenario": "IFE",
+  "clmi_pretrain": 1.0,
+  "status": "CONFIRMED",
+  "n_pos": 20,
+  "n_neg": 20
+}

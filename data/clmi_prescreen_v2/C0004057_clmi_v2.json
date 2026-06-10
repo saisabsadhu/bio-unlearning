@@ -1,0 +1,15 @@
+{
+  "cui": "C0004057",
+  "concept": "aspirin cardiovascular prevention",
+  "neighbor": "platelet aggregation inhibitor",
+  "scenario": "RGU",
+  "clmi_mean": 1.0,
+  "clmi_std": 0.0,
+  "status": "CONFIRMED",
+  "n_pos": 50,
+  "n_neg": 50,
+  "act_shape": [
+    100,
+    131072
+  ]
+}

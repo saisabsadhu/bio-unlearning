@@ -1,0 +1,15 @@
+{
+  "cui": "C0043031",
+  "concept": "warfarin vitamin K interaction",
+  "neighbor": "anticoagulant drug monitoring",
+  "scenario": "IFE",
+  "clmi_mean": 0.998,
+  "clmi_std": 0.004,
+  "status": "CONFIRMED",
+  "n_pos": 50,
+  "n_neg": 50,
+  "act_shape": [
+    100,
+    131072
+  ]
+}
