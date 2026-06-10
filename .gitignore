@@ -6,3 +6,4 @@ logs/*.log
 data/raw/
 data/filtered/
 *.egg-info/
+configs/config.py
