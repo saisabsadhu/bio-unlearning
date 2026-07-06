@@ -1,0 +1,164 @@
+[
+  {
+    "practice": "Immediate delivery vs. expectant management for preterm premature rupture of membranes",
+    "contradicting_citation": "Morris et al. 2016, Lancet",
+    "specialty": "Obstetrics and gynecology",
+    "year": 2016,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Routine vitamin A supplementation in neonates",
+    "contradicting_citation": "Edmond et al. 2015, Lancet",
+    "specialty": "Pediatrics",
+    "year": 2015,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Sertraline/mirtazapine for depression in Alzheimer's disease",
+    "contradicting_citation": "UNVERIFIED -- likely Banerjee et al. 2011, Lancet (HTA-SADD trial), but the fetched author name did not match a recognizable citation; must verify against the primary eLife table before use",
+    "specialty": "Psychiatry",
+    "year": 2011,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 1,
+    "note": "Downgraded to PQS 1 pending manual verification -- see caveat above"
+  },
+  {
+    "practice": "Compression stockings for DVT prevention post-stroke",
+    "contradicting_citation": "Dennis et al. 2009, Lancet (CLOTS trial)",
+    "specialty": "Cardiovascular / neurology",
+    "year": 2009,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Mammographic screening benefit in ages 40-49",
+    "contradicting_citation": "Moss et al. 2006, Lancet (UK Age trial)",
+    "specialty": "Public health / preventive medicine",
+    "year": 2006,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Intrahepatic arterial chemotherapy for colorectal liver metastases",
+    "contradicting_citation": "Kerr et al. 2003, Lancet",
+    "specialty": "Oncology",
+    "year": 2003,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Fluocinolone acetonide implants for non-infectious uveitis",
+    "contradicting_citation": "MUST trial group 2017, JAMA",
+    "specialty": "Ophthalmology",
+    "year": 2017,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Wearable technology devices for weight loss",
+    "contradicting_citation": "Jakicic et al. 2016, JAMA",
+    "specialty": "Public health / preventive medicine",
+    "year": 2016,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Menopausal hormone therapy for chronic disease prevention",
+    "contradicting_citation": "Manson et al. 2013, JAMA (WHI follow-up)",
+    "specialty": "Obstetrics and gynecology",
+    "year": 2013,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3,
+    "note": "Overlaps existing pilot concept C0282402 'hormone replacement therapy' in data/clmi_prescreen_v2 -- can directly upgrade that pilot instance from LLM-only to Gold-tier using this citation."
+  },
+  {
+    "practice": "Zopiclone for insomnia",
+    "contradicting_citation": "Sivertsen et al. 2006, JAMA",
+    "specialty": "Public health / preventive medicine",
+    "year": 2006,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Automated/mechanical chest compression devices for cardiac arrest",
+    "contradicting_citation": "Hallstrom et al. 2006, JAMA",
+    "specialty": "Cardiovascular / critical care",
+    "year": 2006,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Universal glove and gown use in ICUs to reduce MRSA/VRE transmission",
+    "contradicting_citation": "Harris et al. 2013, JAMA",
+    "specialty": "Critical care",
+    "year": 2013,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Routine pulmonary artery catheterization in heart failure management",
+    "contradicting_citation": "Binanay et al. 2005, JAMA (ESCAPE trial)",
+    "specialty": "Cardiovascular",
+    "year": 2005,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "External hip protectors for fracture prevention in elderly",
+    "contradicting_citation": "van Schoor et al. 2003, JAMA",
+    "specialty": "Orthopedic",
+    "year": 2003,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Nicotine replacement patches for smoking cessation in pregnancy",
+    "contradicting_citation": "Coleman et al. 2012, NEJM (SNAP trial)",
+    "specialty": "Obstetrics and gynecology",
+    "year": 2012,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Cervical pessary for preterm birth prevention",
+    "contradicting_citation": "Nicolaides et al. 2016, NEJM",
+    "specialty": "Obstetrics and gynecology",
+    "year": 2016,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Off-pump coronary artery bypass superiority (5-year outcomes)",
+    "contradicting_citation": "Shroyer et al. 2017, NEJM (ROOBY trial)",
+    "specialty": "Cardiovascular",
+    "year": 2017,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Epidural glucocorticoid injections for lumbar spinal stenosis",
+    "contradicting_citation": "Friedly et al. 2014, NEJM",
+    "specialty": "Neurology / orthopedic",
+    "year": 2014,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Off-pump CABG superiority (4-year follow-up)",
+    "contradicting_citation": "Lamy et al. 2016, NEJM (CORONARY trial)",
+    "specialty": "Cardiovascular",
+    "year": 2016,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Arthroscopic partial meniscectomy superiority over physical therapy",
+    "contradicting_citation": "Katz et al. 2013, NEJM (METEOR trial)",
+    "specialty": "Orthopedic",
+    "year": 2013,
+    "source": "Herrera-Perez et al. 2019, eLife (10.7554/eLife.45183), Table 2",
+    "pqs": 3
+  }
+]

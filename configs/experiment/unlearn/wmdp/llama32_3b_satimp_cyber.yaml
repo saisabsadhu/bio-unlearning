@@ -1,0 +1,55 @@
+# @package _global_
+defaults:
+  - override /model: Llama-3.2-3B-Instruct
+  - override /trainer: SatImp
+  - override /data: unlearn
+  - override /data/datasets@data.forget: WMDP_forget
+  - override /data/datasets@data.retain: WMDP_retain
+  - override /eval: lm_eval
+
+data_split: cyber
+data:
+  anchor: forget
+  forget:
+    WMDP_forget:
+      args:
+        hf_args:
+          data_files: data/wmdp/wmdp-corpora/${data_split}-forget-corpus.jsonl
+  retain:
+    WMDP_retain:
+      args:
+        hf_args:
+          data_files: data/wmdp/wmdp-corpora/${data_split}-retain-corpus.jsonl
+
+eval:
+  lm_eval:
+    tasks:
+      - wmdp_${data_split}
+      - mmlu
+
+collator:
+  DataCollatorForSupervisedDataset:
+    args:
+      padding_side: left
+
+trainer:
+  args:
+    remove_unused_columns: False
+    per_device_train_batch_size: 1
+    gradient_accumulation_steps: 16
+    learning_rate: 5e-5
+    eval_strategy: steps
+    eval_steps: 0.25
+    max_steps: 150
+    lr_scheduler_type: constant
+    max_grad_norm: 1.0
+
+  method_args:
+    beta1: 5.0
+    beta2: 1.0
+    alpha: 1.0
+    gamma: 0.1
+    retain_loss_type: NLL
+
+task_name: llama32_3b_satimp_run1
+mode: unlearn

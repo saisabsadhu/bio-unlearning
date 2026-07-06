@@ -1,0 +1,15 @@
+model_args:
+  pretrained_model_name_or_path: "BioMistral/BioMistral-7B"
+  attn_implementation: 'sdpa'
+  torch_dtype: bfloat16
+tokenizer_args:
+  pretrained_model_name_or_path: "BioMistral/BioMistral-7B"
+template_args:
+  apply_chat_template: True
+  system_prompt: null
+  system_prompt_with_special_tokens: null
+  user_start_tag: "[INST] "
+  user_end_tag: " [/INST]"
+  asst_start_tag: ""
+  asst_end_tag: "</s> "
+  date_string: 07 Jul 2026

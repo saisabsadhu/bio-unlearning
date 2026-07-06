@@ -1,0 +1,13 @@
+model_args:
+  pretrained_model_name_or_path: "epfl-llm/meditron-7b"
+  attn_implementation: 'sdpa'
+  torch_dtype: bfloat16
+tokenizer_args:
+  pretrained_model_name_or_path: "epfl-llm/meditron-7b"
+template_args:
+  # Meditron-7B is a continued-pretraining completion model (Llama-2 base), not instruction-tuned.
+  apply_chat_template: False
+  user_start_tag: "Question: "
+  user_end_tag: "\n"
+  asst_start_tag: "Answer: "
+  asst_end_tag: "\n\n"

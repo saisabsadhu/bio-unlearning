@@ -1,0 +1,11 @@
+# @package eval.bioun.metrics.IFE_ewef
+defaults:
+  - .@pre_compute.forget_gen: IFE_forget_gen
+  - .@pre_compute.retain_gen: IFE_retain_gen
+
+handler: ewef_score
+rouge_threshold: 0.5
+# certainty_by_index intentionally omitted: no GRADE/Class-LOE metadata yet
+# on current LLM-oracle pilot data (PQS<3). Falls back to uniform weight,
+# i.e. this degenerates to plain DEF until Stage B0 gold-tier data with
+# evidence-certainty fields exists (MASTER_RESEARCH_PLAN.md Sec 4.4, 7.4).

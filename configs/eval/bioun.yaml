@@ -1,0 +1,25 @@
+# @package eval.bioun
+# BioUnlearn-Bench evaluation suite (RGU + IFE scenarios).
+# PAC scenario and OCD (needs UMLS-neighbor QA data, not yet built -- see
+# MASTER_RESEARCH_PLAN.md Stage B0/Gate 1) are intentionally not wired in
+# yet; ocd_score is implemented (evals/metrics/bioun.py) and ready to
+# compose once neighbor-QA datasets exist.
+
+defaults:
+  - bioun_metrics:
+    - RGU_forget_gen
+    - RGU_retain_gen
+    - RGU_fa
+    - RGU_def
+    - RGU_ewef
+    - IFE_forget_gen
+    - IFE_retain_gen
+    - IFE_fa
+    - IFE_def
+    - IFE_ewef
+
+handler: Evaluator
+output_dir: ${paths.output_dir}
+metrics: {}
+overwrite: false
+batch_size: 8

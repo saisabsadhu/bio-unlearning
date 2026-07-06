@@ -1,0 +1,6 @@
+# @package eval.bioun.metrics.IFE_fa
+defaults:
+  - .@pre_compute.forget_gen: IFE_forget_gen
+
+handler: fa_score
+rouge_threshold: 0.5

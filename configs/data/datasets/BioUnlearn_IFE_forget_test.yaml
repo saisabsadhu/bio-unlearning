@@ -1,0 +1,10 @@
+BioUnlearn_IFE_forget_test:
+  handler: QADataset
+  args:
+    hf_args:
+      path: "json"
+      data_files: "${paths.root_dir}/data/splits/IFE_test.jsonl"
+      split: "train"
+    question_key: "prompt"
+    answer_key: "forget_answer"
+    max_length: 512
