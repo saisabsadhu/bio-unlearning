@@ -29,6 +29,8 @@ This keeps the one required post-training eval (triggered unconditionally by `do
 
 Any new `configs/eval/bioun_metrics/*.yaml` metric config that references a `pre_compute` sub-metric must mount it under a scenario-qualified key (e.g. `.@pre_compute.RGU_forget_gen: RGU_forget_gen`, with `access_key: forget_gen` to remap for the metric function) -- **not** a generic key like `forget_gen`. The precompute cache is shared across the whole eval run; a generic key collides across scenarios and silently reuses the wrong scenario's cached generation (this actually happened -- see commit `62e4ca7`).
 
-## Single-GPU parallelism
+## Single-GPU parallelism -- eval yes, training no
 
-This box has one A100 40GB. A single BioMistral-7B eval or training process uses ~15GB; two fit comfortably in parallel (~30GB, confirmed working). Useful for running two scenarios or two methods concurrently rather than serially -- just watch `nvidia-smi` before adding a third.
+This box has one A100 40GB. **Inference/eval-only** processes (`src/eval.py`, or the checkpoint-0 eval inside a training run before the first backward pass) use ~15GB each for BioMistral-7B; two run comfortably in parallel (~30GB, confirmed working).
+
+**Training does not have the same headroom.** Gradients + optimizer states (`paged_adamw_32bit`) push a single BioMistral-7B fine-tune to ~24GB+ once the backward pass starts. Two simultaneous training runs OOM'd at the first backward pass (`torch.OutOfMemoryError`, ~39GB already in use before either could allocate more) even though both had looked fine during their eval-only startup phase -- the eval phase memory usage is not a reliable predictor of training memory usage. Run training jobs for this model size **sequentially**, one at a time; reserve parallel execution for eval-only workloads.
