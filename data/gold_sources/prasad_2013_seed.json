@@ -1,0 +1,104 @@
+[
+  {
+    "practice": "Antimicrobial treatment of asymptomatic bacteriuria in diabetic women",
+    "old_belief": "US groups recommended screening for and treating asymptomatic bacteriuria in women with diabetes.",
+    "new_finding": "Randomized trial found this practice leads to more antibiotic use without reducing complications or improving time to symptomatic infection.",
+    "contradicting_citation": "Harding et al., 2002",
+    "year": 2002,
+    "specialty": "Endocrinology / infectious disease",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "High-dose chemotherapy with autologous stem-cell transplantation added to conventional adjuvant chemotherapy for high-risk breast cancer",
+    "old_belief": "Believed to improve disease-free survival by 20-30% beyond standard adjuvant chemotherapy; became common, costly, and controversial practice for over a decade.",
+    "new_finding": "Randomized trial found reduced risk of relapse but no improvement in overall survival.",
+    "contradicting_citation": "Tallman et al., 2003",
+    "year": 2003,
+    "specialty": "Oncology",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Allergen-impermeable bed covers for adults with asthma",
+    "old_belief": "US and European guidelines recommended allergen-impermeable bed covers for asthma/allergic rhinitis patients; industry cost in the billions.",
+    "new_finding": "Double-blind randomized placebo-controlled trial (>1100 patients) found no benefit on any clinical or physiologic outcome.",
+    "contradicting_citation": "Woodcock et al., 2003",
+    "year": 2003,
+    "specialty": "Pulmonology / allergy",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Methylprednisolone and/or valacyclovir for vestibular neuritis",
+    "old_belief": "Physicians prescribed either or both corticosteroid and antiviral, with unclear evidence for either.",
+    "new_finding": "Randomized 2x2 factorial trial found only corticosteroids (not antiviral) improved recovery.",
+    "contradicting_citation": "Strupp et al., 2004",
+    "year": 2004,
+    "specialty": "Neurology / otolaryngology",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Mild intraoperative hypothermia during intracranial aneurysm surgery",
+    "old_belief": "Used in nearly 50% of aneurysm surgeries as a presumed neuroprotective adjunct since 1955.",
+    "new_finding": "Large randomized trial (IHAST) found no improvement in neurologic outcomes, with an increase in bacterial infections.",
+    "contradicting_citation": "Todd et al., 2005",
+    "year": 2005,
+    "specialty": "Neurosurgery",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Percutaneous coronary intervention (PCI) added to optimal medical therapy for stable coronary artery disease",
+    "old_belief": "PCI was a common initial treatment strategy alongside intensive medical therapy for stable coronary artery disease.",
+    "new_finding": "Trial (COURAGE) found PCI added to optimal medical therapy did not reduce risk of death, MI, or other major cardiovascular events.",
+    "contradicting_citation": "Boden et al., 2007",
+    "year": 2007,
+    "specialty": "Cardiovascular",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3,
+    "note": "Directly relevant precedent for RGU scenario and DGP method design -- a well-known temporal-directionality reversal in cardiology."
+  },
+  {
+    "practice": "In vitro fertilization (IVF) with preimplantation genetic screening for advanced maternal age",
+    "old_belief": "Preimplantation genetic screening had become increasingly common to improve IVF outcomes in women of advanced maternal age.",
+    "new_finding": "Multicenter double-blind RCT found screening significantly REDUCED rates of ongoing pregnancies and live births.",
+    "contradicting_citation": "Mastenbroek et al., 2007",
+    "year": 2007,
+    "specialty": "Obstetrics and gynecology / reproductive medicine",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Intensive glucose lowering (target HbA1c <7.0%) in type 2 diabetes",
+    "old_belief": "Target hemoglobin A1c of 7.0% or less was recommended for most patients with diabetes.",
+    "new_finding": "ACCORD trial found this intensive target sustained for 3.5 years increased mortality without significantly reducing major cardiovascular events, vs. a more permissive goal.",
+    "contradicting_citation": "ACCORD Study Group et al., 2008",
+    "year": 2008,
+    "specialty": "Endocrinology",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3,
+    "note": "Overlaps existing pilot concept 'tight glycemic control ICU harm' (C0017725) in data/clmi_prescreen_v2 -- can directly upgrade to Gold-tier using this citation."
+  },
+  {
+    "practice": "Revascularization for renal-artery stenosis",
+    "old_belief": "Revascularization was performed in 16% of patients with newly diagnosed atherosclerotic renovascular disease and hypertension, presumed beneficial.",
+    "new_finding": "Large RCT (ASTRAL) of revascularization plus medical management vs. medical management alone found substantial risks but no evidence of benefit from revascularization.",
+    "contradicting_citation": "ASTRAL Investigators et al., 2009",
+    "year": 2009,
+    "specialty": "Nephrology / vascular surgery",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3
+  },
+  {
+    "practice": "Gentamicin-collagen sponge for infection prophylaxis in colorectal surgery",
+    "old_belief": "Approved and used in millions of patients worldwide since 1985; a single-center RCT found a 70% decrease in surgical site infection.",
+    "new_finding": "Large multicenter phase 3 trial found the sponge paradoxically resulted in significantly MORE surgical site infections and more subsequent hospitalizations.",
+    "contradicting_citation": "Bennett-Guerrero et al., 2010",
+    "year": 2010,
+    "specialty": "Surgery / infectious disease",
+    "source": "Prasad et al. 2013, Mayo Clinic Proceedings 88(8):790-798, Table 2",
+    "pqs": 3
+  }
+]
