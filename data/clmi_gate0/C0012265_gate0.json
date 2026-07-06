@@ -1,0 +1,24 @@
+{
+  "cui": "C0012265",
+  "concept": "digoxin hypokalemia toxicity",
+  "neighbor": "cardiac glycoside mechanism",
+  "scenario": "IFE",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5594,
+    "label_swap_auroc_std": 0.1267
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5375,
+    "label_swap_auroc_std": 0.0581
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5594,
+    "label_swap_auroc_std": 0.096
+  }
+}

@@ -1,0 +1,25 @@
+# @package _global_
+defaults:
+  - override /model: BioMistral-7B
+  - override /trainer: NPO
+  - override /data: unlearn
+  - override /data/datasets@data.forget: BioUnlearn_RGU_forget
+  - override /data/datasets@data.retain: BioUnlearn_RGU_retain
+  - override /eval: bioun
+
+data:
+  anchor: forget
+
+eval:
+  bioun:
+    overwrite: true
+
+trainer:
+  args:
+    per_device_train_batch_size: 4
+    gradient_accumulation_steps: 2
+    learning_rate: 1e-5
+    weight_decay: 0.01
+    num_train_epochs: 5
+
+task_name: ???

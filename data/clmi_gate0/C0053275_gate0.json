@@ -1,0 +1,24 @@
+{
+  "cui": "C0053275",
+  "concept": "beta-carotene lung cancer risk",
+  "neighbor": "antioxidant vitamin supplement",
+  "scenario": "RGU",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.625,
+    "label_swap_auroc_std": 0.1292
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5125,
+    "label_swap_auroc_std": 0.0688
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5781,
+    "label_swap_auroc_std": 0.0791
+  }
+}

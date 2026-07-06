@@ -1,0 +1,24 @@
+{
+  "cui": "C0043031",
+  "concept": "warfarin vitamin K interaction",
+  "neighbor": "anticoagulant drug monitoring",
+  "scenario": "IFE",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5594,
+    "label_swap_auroc_std": 0.0864
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.475,
+    "label_swap_auroc_std": 0.0378
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5563,
+    "label_swap_auroc_std": 0.093
+  }
+}

@@ -1,7 +1,13 @@
 # @package eval.bioun.metrics.RGU_def
 defaults:
-  - .@pre_compute.forget_gen: RGU_forget_gen
-  - .@pre_compute.retain_gen: RGU_retain_gen
+  - .@pre_compute.RGU_forget_gen: RGU_forget_gen
+  - .@pre_compute.RGU_retain_gen: RGU_retain_gen
+
+pre_compute:
+  RGU_forget_gen:
+    access_key: forget_gen
+  RGU_retain_gen:
+    access_key: retain_gen
 
 handler: def_score
 rouge_threshold: 0.5

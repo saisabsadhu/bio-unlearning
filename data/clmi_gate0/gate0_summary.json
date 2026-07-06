@@ -1,0 +1,258 @@
+{
+  "per_concept": [
+    {
+      "cui": "C0004057",
+      "concept": "aspirin cardiovascular prevention",
+      "neighbor": "platelet aggregation inhibitor",
+      "scenario": "RGU",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.55,
+        "label_swap_auroc_std": 0.148
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.4344,
+        "label_swap_auroc_std": 0.1464
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5656,
+        "label_swap_auroc_std": 0.0886
+      }
+    },
+    {
+      "cui": "C0282402",
+      "concept": "hormone replacement therapy",
+      "neighbor": "estrogen receptor modulator",
+      "scenario": "RGU",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.6031,
+        "label_swap_auroc_std": 0.1146
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.4813,
+        "label_swap_auroc_std": 0.0695
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.6156,
+        "label_swap_auroc_std": 0.0675
+      }
+    },
+    {
+      "cui": "C0289313",
+      "concept": "rosiglitazone diabetes",
+      "neighbor": "thiazolidinedione class drug",
+      "scenario": "IFE",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5781,
+        "label_swap_auroc_std": 0.09
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5312,
+        "label_swap_auroc_std": 0.0884
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5938,
+        "label_swap_auroc_std": 0.0699
+      }
+    },
+    {
+      "cui": "C0876768",
+      "concept": "rofecoxib Vioxx withdrawal",
+      "neighbor": "COX-2 selective inhibitor",
+      "scenario": "IFE",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.6219,
+        "label_swap_auroc_std": 0.1279
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.4188,
+        "label_swap_auroc_std": 0.171
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5781,
+        "label_swap_auroc_std": 0.0856
+      }
+    },
+    {
+      "cui": "C0053275",
+      "concept": "beta-carotene lung cancer risk",
+      "neighbor": "antioxidant vitamin supplement",
+      "scenario": "RGU",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.625,
+        "label_swap_auroc_std": 0.1292
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5125,
+        "label_swap_auroc_std": 0.0688
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5781,
+        "label_swap_auroc_std": 0.0791
+      }
+    },
+    {
+      "cui": "C0025598",
+      "concept": "metformin renal contraindication",
+      "neighbor": "biguanide blood glucose lowering",
+      "scenario": "IFE",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.6781,
+        "label_swap_auroc_std": 0.0813
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5125,
+        "label_swap_auroc_std": 0.0835
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.6125,
+        "label_swap_auroc_std": 0.0498
+      }
+    },
+    {
+      "cui": "C0043031",
+      "concept": "warfarin vitamin K interaction",
+      "neighbor": "anticoagulant drug monitoring",
+      "scenario": "IFE",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5594,
+        "label_swap_auroc_std": 0.0864
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.475,
+        "label_swap_auroc_std": 0.0378
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5563,
+        "label_swap_auroc_std": 0.093
+      }
+    },
+    {
+      "cui": "C0012265",
+      "concept": "digoxin hypokalemia toxicity",
+      "neighbor": "cardiac glycoside mechanism",
+      "scenario": "IFE",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5594,
+        "label_swap_auroc_std": 0.1267
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5375,
+        "label_swap_auroc_std": 0.0581
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5594,
+        "label_swap_auroc_std": 0.096
+      }
+    },
+    {
+      "cui": "C0017725",
+      "concept": "tight glycemic control ICU harm",
+      "neighbor": "insulin infusion intensive care",
+      "scenario": "RGU",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5969,
+        "label_swap_auroc_std": 0.1154
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.4562,
+        "label_swap_auroc_std": 0.12
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5437,
+        "label_swap_auroc_std": 0.096
+      }
+    },
+    {
+      "cui": "C0016403",
+      "concept": "fluoroquinolone tendon rupture",
+      "neighbor": "antibiotic musculoskeletal effect",
+      "scenario": "IFE",
+      "original": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5781,
+        "label_swap_auroc_std": 0.0867
+      },
+      "last_token": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.5062,
+        "label_swap_auroc_std": 0.0756
+      },
+      "mean_pool": {
+        "real_auroc_mean": 1.0,
+        "real_auroc_std": 0.0,
+        "label_swap_auroc_mean": 0.575,
+        "label_swap_auroc_std": 0.0811
+      }
+    }
+  ],
+  "summary": {
+    "original": {
+      "mean_real_auroc": 1.0,
+      "mean_label_swap_auroc": 0.595
+    },
+    "last_token": {
+      "mean_real_auroc": 1.0,
+      "mean_label_swap_auroc": 0.4866
+    },
+    "mean_pool": {
+      "mean_real_auroc": 1.0,
+      "mean_label_swap_auroc": 0.5778
+    }
+  }
+}

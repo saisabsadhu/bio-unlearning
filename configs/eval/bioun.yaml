@@ -18,7 +18,7 @@ defaults:
     - IFE_def
     - IFE_ewef
 
-handler: Evaluator
+handler: BioUnlearnEvaluator
 output_dir: ${paths.output_dir}
 metrics: {}
 overwrite: false

@@ -1,0 +1,24 @@
+{
+  "cui": "C0017725",
+  "concept": "tight glycemic control ICU harm",
+  "neighbor": "insulin infusion intensive care",
+  "scenario": "RGU",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5969,
+    "label_swap_auroc_std": 0.1154
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.4562,
+    "label_swap_auroc_std": 0.12
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5437,
+    "label_swap_auroc_std": 0.096
+  }
+}

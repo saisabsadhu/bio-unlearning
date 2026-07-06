@@ -1,0 +1,24 @@
+{
+  "cui": "C0876768",
+  "concept": "rofecoxib Vioxx withdrawal",
+  "neighbor": "COX-2 selective inhibitor",
+  "scenario": "IFE",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.6219,
+    "label_swap_auroc_std": 0.1279
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.4188,
+    "label_swap_auroc_std": 0.171
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5781,
+    "label_swap_auroc_std": 0.0856
+  }
+}

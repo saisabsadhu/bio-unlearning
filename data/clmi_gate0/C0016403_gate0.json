@@ -1,0 +1,24 @@
+{
+  "cui": "C0016403",
+  "concept": "fluoroquinolone tendon rupture",
+  "neighbor": "antibiotic musculoskeletal effect",
+  "scenario": "IFE",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5781,
+    "label_swap_auroc_std": 0.0867
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5062,
+    "label_swap_auroc_std": 0.0756
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.575,
+    "label_swap_auroc_std": 0.0811
+  }
+}

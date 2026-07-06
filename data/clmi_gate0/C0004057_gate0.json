@@ -1,0 +1,24 @@
+{
+  "cui": "C0004057",
+  "concept": "aspirin cardiovascular prevention",
+  "neighbor": "platelet aggregation inhibitor",
+  "scenario": "RGU",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.55,
+    "label_swap_auroc_std": 0.148
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.4344,
+    "label_swap_auroc_std": 0.1464
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5656,
+    "label_swap_auroc_std": 0.0886
+  }
+}

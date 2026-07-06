@@ -1,0 +1,24 @@
+{
+  "cui": "C0282402",
+  "concept": "hormone replacement therapy",
+  "neighbor": "estrogen receptor modulator",
+  "scenario": "RGU",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.6031,
+    "label_swap_auroc_std": 0.1146
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.4813,
+    "label_swap_auroc_std": 0.0695
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.6156,
+    "label_swap_auroc_std": 0.0675
+  }
+}

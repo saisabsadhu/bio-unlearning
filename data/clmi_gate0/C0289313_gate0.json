@@ -1,0 +1,24 @@
+{
+  "cui": "C0289313",
+  "concept": "rosiglitazone diabetes",
+  "neighbor": "thiazolidinedione class drug",
+  "scenario": "IFE",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5781,
+    "label_swap_auroc_std": 0.09
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5312,
+    "label_swap_auroc_std": 0.0884
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5938,
+    "label_swap_auroc_std": 0.0699
+  }
+}

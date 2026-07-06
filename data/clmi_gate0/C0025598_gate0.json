@@ -1,0 +1,24 @@
+{
+  "cui": "C0025598",
+  "concept": "metformin renal contraindication",
+  "neighbor": "biguanide blood glucose lowering",
+  "scenario": "IFE",
+  "original": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.6781,
+    "label_swap_auroc_std": 0.0813
+  },
+  "last_token": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.5125,
+    "label_swap_auroc_std": 0.0835
+  },
+  "mean_pool": {
+    "real_auroc_mean": 1.0,
+    "real_auroc_std": 0.0,
+    "label_swap_auroc_mean": 0.6125,
+    "label_swap_auroc_std": 0.0498
+  }
+}
