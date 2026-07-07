@@ -1,0 +1,13 @@
+{
+  "method": "NPO", "scenario_trained": "IFE", "model": "BioMistral-7B",
+  "hyperparameters": {"learning_rate": 1e-5, "max_steps": 8, "lora": true, "lora_r": 16, "lora_alpha": 32, "ref_model_precision": "8bit"},
+  "pre_unlearning_baseline": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "post_unlearning": {
+    "RGU_fa": 0.7068965517241379, "RGU_def": 0.1584423305588585, "RGU_ewef": 0.08620689655172414,
+    "IFE_fa": 0.8928571428571429, "IFE_def": 0.01594387755102041, "IFE_ewef": 0.017857142857142856
+  },
+  "interpretation": "Targeted scenario (IFE) FA rose 0.839->0.893; untargeted (RGU) FA and DEF/EWEF fell (0.741->0.707, 0.192->0.158, 0.138->0.086). No collapse, train_loss stable (14.5-ish start per NPO's DPO-style objective, ending 12.59). Mirrors the GA IFE-targeted pattern: targeted scenario shows more movement than untargeted, real cross-scenario collateral rather than noise."
+}
