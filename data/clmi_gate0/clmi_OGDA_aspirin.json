@@ -1,0 +1,62 @@
+{
+  "C0004057": {
+    "concept": "aspirin cardiovascular prevention",
+    "scenario": "RGU",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0282402": {
+    "concept": "hormone replacement therapy",
+    "scenario": "RGU",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0289313": {
+    "concept": "rosiglitazone diabetes",
+    "scenario": "IFE",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0876768": {
+    "concept": "rofecoxib Vioxx withdrawal",
+    "scenario": "IFE",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0053275": {
+    "concept": "beta-carotene lung cancer risk",
+    "scenario": "RGU",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0025598": {
+    "concept": "metformin renal contraindication",
+    "scenario": "IFE",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0043031": {
+    "concept": "warfarin vitamin K interaction",
+    "scenario": "IFE",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0012265": {
+    "concept": "digoxin hypokalemia toxicity",
+    "scenario": "IFE",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0017725": {
+    "concept": "tight glycemic control ICU harm",
+    "scenario": "RGU",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  },
+  "C0016403": {
+    "concept": "fluoroquinolone tendon rupture",
+    "scenario": "IFE",
+    "mean_pool_auroc_mean": 1.0,
+    "mean_pool_auroc_std": 0.0
+  }
+}

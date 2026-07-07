@@ -1,0 +1,30 @@
+{
+  "cui": "C0004057",
+  "concept": "aspirin cardiovascular prevention",
+  "layer": 7,
+  "n_neighbors_used": 7,
+  "protected_subspace_rank": 7,
+  "pre_ablation_overlap_cos2": 0.9852845792757934,
+  "neighbor_weights": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+  ],
+  "clmi_post_ablation": {
+    "C0004057_aspirin": 1.0,
+    "C0282402_hrt": 1.0,
+    "C0289313_rosiglitazone": 1.0,
+    "C0876768_rofecoxib": 1.0,
+    "C0053275_betacarotene": 1.0,
+    "C0025598_metformin": 1.0,
+    "C0043031_warfarin": 1.0,
+    "C0012265_digoxin": 1.0,
+    "C0017725_glycemic": 1.0,
+    "C0016403_fluoroquinolone": 1.0
+  },
+  "finding": "Single-layer (layer 7) weight-orthogonalization ablation left CLMI (mean_pool, full 32-layer probe) completely unchanged at 1.0 for ALL 10 concepts, including the targeted one (aspirin). The residual stream carries redundant multi-layer representations of factual/conceptual knowledge -- a single layer intervention is necessary but not sufficient. This directly validates the honest-scoping concern already flagged in documentation/NOVEL_METHODOLOGY_OGDA.md Section 5 (single-layer intervention risk) and motivates the multi-layer version."
+}
