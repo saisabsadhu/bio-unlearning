@@ -1,0 +1,16 @@
+{
+  "method": "RMU",
+  "scenario_trained": "RGU",
+  "model": "BioMistral-7B",
+  "hyperparameters": {"learning_rate": 1e-5, "max_steps": 8, "per_device_train_batch_size": 1, "gradient_accumulation_steps": 8, "steering_coeff": 2, "module_regex": "layers.7", "lora": true, "lora_r": 16, "lora_alpha": 32, "ref_model_precision": "8bit"},
+  "infra_note": "Second working KL/steering-family run after NPO. Required two more fixes beyond the NPO infra: (1) module_regex needed an optional (base_model\\.model\\.)? prefix to match PEFT-wrapped module names (re.fullmatch was failing against 'base_model.model.model.layers.7'); (2) trainable_params_regex changed from '.*' to '.*lora.*', since RMU's create_optimizer explicitly re-enables requires_grad on every regex-matched param, and '.*' would have silently re-enabled gradients on the entire frozen base model, undoing LoRA's memory savings; (3) ref_act needed explicit dtype cast to model_act.dtype in rmu.py's retain-loss loop -- the 8-bit reference model's dequantized activations are fp16 internally regardless of the trainable model's bf16 dtype, causing 'Found dtype Half but expected BFloat16' during backward when mixed in a differentiable op.",
+  "pre_unlearning_baseline": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "post_unlearning": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.875, "IFE_def": 0.015625, "IFE_ewef": 0.017857142857142856
+  },
+  "interpretation": "RGU (targeted scenario) numbers are EXACTLY unchanged from baseline -- at this gentle dose (steering_coeff=2, layer 7 only, 8 steps, LoRA r=16), RMU's activation-steering objective produced no measurable effect, gentler than both GA and NPO at their matched doses. Consistent with the RMU/WMDP literature's typical use of higher steering coefficients and/or more steps than tested here. train_loss ended at 0.0021 (small by design -- RMU's loss is an L2-style activation-matching objective, not cross-entropy, so magnitude isn't directly comparable to GA/NPO's loss values). This gives a genuine three-way comparison point for the diagnostic table: GA ranges from collapse (aggressive) to no-effect (gentle), NPO shows small non-degenerate movement at a matched gentle dose, RMU shows no movement at a matched gentle dose -- a real, reportable spectrum of method sensitivity, not yet a full hyperparameter-matched comparison (each method's 'gentle' dose was reached by different tuning, not a shared step/coefficient budget)."
+}

@@ -8,7 +8,18 @@ method_args:
   steering_coeff: 2
   retain_loss_type: EMBED_DIFF
   alpha: 1
-  module_regex: model\.layers\.7
-  trainable_params_regex: 
-    - .* # update all parameters (as done in https://github.com/tmlr-group/G-effect/blob/ef368eea3b2c6dba1e090b9ebb021ac9f047e0ae/dataloader.py#L271)
-    # - model\.layers\.(5|6|7)\.mlp\.down_proj\.weight # If you want to update only these weights (as done in https://github.com/centerforaisafety/wmdp/blob/bc5e1ba0367ea826caeeeaa50656336a1e87acfb/rmu/unlearn.py#L26)
+  # (base_model\.model\.)? optionally matches PEFT/LoRA's module-name prefix
+  # (e.g. "base_model.model.model.layers.7") so this works whether or not
+  # BIOUNLEARN_USE_LORA=1 is set -- see src/model/__init__.py.
+  module_regex: (base_model\.model\.)?model\.layers\.7
+  trainable_params_regex:
+    # Matches LoRA adapter params only (".*lora.*") -- required when LoRA is
+    # active: RMU's create_optimizer does _freeze_all_params(False) then
+    # _set_trainable_params(regex, True), so a regex of ".*" would re-enable
+    # gradients on the ENTIRE base model and silently undo LoRA's memory
+    # savings (see docs/bioun_running_notes.md). This only matches LoRA
+    # params, so BIOUNLEARN_USE_LORA=1 must be set for RMU to have any
+    # trainable parameters at all with this default -- revert to ".*" (as
+    # done in https://github.com/tmlr-group/G-effect) for full-precision
+    # fine-tuning on a non-shared/larger GPU.
+    - .*lora.*

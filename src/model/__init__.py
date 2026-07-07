@@ -86,6 +86,15 @@ def get_model(model_cfg: DictConfig):
             task_type="CAUSAL_LM",
         )
         model = get_peft_model(model, lora_config)
+        # peft's default LoRA adapter dtype doesn't always match the base model's
+        # torch_dtype (bf16 here) -- a dtype mismatch between the base model's
+        # bf16 params/gradients and fp16(-ish) adapter params surfaces as
+        # "RuntimeError: Found dtype Half but expected BFloat16" during backward,
+        # only with certain trainers (e.g. RMU, which accumulates gradients across
+        # multiple cached activations). Force uniform dtype explicitly.
+        for name, param in model.named_parameters():
+            if param.requires_grad and param.dtype != torch_dtype:
+                param.data = param.data.to(torch_dtype)
         model.print_trainable_parameters()
         # Required with gradient_checkpointing=True: the embedding layer's output
         # otherwise has requires_grad=False (nothing upstream of the LoRA adapters is

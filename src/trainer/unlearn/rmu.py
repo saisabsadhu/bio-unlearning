@@ -108,8 +108,15 @@ class RMU(GradDiff):
             # Start accumulation from first real loss — NOT from torch.tensor(0.0)
             retain_loss = None
             for model_act, ref_act in zip(model_acts, ref_acts):
+                # dtype=model_act.dtype matters when the reference model is loaded
+                # in 8-bit (see grad_diff.py::_prepare_ref_model): bitsandbytes'
+                # int8 layers dequantize to fp16 internally regardless of the
+                # trainable model's bf16 dtype, and mixing them in a differentiable
+                # op raises "Found dtype Half but expected BFloat16" during
+                # backward. ref_model's own forward runs under no_grad (see caller),
+                # so casting its output here is safe -- no gradient flows through it.
                 l = self.compute_activation_loss(
-                    model_act, ref_act.to(model_act.device), mask
+                    model_act, ref_act.to(device=model_act.device, dtype=model_act.dtype), mask
                 )
                 retain_loss = l if retain_loss is None else retain_loss + l
             return retain_loss / len(self.model_modules)
