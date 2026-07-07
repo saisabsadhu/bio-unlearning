@@ -61,6 +61,39 @@ def get_model(model_cfg: DictConfig):
         raise ValueError(
             f"Error {e} while fetching model using {model_handler}.from_pretrained()."
         )
+
+    # Opt-in LoRA wrapping: on a shared GPU, full fine-tuning of a 7B model plus a
+    # KL-based method's frozen reference-model copy (see trainer/unlearn/grad_diff.py)
+    # can exceed available memory regardless of the reference model's own precision --
+    # the trainable model's own weights+gradients+optimizer state are the dominant
+    # cost, and quantizing only the reference model doesn't address that. LoRA cuts
+    # trainable-parameter memory (gradients + optimizer state) to a small fraction of
+    # the full model, at the cost of being a lower-rank approximation of full
+    # fine-tuning. Off by default (full fine-tuning is closer to what the unlearning
+    # literature reports); set BIOUNLEARN_USE_LORA=1 to enable.
+    if os.environ.get("BIOUNLEARN_USE_LORA", "0") == "1":
+        from peft import LoraConfig, get_peft_model
+
+        lora_r = int(os.environ.get("BIOUNLEARN_LORA_R", "16"))
+        lora_alpha = int(os.environ.get("BIOUNLEARN_LORA_ALPHA", "32"))
+        logger.info(f"Wrapping model with LoRA (r={lora_r}, alpha={lora_alpha}).")
+        lora_config = LoraConfig(
+            r=lora_r,
+            lora_alpha=lora_alpha,
+            target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+            lora_dropout=0.05,
+            bias="none",
+            task_type="CAUSAL_LM",
+        )
+        model = get_peft_model(model, lora_config)
+        model.print_trainable_parameters()
+        # Required with gradient_checkpointing=True: the embedding layer's output
+        # otherwise has requires_grad=False (nothing upstream of the LoRA adapters is
+        # trainable), which breaks checkpointing's recomputed backward pass entirely
+        # ("element 0 of tensors does not require grad and does not have a grad_fn").
+        # This registers a hook forcing the embedding output to require grad.
+        model.enable_input_require_grads()
+
     tokenizer = get_tokenizer(tokenizer_args)
     return model, tokenizer
 

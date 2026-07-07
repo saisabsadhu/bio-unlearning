@@ -1,6 +1,12 @@
 import copy
+import logging
+import os
+
+import torch
 from trainer.utils import compute_kl_divergence
 from trainer.unlearn.base import UnlearnTrainer
+
+logger = logging.getLogger("trainer")
 
 
 class GradDiff(UnlearnTrainer):
@@ -14,6 +20,38 @@ class GradDiff(UnlearnTrainer):
             self.ref_model = self._prepare_ref_model(self.model)
 
     def _prepare_ref_model(self, model):
+        # This shared reference-model copy is the dominant memory cost for
+        # KL-based methods (NPO/RMU/GradDiff-KL/UNDIAL/WGA/SatImp/DPO) on a
+        # single, often shared, GPU -- a full-precision deepcopy roughly
+        # doubles the base model's memory. The reference model is
+        # frozen/eval-only (no gradients ever flow into it), so it's a good
+        # candidate for 8-bit quantization: reload it fresh from the same
+        # checkpoint in int8 instead of deepcopy-ing the live bf16/fp16
+        # weights, unless BIOUNLEARN_REF_MODEL_FULL_PRECISION=1 is set (e.g.
+        # for exact-precision ablation comparisons).
+        use_8bit = os.environ.get("BIOUNLEARN_REF_MODEL_FULL_PRECISION", "0") != "1"
+        if use_8bit and not self.is_deepspeed_enabled:
+            try:
+                from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+
+                name_or_path = model.config._name_or_path
+                logger.info(
+                    f"Loading reference model '{name_or_path}' in 8-bit "
+                    "(set BIOUNLEARN_REF_MODEL_FULL_PRECISION=1 to disable)."
+                )
+                ref_model = AutoModelForCausalLM.from_pretrained(
+                    name_or_path,
+                    quantization_config=BitsAndBytesConfig(load_in_8bit=True),
+                    device_map={"": self.accelerator.device},
+                )
+                ref_model.eval()
+                return ref_model
+            except Exception as e:
+                logger.warning(
+                    f"8-bit reference model load failed ({e}); falling back "
+                    "to full-precision deepcopy."
+                )
+
         ref_model = copy.deepcopy(model).to(self.accelerator.device)
         ref_model.eval()
         if self.is_deepspeed_enabled:

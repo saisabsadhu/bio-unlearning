@@ -1,0 +1,16 @@
+{
+  "method": "NPO",
+  "scenario_trained": "RGU",
+  "model": "BioMistral-7B",
+  "hyperparameters": {"learning_rate": 1e-5, "max_steps": 8, "per_device_train_batch_size": 1, "gradient_accumulation_steps": 8, "beta": 0.1, "lora": true, "lora_r": 16, "lora_alpha": 32, "ref_model_precision": "8bit"},
+  "infra_note": "First working NPO/RMU-family run on this shared GPU. Full fine-tuning + full-precision reference model OOM'd repeatedly (fixed 30.88GB cost regardless of batch size/seqlen -- root-caused in commits 227b139/601ba29's neighbor). Unblocked via two changes to shared framework code: (1) src/model/__init__.py -- opt-in LoRA wrapping (BIOUNLEARN_USE_LORA=1) cuts trainable-parameter memory to 0.58% of the full model; (2) src/trainer/unlearn/grad_diff.py -- the frozen KL/DPO reference-model copy now loads in 8-bit by default instead of a full-precision deepcopy. Also required model.enable_input_require_grads() to fix a known LoRA+gradient_checkpointing interaction (embedding output otherwise has requires_grad=False, breaking checkpointed backward).",
+  "pre_unlearning_baseline": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "post_unlearning": {
+    "RGU_fa": 0.7068965517241379, "RGU_def": 0.18281807372175982, "RGU_ewef": 0.1206896551724138,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "interpretation": "No collapse (train_loss 14.5->12.5, stable, unlike GA's -30->-222 divergence). IFE (untargeted) numbers are EXACTLY unchanged from baseline -- correct, expected behavior for a scenario NPO never trained on, and a good sanity check that the LoRA-wrapped training pipeline isn't leaking changes elsewhere. RGU (targeted) shows small, non-degenerate movement, all slightly below baseline -- at this gentle 8-step dose, NPO (like GA at its gentle setting) hasn't achieved strong forgetting yet, but critically it did NOT collapse, unlike GA's aggressive setting. This is exactly the qualitative difference between GA and NPO's retain-regularized objective the master plan predicted."
+}
