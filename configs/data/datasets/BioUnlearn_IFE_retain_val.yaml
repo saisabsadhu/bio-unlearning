@@ -7,4 +7,4 @@ BioUnlearn_IFE_retain_val:
       split: "train"
     question_key: "prompt"
     answer_key: "retain_answer"
-    max_length: 512
+    max_length: 288

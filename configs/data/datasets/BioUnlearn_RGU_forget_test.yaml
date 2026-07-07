@@ -7,4 +7,4 @@ BioUnlearn_RGU_forget_test:
       split: "train"
     question_key: "prompt"
     answer_key: "forget_answer"
-    max_length: 512
+    max_length: 288
