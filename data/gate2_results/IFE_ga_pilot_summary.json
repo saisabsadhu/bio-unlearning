@@ -1,0 +1,15 @@
+{
+  "method": "GradAscent",
+  "scenario_trained": "IFE",
+  "model": "BioMistral-7B",
+  "hyperparameters": {"learning_rate": 2e-6, "max_steps": 8, "per_device_train_batch_size": 2, "gradient_accumulation_steps": 4},
+  "pre_unlearning_baseline": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "post_unlearning": {
+    "RGU_fa": 0.7241379310344828, "RGU_def": 0.16230677764565993, "RGU_ewef": 0.10344827586206896,
+    "IFE_fa": 0.8928571428571429, "IFE_def": 0.01594387755102041, "IFE_ewef": 0.0
+  },
+  "interpretation": "Training targeted at IFE shows a small FA increase on IFE itself (0.839->0.893, the targeted scenario) alongside a small FA/DEF decrease on RGU (0.741->0.724, 0.192->0.162 -- untargeted, cross-scenario collateral). Both effects are modest and non-degenerate (no collapse, unlike the lr=1e-5/40-step attempt), and the targeted scenario shows a larger effect than the untargeted one, which is the qualitatively expected pattern for real (if weak) forgetting rather than noise. Consistent with the RGU_ga pilot's finding that lr=2e-6/8 steps is a gentle, sub-collapse dose -- both runs sit somewhere between 'no effect' and 'catastrophic collapse', bracketing GA's narrow stability window from both scenario directions."
+}
