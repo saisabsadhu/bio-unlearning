@@ -1,0 +1,12 @@
+WMDP_bio_forget:
+  handler: PretrainingDataset
+  args:
+    hf_args:
+      path: parquet
+      data_files:
+        train:
+          - data/wmdp/bio-forget/data/train-00000-of-00002.parquet
+          - data/wmdp/bio-forget/data/train-00001-of-00002.parquet
+      split: train
+     text_key: text
+     max_length: 512

@@ -30,6 +30,9 @@ def _register_trainer(trainer_class):
 
 def load_trainer_args(trainer_args: DictConfig, dataset):
     trainer_args = dict(trainer_args)
+
+    trainer_args["remove_unused_columns"] = False
+
     warmup_epochs = trainer_args.pop("warmup_epochs", None)
     if warmup_epochs:
         batch_size = trainer_args["per_device_train_batch_size"]
@@ -40,8 +43,12 @@ def load_trainer_args(trainer_args: DictConfig, dataset):
             (warmup_epochs * dataset_len)
             // (batch_size * grad_accum_steps * num_devices)
         )
+    print("\n==== TRAINER ARGS ====")
+    print("remove_unused_columns =", trainer_args.get("remove_unused_columns"))
+    print("======================\n")
 
     trainer_args = TrainingArguments(**trainer_args)
+    print("AFTER TrainingArguments:", trainer_args.remove_unused_columns)
     return trainer_args
 
 
@@ -63,6 +70,12 @@ def load_trainer(
         f"{trainer_handler_name} handler not set"
     )
     trainer_cls = TRAINER_REGISTRY.get(trainer_handler_name, None)
+
+    print("\n==== TRAINER DEBUG ====")
+    print("Handler:", trainer_handler_name)
+    print("Trainer class:", trainer_cls.__name__)
+    print("=======================\n")
+
     assert trainer_cls is not None, NotImplementedError(
         f"{trainer_handler_name} not implemented or not registered"
     )

@@ -1,3 +1,4 @@
+import torch
 from trainer.utils import compute_dpo_loss
 from trainer.unlearn.grad_diff import GradDiff
 
@@ -7,7 +8,15 @@ class NPO(GradDiff):
         super().__init__(*args, **kwargs)
         self.beta = beta
         if self.ref_model is None:
+            print("\n==== BEFORE REF MODEL ====")
+            print(f"Allocated: {torch.cuda.memory_allocated()/1024**3:.2f} GB")
+            print(f"Reserved: {torch.cuda.memory_reserved()/1024**3:.2f} GB")
+
             self.ref_model = self._prepare_ref_model(self.model)
+
+            print("\n==== AFTER REF MODEL ====")
+            print(f"Allocated: {torch.cuda.memory_allocated()/1024**3:.2f} GB")
+            print(f"Reserved: {torch.cuda.memory_reserved()/1024**3:.2f} GB")
 
     def compute_loss(
         self, model, inputs, return_outputs=False, num_items_in_batch=None

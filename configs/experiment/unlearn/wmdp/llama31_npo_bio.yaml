@@ -1,0 +1,60 @@
+# @package _global_
+
+defaults:
+  - override /model: Llama-3.1-8B-Instruct
+  - override /trainer: NPO
+  - override /data: unlearn
+  - override /data/datasets@data.forget: WMDP_bio_forget
+  - override /data/datasets@data.retain: WMDP_bio_retain
+  - override /eval: lm_eval
+
+data_split: cyber
+
+data:
+  anchor: forget
+  forget:
+    WMDP_forget:
+      args:
+        hf_args:
+          data_files: data/wmdp/wmdp-corpora/${data_split}-forget-corpus.jsonl
+  retain:
+    WMDP_retain:
+      args:
+        hf_args:
+          data_files: data/wmdp/wmdp-corpora/${data_split}-retain-corpus.jsonl
+
+eval:
+  lm_eval:
+    tasks:
+      - wmdp_bio
+      - mmlu
+
+
+collator:
+  DataCollatorForSupervisedDataset:
+    args:
+      padding_side: left # Usually left but for mistral and zephyr its right (https://github.com/hongshi97/CAD/issues/2)
+
+trainer:
+  args:
+    per_device_train_batch_size: 1
+    gradient_accumulation_steps: 16
+    learning_rate: 5e-5
+    eval_strategy: steps
+    eval_steps: 25
+    max_steps: 150
+    lr_scheduler_type: constant
+    save_strategy: steps
+    save_steps: 25
+    save_total_limit: 6
+    load_best_model_at_end: false
+
+  method_args:
+    # The params here are more dependent on model and dataset. Tune them carefully to work
+    beta: 0.1
+    gamma: 1.0
+    alpha: 1
+    retain_loss_type: NLL
+
+task_name: ???
+

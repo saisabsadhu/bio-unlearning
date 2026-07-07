@@ -1,0 +1,9 @@
+handler: SurgicalGradAscent
+
+method_args:
+  target_layers: null
+
+args:
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 5e-5

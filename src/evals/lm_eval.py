@@ -96,8 +96,11 @@ class LMEvalEvaluator(Evaluator):
             f"Aggregated evaluations will be summarised in: {summary_file_path}"
         )
 
+        print("Tasks =", self.tasks)
+
         for task in self.tasks:
             task_name = self.get_task_name(task)
+            print(f"Running task: {task_name}")
             if not overwrite and task_name in logs and logs[task_name]:
                 logger.info(f"Skipping {task_name}, already evaluated.")
                 continue
@@ -108,8 +111,25 @@ class LMEvalEvaluator(Evaluator):
                 task_manager=self.task_manager,
                 **self.simple_evaluate_args,
             )
+            print("simple_evaluate returned!")
+            print(results.keys())
             logs.update({task_name: results["samples"]})
             summary.update(self.summarize(results, task_name))
+            print("Saving logs to:", logs_file_path)
+            print("Summary keys:", summary.keys())
             self.save_logs(logs, logs_file_path)
             self.save_logs(summary, summary_file_path)
+
+        print("\n" + "=" * 55)
+        print(f"Checkpoint: {output_dir}")
+        print("=" * 55)
+
+        for metric, value in sorted(summary.items()):
+            if isinstance(value, float):
+                print(f"{metric:<35} {value:.4f}")
+            else:
+                print(f"{metric:<35} {value}")
+
+        print("=" * 55 + "\n")
+
         return summary

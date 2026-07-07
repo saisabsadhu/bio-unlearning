@@ -56,6 +56,7 @@ class CompletionDataset(Dataset):
         text_content = self.data[idx].get(self.text_key, "")
         index = self.data[idx]["index"]
         item = self._process_sample(pref, text_content, index)
+        print(f"[DATASET ITEM] idx={idx} len={len(item['input_ids'])}", flush=True)
         return item
 
 
@@ -69,19 +70,34 @@ class PretrainingDataset(Dataset):
         self.chunks = self._chunk_raw_text(load_hf_dataset(**hf_args)[text_key])
 
     def _chunk_raw_text(self, raw_text):
-        raw_text = "\n\n".join(raw_text)
-        full_token_sequence = self.tokenizer(raw_text, add_special_tokens=False)[
-            "input_ids"
-        ]
-        num_chunks = len(full_token_sequence) // self.max_length + 1
+# Start of debug edit
         chunks = []
-        for i in range(num_chunks):
-            chunks.append(
-                self.tokenizer.decode(
-                    full_token_sequence[i * self.max_length : (i + 1) * self.max_length]
-                )
-            )
+        buffer_ids = []
+        for line in raw_text:
+            line_ids = self.tokenizer(line, add_special_tokens=False)["input_ids"]
+            buffer_ids.extend(line_ids)
+            while len(buffer_ids) >= self.max_length:
+                chunk_ids = buffer_ids[:self.max_length]
+                chunks.append(self.tokenizer.decode(chunk_ids))
+                buffer_ids = buffer_ids[self.max_length:]
+        if buffer_ids:
+            chunks.append(self.tokenizer.decode(buffer_ids))
         return chunks
+
+# End
+#        raw_text = "\n\n".join(raw_text)
+#        full_token_sequence = self.tokenizer(raw_text, add_special_tokens=False)[
+#            "input_ids"
+#        ]
+#        num_chunks = len(full_token_sequence) // self.max_length + 1
+#        chunks = []
+#        for i in range(num_chunks):
+#            chunks.append(
+#                self.tokenizer.decode(
+#                    full_token_sequence[i * self.max_length : (i + 1) * self.max_length]
+#                )
+#            )
+#        return chunks
 
     def __len__(self):
         return len(self.chunks)
