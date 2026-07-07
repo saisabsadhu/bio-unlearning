@@ -118,31 +118,65 @@ def main():
         directions_per_layer[layer_idx] = torch.tensor(w_old_perp, dtype=torch.float32)
         print(f"  layer {layer_idx}: overlap_cos2={overlap:.4f}, direction ready")
 
-    hooks = []
+    # IMPORTANT (found by direct verification, see docs): `output_hidden_states=True`'s
+    # diagnostic tensors do NOT reflect forward-hook modifications in this transformers
+    # version, even though the hooks DO correctly affect real downstream computation
+    # (confirmed: zeroing a layer's output via hook changes the model's actual top
+    # predicted token). So we must capture activations via our OWN hooks, not via
+    # outputs.hidden_states, or the "verification" silently checks stale pre-ablation
+    # values regardless of what the ablation actually did.
+    ablation_hooks = []
     for layer_idx, direction in directions_per_layer.items():
         hook_fn = DirectionAblationHook(direction)
         handle = model.model.layers[layer_idx].register_forward_hook(hook_fn)
-        hooks.append(handle)
-    print(f"Registered {len(hooks)} activation-ablation hooks. Model now hooked in-memory (not saved to disk -- run eval directly against this in-process model, or extend to save+reload for a permanent checkpoint).")
+        ablation_hooks.append(handle)
+    print(f"Registered {len(ablation_hooks)} activation-ablation hooks.")
 
-    # Sanity check: run the same CLMI-style probe in-process against this hooked model
-    # to confirm the ablation actually changes the targeted concept's separability.
-    from clmi_gate0_validity_check import compute_cv_auroc, pool_mean
-    print("\nRunning in-process CLMI sanity check (mean_pool, hooked model)...")
-    for concept, cui, neighbor, scenario in [(args.concept_name, args.cui, None, "target")]:
-        pos_prompts = make_prompts(concept, 40)
-        neg_prompts = make_prompts(list(neighbors.values())[0].get("name", "unrelated concept") if neighbors else "an unrelated topic", 40)
-        all_prompts = pos_prompts + neg_prompts
-        y = np.array([1] * len(pos_prompts) + [0] * len(neg_prompts))
-        hidden_list, ids_list, attn_list = get_hidden_states_batched(model, tokenizer, all_prompts)
-        X = np.stack([
-            pool_mean(hidden_list[i], ids_list[i], attn_list[i], tokenizer, None)
-            for i in range(len(all_prompts))
-        ])
-        mean_auroc, std_auroc = compute_cv_auroc(X, y)
-        print(f"  Post-activation-ablation CLMI (hooked, in-process) for '{concept}': {mean_auroc:.4f} +/- {std_auroc:.4f}")
+    captured = {}
 
-    for h in hooks:
+    def make_capture_hook(layer_idx):
+        def _hook(module, inputs, output):
+            h = output[0] if isinstance(output, tuple) else output
+            captured[layer_idx] = h.detach()
+            return output
+        return _hook
+
+    capture_hooks = []
+    for layer_idx in range(model.config.num_hidden_layers):
+        handle = model.model.layers[layer_idx].register_forward_hook(make_capture_hook(layer_idx), prepend=False)
+        capture_hooks.append(handle)
+
+    def get_pooled_activations_via_hooks(prompts):
+        """Runs each prompt through the (possibly ablated) model and pools the
+        POST-ablation activations captured by capture_hooks -- guaranteed correct
+        because capture_hooks are registered after ablation_hooks on the same layer,
+        so they see whatever ablation_hooks already returned."""
+        vecs = []
+        for p in prompts:
+            enc = tokenizer(p, return_tensors="pt", truncation=True, max_length=128).to(model.device)
+            with torch.no_grad():
+                model(**enc)
+            mask = enc["attention_mask"][0].bool()
+            layer_vecs = []
+            for layer_idx in range(model.config.num_hidden_layers):
+                h = captured[layer_idx][0]  # (seq, hidden)
+                pooled = h[mask].float().mean(dim=0)
+                layer_vecs.append(pooled.cpu().numpy())
+            vecs.append(np.concatenate(layer_vecs))
+        return np.stack(vecs)
+
+    from clmi_gate0_validity_check import compute_cv_auroc
+    print("\nRunning in-process CLMI check via verified hook-capture (not output_hidden_states)...")
+    neg_concept = list(neighbors.values())[0].get("name", "an unrelated topic") if neighbors else "an unrelated topic"
+    pos_prompts = make_prompts(args.concept_name, 40)
+    neg_prompts = make_prompts(neg_concept, 40)
+    all_prompts = pos_prompts + neg_prompts
+    y = np.array([1] * len(pos_prompts) + [0] * len(neg_prompts))
+    X = get_pooled_activations_via_hooks(all_prompts)
+    mean_auroc, std_auroc = compute_cv_auroc(X, y)
+    print(f"  Post-activation-ablation CLMI (verified hook-capture) for '{args.concept_name}' vs '{neg_concept}': {mean_auroc:.4f} +/- {std_auroc:.4f}")
+
+    for h in ablation_hooks + capture_hooks:
         h.remove()
 
 

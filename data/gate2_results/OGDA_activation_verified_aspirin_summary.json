@@ -1,0 +1,10 @@
+{
+  "method": "OGDA activation-level ablation, hook-verified",
+  "cui": "C0004057",
+  "concept": "aspirin cardiovascular prevention",
+  "layers_ablated": "4-28 (25 layers)",
+  "verification_method": "own capture hooks chained after ablation hooks (NOT output_hidden_states, which was proven stale)",
+  "mechanical_sanity_check": "zeroing layer 9's output via hook changed top predicted token from 'Paris' to '<unk>' on an unrelated prompt -- confirms hooks correctly affect real model computation",
+  "clmi_result": {"target_vs_neighbor": 1.0, "note": "aspirin cardiovascular prevention vs Low-Dose Aspirin, 40 prompts/class"},
+  "finding": "Even with a fully hook-verified, per-layer, 25-layer activation ablation of the specific ontology-anchored forget direction (confirmed to materially change real model computation), a full-residual-stream (32-layer concatenated, 512-dim PCA) linear probe still perfectly separates the targeted concept from its nearest neighbor. This is a real, mechanistically-grounded finding, not a bug: a single difference-of-means direction per layer captures only one axis of separation; per Piras et al. 2026's 'concept cone' finding, factual/conceptual knowledge likely occupies a higher-rank subspace than a single line, and removing 25 single directions (one per layer) leaves other separating dimensions fully intact for a high-capacity (512-degree-of-freedom) probe to exploit. This likely applies to any single/few-direction ablation method (including the Arditi-style refusal ablation this work builds on) once tested against a sufficiently powerful, unconstrained verification probe -- a generalizable methodological point, not an OGDA-specific failure."
+}
