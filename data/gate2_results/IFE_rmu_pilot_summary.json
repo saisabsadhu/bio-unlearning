@@ -1,0 +1,13 @@
+{
+  "method": "RMU", "scenario_trained": "IFE", "model": "BioMistral-7B",
+  "hyperparameters": {"learning_rate": 1e-5, "max_steps": 8, "steering_coeff": 2, "lora": true, "lora_r": 16, "lora_alpha": 32, "ref_model_precision": "8bit"},
+  "pre_unlearning_baseline": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "post_unlearning": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.15517241379310345,
+    "IFE_fa": 0.8571428571428571, "IFE_def": 0.01530612244897959, "IFE_ewef": 0.017857142857142856
+  },
+  "interpretation": "Consistent with RGU_rmu: untargeted scenario (RGU) FA/DEF exactly unchanged, only a small EWEF bump likely within noise. Targeted scenario (IFE) FA rose 0.839->0.857, a smaller movement than NPO/GA achieved on their targeted scenarios at matched doses -- confirms RMU is the gentlest of the three methods at this step budget, consistent with RGU_rmu's finding and the RMU/WMDP literature's typical use of stronger steering coefficients."
+}
