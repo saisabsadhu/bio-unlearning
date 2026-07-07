@@ -1,0 +1,19 @@
+{
+  "method": "GradAscent",
+  "scenario_trained": "RGU",
+  "model": "BioMistral-7B",
+  "hyperparameters": {"learning_rate": 2e-6, "max_steps": 8, "per_device_train_batch_size": 2, "gradient_accumulation_steps": 4},
+  "pre_unlearning_baseline": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "post_unlearning": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.16617122473246138, "RGU_ewef": 0.08620689655172414,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.0, "IFE_ewef": 0.0
+  },
+  "prior_attempt_lr1e-5_40steps": {
+    "note": "Complete model collapse -- ROUGE=0.0 against both forget_answer and retain_answer for RGU and IFE alike, FA=1.0/DEF=0.0 everywhere (generation was gibberish, not genuine forgetting)",
+    "train_loss_trajectory": [-2.7576, -133.4777, -228.8692, -221.2351, -222.0518, -247.627, -222.631, -222.6868]
+  },
+  "interpretation": "At lr=2e-6/8 steps, GA left FA numerically unchanged from the pre-unlearning baseline for both scenarios (no measurable forgetting occurred at this dose), while DEF/EWEF declined slightly (mild collateral damage to retain-answer generation quality with no forgetting benefit). Combined with the lr=1e-5/40-step collapse, this brackets GA's known razor-thin stability window between 'no effect' and 'catastrophic collapse' -- consistent with the unlearning literature's well-documented GA sensitivity, and the reason MASTER_RESEARCH_PLAN.md Section 8 specifies a hyperparameter grid rather than one fixed setting. A genuinely informative GA data point for the main diagnostic table requires sweeping 2-4 intermediate settings between these two brackets, not yet done."
+}
