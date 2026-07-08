@@ -1,0 +1,14 @@
+{
+  "method": "OGDA", "concept": "aspirin cardiovascular prevention", "cui": "C0004057",
+  "hyperparameters": {"layers_ablated": "4-28 (25 of 32)", "rank": 3, "weight_edit": "o_proj + down_proj, W'=(I-B^T B)W"},
+  "pre_unlearning_baseline": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "post_unlearning": {
+    "RGU_fa": 0.7586206896551724, "RGU_def": 0.15695600475624255, "RGU_ewef": 0.10344827586206896,
+    "IFE_fa": 0.8928571428571429, "IFE_def": 0.0, "IFE_ewef": 0.0
+  },
+  "clmi": {"full": 1.0, "restricted": 1.0},
+  "interpretation": "First real evidence that OGDA changes actual generation behavior, contradicting CLMI's null (1.0) reading -- confirmed real, coherent, non-degenerate generations by manual inspection (not GA-style collapse). But the pattern is not a clean targeted erasure: FA rose on BOTH scenarios (RGU 0.741->0.759, IFE 0.839->0.893) while DEF collapsed toward/to zero on both (RGU 0.192->0.157, IFE 0.015->0.0). Since DEF=FA_old x Acc_new, this means the model is drifting away from old answers on many examples but not correctly landing on the intended replacement answer either -- broad quality drift from a blunt intervention (25 of 32 layers, 2 weight matrices per layer edited), not concept-specific erasure. Notably IFE (untargeted -- aspirin is an RGU concept) moved as much or more than RGU (targeted), which is a collateral-damage red flag: the current permanent-weight-edit implementation is not selective enough, likely because it edits far more of the network than the single concept warrants. Next steps: (1) test a much smaller layer range / lower rank to see if a gentler edit still produces measurable FA movement without this much collateral drift, (2) directly compare against a random-subspace (non-ontology-anchored) ablation baseline of the same rank/layer-count to isolate whether the ontology structure is doing anything beyond generic disruption, (3) inspect RGU/IFE retain_gen scores (not just forget_gen) to quantify how much this is general capability degradation vs targeted movement."
+}
