@@ -1,0 +1,180 @@
+# BioUnlearn: Complete Project History
+
+A full chronological record — initial state, what the professor said, what we researched, what came out of that research, what we built and ran, and exactly what's in the repo right now. Companion to `PI_STATUS_REPORT.md` (that one is the condensed version for external reporting; this one is the complete internal record with nothing compressed out).
+
+---
+
+## Phase 0: Initial state
+
+Repo cloned from `saisabsadhu/bio-unlearning`, branch `saisab`. It contained one artifact: `documentation/BioUnlearn_EMNLP2026_FINAL_Proposal (1).docx` (1512 lines) — a complete proposal already written, but for a different venue than the one the repo actually targets.
+
+## Phase 1: Critique — venue mismatch found
+
+Reviewed the docx against the repo's own `README.md`, which says "Targeting Nature Communications." Found a fundamental mismatch, written up in `critique_nature_communications_fit.md`:
+
+- The proposal was written **entirely for EMNLP 2026** — references ARR, double-blind policy, an "ARR-required Responsible NLP Research Checklist," and an "Anticipated Reviewer Objections" section in NLP-conference adversarial style. None of that is right for NC.
+- NC needs: a broad-scientist-readable framing (not ML-mechanics-first), general-significance novelty (not "three new metrics"), NC-specific paper sections (Reporting Summary, Data/Code Availability, Competing Interests, real ethics/IRB statement), and materially deeper human validation (2 MD students validating 9.1% of data is thin for a clinical-safety journal claim).
+- Genuine strengths worth keeping regardless of venue: the three-failure-mode diagnostic structure (ontological entanglement, temporal directionality, verification opacity), the pre-registered 3-day feasibility gate before full dataset construction, the Llama-3.1-8B cross-model control, and the two critical ablations (OGFR-Random, DGP-NaiveSum) that pre-empt obvious reviewer objections.
+- Independent concerns flagged: circularity risk (same LLM oracle building both benchmark and fix training signal), fully-fabricated "Expected Results" tables with fake two-decimal numbers, no statistical rigor plan (point estimates, no seeds/variance), and a missing baseline class (knowledge editing / RAG-suppression).
+- **A specific red flag in the existing pilot data**: the CLMI prescreen showed `clmi_mean: 1.0, std: 0.0` for essentially every one of the 10 pilot concepts — suspiciously perfect, flagged as needing a validity check (scrambled/label-swap control) before trusting CLMI as a load-bearing metric. This directly motivated Gate 0 (Phase 6 below).
+
+## Phase 2: What Dr. Vindo (UMich collaborator) actually said
+
+Recorded verbatim in `groundtruth_sources_dr_vindo_directions.md` line 3. He proposed shifting toward two things:
+
+> **(A)** a more concretized, documented ground truth for "what to forget" — analogous to UMLS changes over time — while noting most such changes aren't mistakes and often aren't documented anywhere; and **(B)** building the unlearning dataset directly from EHR data or clinical guidelines rather than (or in addition to) an LLM annotation oracle.
+
+## Phase 3: Research conducted in response to Dr. Vindo
+
+Full research memo: `groundtruth_sources_dr_vindo_directions.md`. Verdict up front: **his intuition was half right and half already solved.**
+
+**On direction A (concretized, documented ground truth):**
+- He was right that raw UMLS diff files (`MRCUI.RRF`, `MRCONSO_HISTORY.txt`, `MRREL_HISTORY.txt`) record *that* something changed but not *why*, and are dominated by terminology housekeeping (CUI merges, vocabulary version bumps) rather than clinically meaningful reversals.
+- He was wrong that clinically-meaningful changes are undocumented — they are, just not inside UMLS itself:
+  - **SNOMED CT's Component Inactivation Reference Sets** carry an explicit reason code per inactivation: `DUPLICATE`/`AMBIGUOUS` (housekeeping), `ERRONEOUS` (a real mistake), `OUTDATED` (correct once, superseded — exactly the RGU/temporal-directionality target, pre-labeled), `MOVED_ELSEWHERE`/`LIMITED`. Each inactivated concept links to its replacement via the historical association — a real, ontology-sourced (A_old → A_new) pair with no oracle needed to invent the pairing. Already accessible via the existing NLM UTS account.
+  - **RxNorm** (`RXNCUICHANGES.RRF`, `/historystatus` API) tracks deprecated drug concepts/NDC codes but with thinner reason-coding than SNOMED — useful for cross-checking dates, not a primary source.
+  - **PrimeKG-CL** (Radwan, Li et al., arXiv:2605.10529, 2026): a very recent, directly adjacent benchmark — real diffs between two PrimeKG snapshots (June 2021 vs. July 2023), 889K removed / 5.83M added / 7.21M persistent edges across 9 biomedical databases. Flagged as both an opportunity (pre-computed real diffs at scale) and a risk (adjacent territory — must differentiate explicitly: it's continual graph *learning*, not weight *unlearning*).
+  - **Prasad et al. 2013 (Mayo Clinic Proceedings)** — 146 named clinical practices contradicted by RCT evidence, each with the contradicting trial citation. **Herrera-Perez et al. 2019 (eLife)** — 396 more from JAMA/Lancet/NEJM 2003–2017. Together ~500+ real, dated, citation-backed reversals, peer-reviewed and published independent of anything we construct — identified as the single strongest answer to "concretized ground truth that isn't LLM-invented."
+
+**On direction B ("go to EHR or guidelines"):**
+- Concluded that raw EHR *audit-log* mining (clinician click/workflow behavior) is the wrong read — that literature is about provider behavior, not fact-level ground truth.
+- The stronger reading: anchor forget targets in official guideline/regulatory records that are better-documented than UMLS — **FDA Drug Safety-related Labeling Changes (SrLC) database** (structured, since Jan 2016, tracks exactly which label section changed and when — combined with Drugs@FDA/DailyMed historical PDFs, gives literal before/after label text with zero LLM involvement in the ground truth itself), USPSTF recommendation history, Cochrane systematic review updates (rare conclusion flips, ~4-9%, but exceptionally well documented when they happen), NICE guideline surveillance reports, Choosing Wisely (better fit for IFE than RGU).
+- **A genuinely EHR-native idea proposed back to him**: use MIMIC-IV's real timestamps as a natural experiment — bucket notes/orders by admission date relative to a known guideline-change date (e.g., rosiglitazone's May 21, 2007 FDA warning, already tied to a published 70% prescribing drop within two years) and use the *actual documented clinical practice shift in the data itself* as empirical confirmation a reversal was real and adopted, not just a paper claim.
+
+**Follow-up: WHO and other international guideline bodies** (addendum to the same memo, in direct response to the project's restated dual goal — a strong benchmark *and* a methodology novelty specific to the biomedical paradigm):
+- **WHO Model List of Essential Medicines** — standout source. Every addition, amendment, and rejected/removed medicine gets a full prose rationale in the WHO Technical Report Series, richer than SNOMED's single-word codes.
+- **WHO living guidelines** (e.g., COVID-19 therapeutics) — excellent depth, narrow disease scope.
+- **ESC/ACC/AHA cardiology guidelines** — every recommendation carries a machine-parseable Class of Recommendation (I/IIa/IIb/III) × Level of Evidence (A/B/C), with existing academic literature auditing how these shift release-to-release.
+- **ACIP (CDC vaccine recommendations)** — good ground truth quality but flagged as currently politically contentious; recommended being conservative and sticking to old/settled (pre-2020) examples if used at all.
+- **The methodological hook this unlocks**: GRADE/Class-LOE-style standardized evidence-certainty grading is a structural property unique to the clinical-guideline domain — TOFU/WMDP/MUSE have no analogous "how confident was the source" metadata. This motivated three concrete extensions: Evidence-Weighted DGP (scale forget/retain gradient balance by certainty delta between old and new recommendation), Evidence-Weighted OGFR (weight retain-protected neighbors by evidence certainty, not just ontology hop-distance), and a new metric, **EWEF** (Evidence-Weighted Erasure Fidelity — upweight/report separately instances where both retraction and replacement are high-certainty).
+
+## Phase 4: Synthesis — what came out of this research
+
+Four concrete recommendations were written up (`groundtruth_sources_dr_vindo_directions.md`, "Recommended synthesis" section) and folded into a full rebuild of the research plan:
+
+1. Replace/augment RGU ground truth with the Prasad + Herrera-Perez catalogs (~500 instances), supplemented by FDA SrLC pairs.
+2. Use SNOMED CT's reason-coded inactivation (`OUTDATED` vs. `ERRONEOUS` vs. `DUPLICATE`) as the mechanism that directly answers his "most changes aren't mistakes" concern with an existing, machine-readable label rather than manual judgment.
+3. Add an EHR-native validation layer against MIMIC-IV's own temporal distribution or published real-world adoption-decline studies.
+4. Read PrimeKG-CL closely before finalizing scope, both as an engineering shortcut and as related work requiring explicit differentiation.
+
+This produced **`MASTER_RESEARCH_PLAN.md`** — the full, 22-section, now-authoritative operational plan (thesis, five contributions, PTGC ground-truth methodology, dataset pipeline, framework methodology, baselines, statistical protocol, complete research questions, complete ablation matrix, feasibility gates, timeline, compute budget, ethics, risk register, immediate next actions, and open items to confirm with Dr. Vindo). Its core methodological contribution is **PTGC (Provenance-Tiered Ground Truth Construction)**: every forget/retain instance graded by a Provenance Quality Score (PQS 0-3: LLM-only, oracle-phrasing, ontology reason-coded, real citation-backed gold), so dataset reliability is falsifiable and reported stratified by tier rather than asserted uniformly trustworthy.
+
+## Phase 5: Infrastructure build
+
+- Merged the full `locuslab/open-unlearning` framework (Hydra-config-driven, HF Transformers-based unlearning/eval pipeline) from `origin/wmdp-llama32-3b-experiment` into `saisab`.
+- Set up HF auth (token), verified model access for BioMistral-7B, Meditron-7B, Llama-3.1-8B-Instruct.
+- Built BioUnlearn-Bench dataset configs (`configs/data/datasets/BioUnlearn_{RGU,IFE}_{forget,retain}[_val|_test].yaml`) and custom eval metrics (`src/evals/metrics/bioun.py`: FA, DEF, EWEF, OCD; `src/evals/bioun.py`: `BioUnlearnEvaluator`).
+- Real bugs fixed here: a Hydra entrypoint bug (missing `remove_unused_columns: False` caused "batch was empty" — fixed by using `unlearn.yaml` not `train.yaml`); a pre_compute cache-key collision where generic mount keys (`forget_gen`) were shared across RGU/IFE in the same eval run, silently leaking one scenario's cached metrics into the other's — fixed with scenario-scoped keys (`RGU_forget_gen`/`IFE_forget_gen`) and `access_key` remapping; an evaluator registration bug (base `Evaluator` class needs a positional `name` the generic registration path didn't supply) — fixed with a `BioUnlearnEvaluator` subclass matching the TOFU/MUSE pattern.
+
+## Phase 6: Gate 0 — CLMI validity check
+
+Directly answers the red flag from Phase 1 (suspiciously perfect CLMI=1.0 everywhere). Ran `stage_a_umls/clmi_gate0_validity_check.py` — 10 pilot concepts × 3 pooling schemes (original/last-token/mean) × {real labels, label-swapped labels}. Result and findings in `data/clmi_gate0/GATE0_FINDINGS.md` and `gate0_summary.json`. This validated CLMI as a load-bearing metric before it was trusted for anything downstream.
+
+## Phase 7: Gate 2 — baseline diagnostic pilot (GA, NPO, RMU)
+
+**GradAscent**, first attempt: original hyperparameters (lr=1e-5, ~40 steps) caused catastrophic collapse — `train_loss` diverged from -30 to -222, generations became gibberish, giving the degenerate `FA=1.0, DEF=0.0` pattern identically on both scenarios (scientifically useless — indistinguishable from any other collapsed run). Root-caused to unconstrained-loss unbounded descent; fixed by dropping to lr=2e-6 and capping `max_steps=8`, matching the master plan's step-count-based (not epoch-based) GA tuning. Re-ran successfully on both RGU and IFE — real, non-degenerate FA/DEF/EWEF movement, targeted scenario moving more than untargeted in each case (`data/gate2_results/RGU_ga_pilot_summary.json`, `IFE_ga_pilot_summary.json`).
+
+**NPO/RMU**, first attempts: blocked by a fixed ~30.88 GiB memory cost (trainable model + full-precision deep-copied reference model + optimizer state) regardless of batch size or sequence length — confirmed by the identical OOM figure appearing at both `batch_size=1` and after reducing `max_length` 512→288. Initially just quantizing the reference model to 8-bit alone didn't help (same 30.88GB — the *trainable* model's own footprint was the dominant cost, not the reference copy).
+
+**Resolved** by combining two infrastructure changes (neither alone was sufficient):
+1. Opt-in LoRA wrapping (`src/model/__init__.py`, `BIOUNLEARN_USE_LORA=1`) — cuts trainable parameters to 0.58% of the model (42M of 7.28B). Required `model.enable_input_require_grads()` alongside `gradient_checkpointing=True` (otherwise embedding output has `requires_grad=False`, breaking checkpointed backward), and explicit dtype normalization on LoRA adapter params (peft's default doesn't always match the base model's bf16).
+2. Reference model loads in 8-bit by default (`src/trainer/unlearn/grad_diff.py::_prepare_ref_model`, `BitsAndBytesConfig(load_in_8bit=True)` instead of `copy.deepcopy`).
+
+**RMU needed three more fixes** on top of those two: `module_regex` needed an optional `(base_model\.model\.)?` prefix to match PEFT-wrapped module names (RMU uses `re.fullmatch`); `trainable_params_regex` changed from `.*` to `.*lora.*` (RMU's `create_optimizer` explicitly re-enables `requires_grad` on every regex-matched param — `.*` would have silently re-enabled gradients on the entire frozen base model, undoing LoRA's savings without any visible error); and an explicit `dtype=model_act.dtype` cast on the reference model's activations in `rmu.py` (bitsandbytes' 8-bit layers dequantize to fp16 internally regardless of the trainable model's bf16, causing "Found dtype Half but expected BFloat16" during backward).
+
+**Result: the full 3-method × 2-scenario matrix now runs successfully** (`RGU_npo_pilot_summary.json`, `IFE_npo_pilot_summary.json`, `RGU_rmu_pilot_summary.json`, `IFE_rmu_pilot_summary.json`). Consistent pattern: RMU is gentlest at matched step budgets (near-zero movement on its targeted scenario), NPO and GA show comparable small, non-degenerate movement, targeted scenarios move more than untargeted ones in NPO/GA (not in RMU, at this dose).
+
+## Phase 8: OGDA — the novel method, full development arc
+
+**Literature positioning**: checked against ~15 recent papers (Arditi et al. 2024's weight-orthogonalization/activation-ablation technique — the base mechanism OGDA builds on; NSRU, PISCES, SAGO, EGUP, AMNESIA, REMEDI — related but non-overlapping unlearning-adjacent work). The specific combination — ontology-anchored protected subspace + training-free directional ablation + applied to clinical guideline reversal — is not claimed elsewhere. Full table in `NOVEL_METHODOLOGY_OGDA.md`.
+
+**v1 — single-layer weight-orthogonalization** (`ogda_ablation.py`): first real result before any ablation — extracting the aspirin forget direction and its 7 real UMLS/RxNorm neighbors' protected subspace at layer 7 gave `cos²(w_old, P) = 0.9853`, a direct quantitative confirmation of the ontological-entanglement hypothesis (Failure Mode 1). An unplanned second finding: this overlap decreases monotonically with depth (0.996 at layer 4 → 0.535 at layer 28). Ablating only layer 7's `mlp.down_proj` left CLMI at 1.0 — root-caused (not a bug): a single MLP edit doesn't touch signal already in the residual stream from embeddings or attention.
+
+**v1 extended — multi-layer weight-orthogonalization** (layers 4-28): still CLMI=1.0, same root cause at more layers — `down_proj`-only edits never touch attention's `o_proj`, so signal survives via residual skip-connections regardless of layer count.
+
+**v2 — activation-level ablation** (`ogda_activation_ablation.py`): switched to forward hooks projecting the direction directly out of the residual stream (the theoretically correct mechanism). First attempt still showed CLMI=1.0 — but a deliberate mechanical sanity check (does the hook change anything at all?) caught a real bug before it was wrongly reported as a finding: `output_hidden_states=True` does **not** reflect forward-hook modifications in this transformers version (4.55.4), even though the hooks correctly affect real downstream computation (verified directly: zeroing a layer's output via hook changed "The capital of France is" → not "Paris"). Fixed by capturing activations via a second set of hooks chained after the ablation hooks. Re-run with corrected capture: **CLMI still measured 1.0** — a real negative result this time, not a measurement artifact.
+
+**v3 — subspace ablation + Restricted-CLMI** (`ogda_subspace_ablation.py`): implemented multi-direction subspace ablation (rank 3/layer via SVD of pairwise contrasts) and a fairness-matched verification protocol (probe restricted to ablated layers only, capacity capped near the ablation's own rank, not an unconstrained 512-dim probe over all 32 layers). First attempt: every layer's forget subspace came back **fully contained** in the protected subspace (rank 0 everywhere, nothing ablated) — root-caused to a real circularity bug: the forget subspace was built from `concept − neighbor` contrasts and the protected subspace from `neighbor − concept` contrasts using the *same* neighbor set — mathematically the same subspace up to sign by construction, independent of any real entanglement. Fixed by introducing an independent generic background pool (other pilot concepts, excluding the target and its neighbors) so both subspaces are built against a shared, independent reference rather than against each other.
+
+Re-run with the fix: forget subspace now genuinely survived orthogonalization (rank 3 at all 25 layers — real entanglement, not a construction artifact). But **both full-stack and Restricted-CLMI (6 PCA components, ablated layers only) still measured 1.0**. Checked and ruled out a token-length confound (mean 20.35 vs. 21.35 tokens between the two prompt classes — not meaningful). Working interpretation, documented in `NOVEL_METHODOLOGY_OGDA.md` Section 8.5: near-synonym pairs ("aspirin cardiovascular prevention" vs. "Low-Dose Aspirin") retain enough token-identity signal from differing words that mean-pooled whole-sequence probing will detect it regardless of which semantic directions are ablated — a limitation of the verification protocol against near-synonym distractors, not necessarily proof the ablation failed. This directly reinforces the paper's own Failure Mode 3 (Verification Opacity) thesis from the inside.
+
+**Behavioral test (FA/DEF), the decisive missing piece**: the subspace-ablation script only ever tested via in-memory forward hooks — never produced a checkpoint that could be loaded fresh and evaluated with the existing bioun FA/DEF/EWEF suite. Added `apply_permanent_subspace_orthogonalization()` — bakes the same per-layer subspace basis into permanent weights via `W' = (I − BᵀB)W`, applied to **both** `self_attn.o_proj` and `mlp.down_proj` at each ablated layer (not just `down_proj`, which v1 already found insufficient alone), plus `--save_checkpoint` to persist it. Ran the full bioun eval suite against this checkpoint for the first time.
+
+Manually inspected raw generations first to rule out GA-style collapse — confirmed fluent, coherent text (not gibberish). Result: FA rose on **both** scenarios (RGU 0.741→0.759, IFE 0.839→0.893) while DEF collapsed toward/to zero on both (RGU 0.192→0.157, IFE 0.015→**0.0**). Since DEF = FA_old × Acc_new, this means the model drifts away from old answers without correctly landing on the intended replacement — broad quality drift, not clean directional erasure. IFE (untargeted — aspirin is an RGU concept) moved as much as RGU (targeted), a collateral-damage signature that the current 25-layer/2-matrix-per-layer edit is too blunt. **This is the first evidence OGDA changes real generation behavior at all — directly contradicting CLMI's null reading — but not yet in the targeted way the method is designed to achieve.**
+
+## Phase 9: Current, honest novelty assessment
+
+| Claim | Status |
+|---|---|
+| Genuinely unclaimed combination in the literature | Verified |
+| Entanglement hypothesis real and quantifiable | Verified (cos²=0.985) |
+| Ablation mechanism actually executes (not a no-op) | Verified (mechanical sanity check + fixed a real hook-capture bug) |
+| Subspace construction mathematically sound | Verified (found and fixed the circularity bug) |
+| Achieves genuine parametric erasure (CLMI) | Not shown — CLMI=1.0 even fairness-matched; likely a verification-protocol limitation against near-synonyms |
+| Changes real generation behavior (FA/DEF) | Yes, but not selectively — broad drift, not targeted erasure |
+
+**Conclusion carried into `PI_STATUS_REPORT.md`**: a well-differentiated, rigorously stress-tested novel proposal, not yet a demonstrated working method. The single most load-bearing next experiment (not yet run): a random-subspace control ablation of matched size, to isolate whether ontology-anchoring specifically matters or whether any similarly-sized intervention produces comparable drift.
+
+## Phase 10: What's in the repo right now (file manifest)
+
+```
+documentation/
+  BioUnlearn_EMNLP2026_FINAL_Proposal (1).docx   original EMNLP-shaped proposal (Phase 0)
+  critique_nature_communications_fit.md          Phase 1
+  groundtruth_sources_dr_vindo_directions.md     Phases 2-4 (research memo + WHO addendum)
+  MASTER_RESEARCH_PLAN.md                        Phase 4 output — 22-section authoritative plan
+  NOVEL_METHODOLOGY_OGDA.md                       Phase 8 — OGDA proposal + full empirical journey (Section 8)
+  OGDA_REPRODUCIBILITY.md                         exact algorithm/commands to reproduce every OGDA result
+  PI_STATUS_REPORT.md                             condensed external-facing summary
+  PROJECT_HISTORY.md                              this document
+
+docs/bioun_running_notes.md                      practical engineering gotchas, kept current
+
+src/                                              locuslab/open-unlearning framework (Phase 5), extended:
+  evals/bioun.py, evals/metrics/bioun.py          FA/DEF/EWEF/OCD custom metrics + evaluator
+  model/__init__.py                               + opt-in LoRA wrapping (Phase 7)
+  trainer/unlearn/grad_diff.py                    + 8-bit reference model loading (Phase 7)
+  trainer/unlearn/rmu.py                          + dtype-mismatch fix (Phase 7)
+
+configs/
+  data/datasets/BioUnlearn_{RGU,IFE}_*.yaml       dataset configs (Phase 5)
+  eval/bioun_metrics/*.yaml, eval/bioun.yaml       eval suite composition (Phase 5)
+  experiment/unlearn/bioun/{RGU,IFE}_{ga,npo,rmu}.yaml   6 tuned experiment configs (Phase 7)
+  trainer/RMU.yaml                                LoRA-compatible module/trainable-params regex (Phase 7)
+  model/BioMistral-7B.yaml, Meditron-7B.yaml       model configs
+
+stage_a_umls/
+  clmi_gate0_validity_check.py                    Phase 6
+  clmi_post_unlearning_check.py                   reusable post-hoc CLMI checker
+  clmi_prescreen.py, clmi_prescreen_v2.py          earlier pilot-concept screening
+  merge_graphs.py, umls_graph.py, rxnorm_relations.py   real UMLS/RxNorm concept graph construction
+  ogda_ablation.py                                Phase 8 v1
+  ogda_activation_ablation.py                     Phase 8 v2
+  ogda_subspace_ablation.py                        Phase 8 v3 (current) + checkpoint saving
+
+stage_b0_gold_sources/README.md                   Stage B0 harvesting tracker — 30/400+ gold reversals so far
+                                                   (Herrera-Perez + Prasad partial seeds; SNOMED/FDA/WHO extraction not started)
+
+data/
+  gold_sources/{herrera_perez_2019,prasad_2013}_seed.json   30 real citation-backed reversals
+  clmi_gate0/                                     Gate 0 outputs
+  gate2_results/                                  all 11 experiment result files (GA/NPO/RMU x2, OGDA x5, behavioral x1)
+  splits/                                         190 pilot instances (95 RGU + 95 IFE), train/val/test
+
+saves/ (gitignored)                               model checkpoints and eval outputs, not version-controlled
+```
+
+## Phase 11: Open items and immediate next steps
+
+Carried from `MASTER_RESEARCH_PLAN.md` Section 22 (unresolved, need Dr. Vindo's input) and the current experimental frontier:
+
+- Confirm with Dr. Vindo whether PTGC's tiering addresses his original concern, or whether he had a different mechanism in mind.
+- Confirm his possible role as a board-certified-physician-adjacent co-reviewer for human validation.
+- Confirm reaction to the evidence-weighted OGFR/DGP/EWEF proposal as "the" biomedical-specific methodological novelty.
+- Confirm whether UMich has its own EHR/guideline-change data infrastructure that could substitute for public sources.
+- Confirm venue (NC vs. a dual-track strategy) — this materially changes the human-validation and submission-plan sections.
+- Run the random-subspace control ablation (highest-priority open experiment).
+- Test a gentler OGDA setting (fewer layers / lower rank).
+- Continue gold-source harvesting (30/400+ so far) — SNOMED CT reason-code extraction, FDA SrLC pull, WHO EML Technical Reports not yet started.
+- Extend OGDA to the three other concepts with real UMLS graphs (HRT, rosiglitazone, Vioxx).
+- Cross-model control run (Llama-3.1-8B-Instruct) — not yet started.
