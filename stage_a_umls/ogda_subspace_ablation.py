@@ -125,6 +125,29 @@ class SubspaceAblationHook:
         return h_new
 
 
+def apply_permanent_subspace_orthogonalization(model, basis_per_layer):
+    """Bakes the subspace ablation into weights so it survives save_pretrained ->
+    from_pretrained in a fresh process, unlike the forward-hook version which is
+    runtime-only. Applied to BOTH self_attn.o_proj and mlp.down_proj at each
+    ablated layer (the two components that write into the residual stream at
+    that layer) via W' = (I - B^T B) @ W, where B has orthonormal rows spanning
+    the subspace to remove. This is an approximation of the hook-verified
+    version: it prevents ablated layers from *adding* new component along the
+    subspace, but doesn't retroactively clean component already written into
+    the residual stream by earlier (unablated) layers -- see
+    documentation/OGDA_REPRODUCIBILITY.md Section 3.3 for why weight-edits
+    alone were previously found insufficient without also covering o_proj."""
+    for layer_idx, basis in basis_per_layer.items():
+        layer = model.model.layers[layer_idx]
+        B = basis.to(model.device)
+        for module in [layer.self_attn.o_proj, layer.mlp.down_proj]:
+            W = module.weight.data
+            B = B.to(W.dtype)
+            P = B.T @ B  # (hidden, hidden) projection onto the subspace
+            I = torch.eye(P.shape[0], dtype=W.dtype, device=W.device)
+            module.weight.data = (I - P) @ W
+
+
 def compute_cv_auroc(X, y, n_components, seed=42):
     n_comp = min(n_components, X.shape[0] - 1, X.shape[1]) if X.shape[1] > 0 else 0
     if n_comp <= 0:
@@ -149,6 +172,7 @@ def main():
     parser.add_argument("concept_name")
     parser.add_argument("--layers", default="4-28")
     parser.add_argument("--rank", type=int, default=3, help="forget subspace rank per layer")
+    parser.add_argument("--save_checkpoint", default=None, help="if set, bake the ablation into permanent weights and save here for behavioral (FA/DEF) eval")
     args = parser.parse_args()
 
     graph = load_merged_graph(args.cui)
@@ -270,6 +294,13 @@ def main():
 
     for h in ablation_hooks + capture_hooks:
         h.remove()
+
+    if args.save_checkpoint:
+        print(f"\nBaking subspace ablation into permanent weights (o_proj + down_proj, {len(basis_per_layer)} layers)...")
+        apply_permanent_subspace_orthogonalization(model, basis_per_layer)
+        model.save_pretrained(args.save_checkpoint)
+        tokenizer.save_pretrained(args.save_checkpoint)
+        print(f"Saved OGDA checkpoint to {args.save_checkpoint}")
 
     summary = {
         "cui": args.cui, "concept": args.concept_name, "rank": args.rank,
