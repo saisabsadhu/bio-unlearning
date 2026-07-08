@@ -15,7 +15,6 @@ class SurgicalGradAscent(UnlearnTrainer):
         else:
             self.target_layers = target_layers
 
-
         unfrozen_params = 0
 
         # Unfreeze only selected MLP down_proj layers
@@ -30,7 +29,6 @@ class SurgicalGradAscent(UnlearnTrainer):
         print("Target layers:", self.target_layers)
         print(f"Trainable parameters: {unfrozen_params:,}")
         print("==================================\n")
-
 
     def compute_loss(
         self,

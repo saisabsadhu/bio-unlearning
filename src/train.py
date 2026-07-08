@@ -56,7 +56,6 @@ def main(cfg: DictConfig):
         template_args=template_args,
     )
 
-
     if trainer_args.do_train:
         trainer.train()
         trainer.save_state()
