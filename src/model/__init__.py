@@ -49,11 +49,30 @@ def get_model(model_cfg: DictConfig):
     model_cls = MODEL_REGISTRY[model_handler]
     with open_dict(model_args):
         model_path = model_args.pop("pretrained_model_name_or_path", None)
+    # Opt-in QLoRA: for larger base models (8B+) on this shared GPU, even LoRA
+    # wrapping (trainable/gradient/optimizer memory cut to ~0.5%) isn't enough --
+    # the frozen BASE model's own bf16 weights (~15GB for an 8B model) plus a
+    # KL-based method's reference model still exceed what's left after another
+    # tenant's job. Loading the base model itself in 4-bit (QLoRA) cuts that
+    # ~15GB to ~4GB. Requires BIOUNLEARN_USE_LORA=1 too (4-bit weights can't be
+    # fine-tuned directly; LoRA adapters are what actually trains).
+    qlora_kwargs = {}
+    if os.environ.get("BIOUNLEARN_QLORA", "0") == "1":
+        from transformers import BitsAndBytesConfig
+
+        logger.info("Loading base model in 4-bit (QLoRA).")
+        qlora_kwargs["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch_dtype,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+        )
     try:
         model = model_cls.from_pretrained(
             pretrained_model_name_or_path=model_path,
             torch_dtype=torch_dtype,
             **model_args,
+            **qlora_kwargs,
             cache_dir=hf_home,
         )
     except Exception as e:
@@ -73,6 +92,15 @@ def get_model(model_cfg: DictConfig):
     # literature reports); set BIOUNLEARN_USE_LORA=1 to enable.
     if os.environ.get("BIOUNLEARN_USE_LORA", "0") == "1":
         from peft import LoraConfig, get_peft_model
+
+        if qlora_kwargs:
+            from peft import prepare_model_for_kbit_training
+
+            # Required for QLoRA: casts norm layers to fp32 and enables input
+            # grads (redundant with enable_input_require_grads below, but this
+            # is the standard/expected call site per the QLoRA recipe) so
+            # gradients flow correctly through a 4-bit-quantized base model.
+            model = prepare_model_for_kbit_training(model)
 
         lora_r = int(os.environ.get("BIOUNLEARN_LORA_R", "16"))
         lora_alpha = int(os.environ.get("BIOUNLEARN_LORA_ALPHA", "32"))

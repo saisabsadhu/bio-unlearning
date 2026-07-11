@@ -1,0 +1,9 @@
+{
+  "method": "NPO", "scenario_trained": "RGU", "model": "Llama-3.1-8B-Instruct",
+  "infra_note": "Required QLoRA (4-bit base model + 4-bit reference model + LoRA adapters, BIOUNLEARN_QLORA=1) -- LoRA+8bit-ref alone (sufficient for 7B BioMistral) still OOM'd on this 8B model at a fixed ~24.4GB cost regardless of batch_size/max_length. Added QLoRA support to src/model/__init__.py and src/trainer/unlearn/grad_diff.py to close this gap.",
+  "hyperparameters": {"learning_rate": 1e-5, "max_steps": 8, "lora": true, "lora_r": 16, "qlora": true, "base_model_precision": "4bit-nf4", "ref_model_precision": "4bit-nf4"},
+  "pre_unlearning_baseline": {"RGU_fa": 0.4827586206896552, "RGU_def": 0.21640903686087992, "RGU_ewef": 0.1896551724137931, "IFE_fa": 0.7678571428571429, "IFE_def": 0.0274234693877551, "IFE_ewef": 0.0},
+  "post_unlearning": {"RGU_fa": 0.5, "RGU_def": 0.1896551724137931, "RGU_ewef": 0.13793103448275862, "IFE_fa": 0.7857142857142857, "IFE_def": 0.05612244897959183, "IFE_ewef": 0.017857142857142856},
+  "train_loss": 11.419540166854858,
+  "interpretation": "No collapse, real non-degenerate movement (train_loss 11.4, comparable order of magnitude to BioMistral's NPO run). Targeted (RGU) FA moved +0.0172 (1/58, noise-floor per the OGDA cross-concept caveat), DEF/EWEF dropped. Untargeted (IFE) FA moved +0.0179 (1/56), DEF rose (0.027->0.056, roughly 2x, though still small in absolute terms). Completes real GA+NPO cross-model data points on Llama-3.1-8B; RMU still to run."
+}

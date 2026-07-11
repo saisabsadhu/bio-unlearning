@@ -35,13 +35,23 @@ class GradDiff(UnlearnTrainer):
                 from transformers import AutoModelForCausalLM, BitsAndBytesConfig
 
                 name_or_path = model.config._name_or_path
+                # Match the base model's quantization when QLoRA is active (see
+                # src/model/__init__.py) -- 4-bit for both trainable base and
+                # reference squeezes out the most memory for larger (8B+) models.
+                use_4bit = os.environ.get("BIOUNLEARN_QLORA", "0") == "1"
+                bits = "4-bit" if use_4bit else "8-bit"
                 logger.info(
-                    f"Loading reference model '{name_or_path}' in 8-bit "
+                    f"Loading reference model '{name_or_path}' in {bits} "
                     "(set BIOUNLEARN_REF_MODEL_FULL_PRECISION=1 to disable)."
+                )
+                quant_config = (
+                    BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_use_double_quant=True)
+                    if use_4bit
+                    else BitsAndBytesConfig(load_in_8bit=True)
                 )
                 ref_model = AutoModelForCausalLM.from_pretrained(
                     name_or_path,
-                    quantization_config=BitsAndBytesConfig(load_in_8bit=True),
+                    quantization_config=quant_config,
                     device_map={"": self.accelerator.device},
                 )
                 ref_model.eval()
