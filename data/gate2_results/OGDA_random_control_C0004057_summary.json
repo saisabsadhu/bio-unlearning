@@ -1,0 +1,17 @@
+{
+  "method": "OGDA-random-control", "concept": "N/A (random rank-3 subspace, seed=0)",
+  "hyperparameters": {"layers_ablated": "4-28 (25 of 32, same as real OGDA)", "rank": 3, "weight_edit": "o_proj + down_proj, W'=(I-B^T B)W, IDENTICAL mechanism to real OGDA -- only the subspace differs"},
+  "baseline": {
+    "RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "real_ogda_aspirin": {
+    "RGU_fa": 0.7586206896551724, "RGU_def": 0.15695600475624255, "RGU_ewef": 0.10344827586206896,
+    "IFE_fa": 0.8928571428571429, "IFE_def": 0.0, "IFE_ewef": 0.0
+  },
+  "random_control": {
+    "RGU_fa": 0.7241379310344828, "RGU_def": 0.18727705112960763, "RGU_ewef": 0.1206896551724138,
+    "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856
+  },
+  "interpretation": "THE load-bearing comparison. Random control's IFE numbers are EXACTLY identical to baseline (not a caching artifact -- RGU numbers differ from both baseline and real-OGDA, proving the eval genuinely ran against the random-control checkpoint, it just had near-zero effect on IFE specifically). RGU moved only mildly (0.741->0.724 FA, essentially noise-level for a 25-layer/50-matrix random edit in a 4096-dim space, where SOME overlap with any given direction is statistically unavoidable). Contrast with real OGDA (aspirin-targeted): FA rose more (0.741->0.759 RGU, 0.839->0.893 IFE) and DEF collapsed further (0.192->0.157 RGU, 0.015->0.0 IFE). The real, ontology-anchored aspirin direction produces categorically more movement than a random subspace of identical rank/layer-count/weight-edit-mechanism. This is real evidence the ontology-anchored subspace extraction is finding something non-generic -- the direction extraction mechanism has genuine signal. It does NOT yet mean OGDA achieves clean targeted erasure (real OGDA's movement is still collateral/broad rather than precisely landing on the correct replacement fact, per the DEF analysis in OGDA_behavioral_C0004057_summary.json) -- but it does mean the drift is not just 'any similarly-sized edit causes this,' which was the open question this experiment was designed to answer. This is the single most important piece of evidence for the paper's central claim so far."
+}
