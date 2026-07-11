@@ -1,0 +1,50 @@
+{
+  "baseline": {
+    "RGU_fa": 0.7413793103448276,
+    "RGU_def": 0.19173602853745544,
+    "RGU_ewef": 0.13793103448275862,
+    "IFE_fa": 0.8392857142857143,
+    "IFE_def": 0.014987244897959183,
+    "IFE_ewef": 0.017857142857142856
+  },
+  "per_concept": [
+    {
+      "concept": "aspirin cardiovascular prevention",
+      "own_scenario": "RGU",
+      "own_fa_delta": 0.0172,
+      "own_def_delta": -0.0348,
+      "own_def_final": 0.157,
+      "other_fa_delta": 0.0536,
+      "other_def_delta": -0.015
+    },
+    {
+      "concept": "hormone replacement therapy",
+      "own_scenario": "RGU",
+      "own_fa_delta": -0.0345,
+      "own_def_delta": -0.0211,
+      "own_def_final": 0.1706,
+      "other_fa_delta": 0.0714,
+      "other_def_delta": 0.0013
+    },
+    {
+      "concept": "rosiglitazone diabetes",
+      "own_scenario": "IFE",
+      "own_fa_delta": 0.0536,
+      "own_def_delta": -0.015,
+      "own_def_final": 0.0,
+      "other_fa_delta": -0.0172,
+      "other_def_delta": -0.0169
+    },
+    {
+      "concept": "rofecoxib Vioxx withdrawal",
+      "own_scenario": "IFE",
+      "own_fa_delta": 0.0714,
+      "own_def_delta": -0.015,
+      "own_def_final": 0.0,
+      "other_fa_delta": -0.0345,
+      "other_def_delta": -0.0333
+    }
+  ],
+  "summary": "3 of 4 concepts (aspirin, rosiglitazone, Vioxx) show own-scenario FA up + DEF collapse to ~0; HRT is the exception (own-scenario FA down). Other-scenario always moves less than own-scenario in FA, but not always less collateral in DEF.",
+  "CRITICAL_CAVEAT": "Eval sets are small: RGU_forget n=58, IFE_forget n=56 (the *_train.jsonl splits, not test -- these are what the bioun eval suite actually scores against). FA deltas of 0.0172/0.0345 are EXACTLY 1/58 and 2/58; deltas of 0.0536/0.0714 are EXACTLY 3/56 and 4/56. Every observed movement in this table corresponds to just 1-4 individual examples flipping across the ROUGE similarity threshold, not a smooth aggregate effect. This means the own-scenario-collapse narrative is built on a handful of examples, not a statistically robust sample -- consistent with a real (if small) effect, but equally consistent with a few borderline examples being pushed over the 0.5 ROUGE threshold by any sufficiently large weight edit, unrelated to genuine concept-level erasure. DEF collapsing exactly to 0.0 for 3 of 4 concepts is more informative (a 0-to-nonzero or nonzero-to-zero transition on n=56-58 is a bigger relative signal than a point estimate), but even that needs multiple seeds/reruns and ideally a larger, concept-specific eval subset before treating any of these numbers as a stable, reportable effect size. NEXT STEP: before drawing further conclusions, either (a) build a concept-specific eval subset (only examples actually about the ablated concept, not the whole 56-58-example scenario set) so movement is attributable to the right cause, or (b) run multiple random seeds per condition and report mean +/- std, or both."
+}
