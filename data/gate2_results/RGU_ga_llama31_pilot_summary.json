@@ -1,0 +1,8 @@
+{
+  "method": "GA", "scenario_trained": "RGU", "model": "Llama-3.1-8B-Instruct",
+  "note": "Cross-model control (non-clinical general-purpose model, vs BioMistral-7B). Same GA hyperparameters as the BioMistral pilot (lr=2e-6, max_steps=8), required LoRA (BIOUNLEARN_USE_LORA=1) -- full fine-tuning OOM'd on this 8B model at the same settings that worked for 7B BioMistral.",
+  "hyperparameters": {"learning_rate": 2e-6, "max_steps": 8, "lora": true, "lora_r": 16, "lora_alpha": 32},
+  "post_unlearning": {"RGU_fa": 0.5172413793103449, "RGU_def": 0.22294887039239, "RGU_ewef": 0.1896551724137931, "IFE_fa": 0.7857142857142857, "IFE_def": 0.028061224489795915, "IFE_ewef": 0.017857142857142856},
+  "train_loss": -1.761293888092041,
+  "note2": "No collapse (train_loss -1.76, controlled, unlike BioMistral's original -222 collapse at higher lr) -- own baseline (pre-GA) eval running separately to make this comparable, since Llama-3.1-8B-Instruct was never fine-tuned on BioUnlearn-Bench and its pre-unlearning FA/DEF numbers will differ substantially from BioMistral's."
+}
