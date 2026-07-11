@@ -1,0 +1,8 @@
+{
+  "method": "OGDA", "concept": "rofecoxib Vioxx withdrawal", "cui": "C0876768", "concept_scenario": "IFE",
+  "hyperparameters": {"layers_ablated": "4-28 (25 of 32)", "rank": 3, "weight_edit": "o_proj + down_proj", "note": "only 1 real neighbor, protected subspace rank=1 (thinnest of the 4 concepts)"},
+  "baseline": {"RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862, "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856},
+  "post_ogda": {"RGU_fa": 0.7068965517241379, "RGU_def": 0.1584423305588585, "RGU_ewef": 0.08620689655172414, "IFE_fa": 0.9107142857142857, "IFE_def": 0.0, "IFE_ewef": 0.0},
+  "clmi": {"full": 1.0, "restricted": 1.0},
+  "interpretation": "Vioxx is IFE-scenario. Own scenario (IFE) shows FA up (0.839->0.911) and DEF/EWEF collapse fully to 0 -- matches the aspirin/rosiglitazone own-scenario-collapses pattern, NOT the HRT outlier. 3 of 4 concepts now show this pattern; HRT remains the exception. Despite having by far the thinnest protected subspace (rank 1, vs 6-8 for the others), Vioxx's effect size is comparable to the others -- protected-subspace thinness didn't obviously produce a weaker or stronger effect here."
+}
