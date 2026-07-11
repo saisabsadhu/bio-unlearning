@@ -1,0 +1,41 @@
+{
+  "cui": "C0289313",
+  "concept": "rosiglitazone diabetes",
+  "rank": 3,
+  "layers_ablated": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "clmi_full": {
+    "mean": 1.0,
+    "std": 0.0
+  },
+  "clmi_restricted": {
+    "mean": 1.0,
+    "std": 0.0,
+    "n_pca_components": 6
+  }
+}
