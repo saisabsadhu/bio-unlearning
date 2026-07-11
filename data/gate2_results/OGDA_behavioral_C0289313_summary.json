@@ -1,0 +1,8 @@
+{
+  "method": "OGDA", "concept": "rosiglitazone diabetes", "cui": "C0289313", "concept_scenario": "IFE",
+  "hyperparameters": {"layers_ablated": "4-28 (25 of 32)", "rank": 3, "weight_edit": "o_proj + down_proj"},
+  "baseline": {"RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "RGU_ewef": 0.13793103448275862, "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183, "IFE_ewef": 0.017857142857142856},
+  "post_ogda": {"RGU_fa": 0.7241379310344828, "RGU_def": 0.17479191438763378, "RGU_ewef": 0.1206896551724138, "IFE_fa": 0.8928571428571429, "IFE_def": 0.0, "IFE_ewef": 0.0},
+  "clmi": {"full": 1.0, "restricted": 1.0},
+  "interpretation": "Cross-concept replication of the aspirin pattern (OGDA_behavioral_C0004057_summary.json), with roles swapped: rosiglitazone is an IFE-scenario pilot concept (aspirin was RGU), and IFE -- its own scenario -- shows exactly the same signature aspirin's own scenario (RGU) showed: FA rises (0.839->0.893) and DEF collapses fully to 0 (0.015->0.0). The OTHER (untargeted) scenario, RGU here, moves more mildly (FA 0.741->0.724, DEF 0.192->0.175) -- comparable in magnitude to the random-control's mild RGU movement (0.741->0.724, identical FA value by coincidence), not the full collapse seen on the concept's own scenario. This cross-concept consistency (same signature regardless of which specific concept or which scenario it belongs to) strengthens confidence this is a real, reproducible OGDA behavior, not concept-specific noise -- but it is still the same collateral-drift pattern, not clean targeted erasure."
+}
