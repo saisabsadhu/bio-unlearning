@@ -10,5 +10,17 @@
     "pqs": 3,
     "provenance_note": "Zero LLM involvement -- literal FDA-regulated Structured Product Label (SPL) text pulled via DailyMed's official version-history API and diffed directly. Boxed-warning title itself changed from 'MYOCARDIAL ISCHEMIA' to 'MYOCARDIAL INFARCTION' between versions, and the underlying meta-analysis evidence base was updated (42 studies/14,237 patients -> 52 trials/16,995 patients), reflecting the post-2007 Nissen-controversy label revisions. This directly matches pilot concept C0289313 (rosiglitazone), already used in OGDA and Gate 2 experiments -- upgrades that concept's ground truth from LLM-only to Gold-tier.",
     "matches_pilot_concept": "C0289313"
+  },
+  {
+    "practice": "Combined estrogen+progestin HRT (Prempro/Premphase) boxed warning on cardiovascular disease and dementia prevention",
+    "old_label_text": "CARDIOVASCULAR AND OTHER RISKS: Estrogens plus progestins should not be used for the prevention of cardiovascular disease or dementia... The WHI reported increased risks of myocardial infarction, stroke, invasive breast cancer, pulmonary emboli, and deep vein thrombosis (DVT) in postmenopausal women (50-79) during 5.6 years of treatment.",
+    "new_label_text": "Estrogen Plus Progestin Therapy Cardiovascular Disorders and Probable Dementia: Estrogen plus progestin therapy should not be used for the prevention of cardiovascular disease or dementia... increased risk of DVT, PE, stroke and MI in postmenopausal women (50-79) during 5.6 years of treatment.",
+    "specialty": "Endocrinology / Cardiology / Gynecology",
+    "old_version_date": "2009-09-22",
+    "new_version_date": "2026-04-29",
+    "source": "DailyMed SPL history, PREMPRO/PREMPHASE (conjugated estrogens + medroxyprogesterone acetate), SETID fd0c0836-5d23-2183-da81-9dc7f4287052, versions 3 and 39 -- https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/fd0c0836-5d23-2183-da81-9dc7f4287052/history.json",
+    "pqs": 3,
+    "provenance_note": "Zero LLM involvement. Both pulled versions already reflect the post-2002 Women's Health Initiative (WHI) reversal (the trial itself predates DailyMed's earliest indexed version for this SETID), so this specific pair documents refinement/restructuring of the warning over 17 years rather than a pre/post-WHI diff -- still real, dated, FDA-regulated evidence directly relevant to pilot concept C0282402 (hormone replacement therapy), and demonstrates the puller generalizes beyond the rosiglitazone case. A genuine pre/post-WHI diff would need an earlier SETID/version not available via this drug's current DailyMed history.",
+    "matches_pilot_concept": "C0282402"
   }
 ]
