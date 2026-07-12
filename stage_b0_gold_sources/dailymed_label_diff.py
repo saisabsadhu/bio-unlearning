@@ -60,8 +60,15 @@ def download_version(setid, version, out_dir):
             f.write(r.content)
     extract_dir = os.path.join(out_dir, f"v{version}")
     if not os.path.exists(extract_dir):
+        os.makedirs(extract_dir, exist_ok=True)
         with zipfile.ZipFile(zip_path) as z:
-            z.extractall(extract_dir)
+            # SPL ZIPs bundle package-label images alongside the XML -- only
+            # the XML is needed for text diffing, and the images bloat the
+            # repo with no provenance value.
+            for name in z.namelist():
+                if name.endswith(".xml"):
+                    z.extract(name, extract_dir)
+    os.remove(zip_path)
     for fn in os.listdir(extract_dir):
         if fn.endswith(".xml"):
             return os.path.join(extract_dir, fn)
