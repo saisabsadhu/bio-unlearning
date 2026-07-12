@@ -1,0 +1,8 @@
+{
+  "method": "OGDA-late-layers-only", "concept": "aspirin cardiovascular prevention", "cui": "C0004057",
+  "hyperparameters": {"layers_ablated": "20-28 (9 of 32, late only)", "rank": 3},
+  "baseline": {"RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183},
+  "post": {"RGU_fa": 0.7241379310344828, "RGU_def": 0.18727705112960763, "IFE_fa": 0.875, "IFE_def": 0.0},
+  "comparison_to_25layer": {"RGU_fa_25layer": 0.7586206896551724, "RGU_def_25layer": 0.15695600475624255, "IFE_fa_25layer": 0.8928571428571429, "IFE_def_25layer": 0.0},
+  "interpretation": "Even ablating only 9 late layers (20-28, roughly a third of the original 25-layer edit) reproduces the full IFE DEF collapse to exactly 0.0 -- the same qualitative signature as the full 25-layer edit. This suggests late layers specifically are responsible for the DEF-collapse effect identified as the real, statistically-robust signal (OGDA_random_control_statistical_summary.json), not simply 'how much of the network is touched.' RGU (own scenario) shows a smaller, different-direction FA movement than the 25-layer version (-0.017 vs +0.017), consistent with FA being an unreliable/noisy signal across different layer-range choices, while a much smaller late-layers-only edit is enough to reproduce the more robust DEF-collapse finding. Worth testing whether an even smaller late-layer window (e.g. just layers 24-28) still reproduces this, to localize the effect further -- not yet done."
+}
