@@ -1,0 +1,7 @@
+{
+  "method": "OGDA-locus-confirmation", "concept": "aspirin cardiovascular prevention", "cui": "C0004057",
+  "hyperparameters": {"layers_ablated": "20-23 (4 of 32, the minimal window tested)", "rank": 3},
+  "baseline": {"RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183},
+  "post": {"RGU_fa": 0.7241379310344828, "RGU_def": 0.19976218787158145, "IFE_fa": 0.8571428571428571, "IFE_def": 0.0},
+  "CONFIRMED": "Layers 20-23 ALONE (4 of 32 layers, ~12.5% of the network) fully reproduce the IFE DEF collapse to exactly 0.0 -- matching both the 9-layer (20-28) and original 25-layer (4-28) results. Layers 24-28 alone do NOT reproduce it (IFE stayed at exact baseline). This confirms the locus hypothesis directly: the collateral-damage mechanism driving DEF collapse on the untargeted scenario is concentrated in a narrow 4-layer band (20-23), not a diffuse whole-network effect. RGU (own scenario) moves similarly across all late-layer variants tested (FA ~0.724, DEF ~0.19-0.20), suggesting RGU's movement is not driven by the same narrow locus -- it may depend on a different/broader set of layers, or reflect a different (noisier, per the random-control statistical analysis) mechanism than IFE's DEF collapse."
+}
