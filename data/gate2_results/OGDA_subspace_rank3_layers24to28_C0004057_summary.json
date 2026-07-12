@@ -1,0 +1,21 @@
+{
+  "cui": "C0004057",
+  "concept": "aspirin cardiovascular prevention",
+  "rank": 3,
+  "layers_ablated": [
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "clmi_full": {
+    "mean": 1.0,
+    "std": 0.0
+  },
+  "clmi_restricted": {
+    "mean": 1.0,
+    "std": 0.0,
+    "n_pca_components": 6
+  }
+}
