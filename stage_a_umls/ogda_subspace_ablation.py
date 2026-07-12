@@ -308,7 +308,8 @@ def main():
         "clmi_full": {"mean": full_auroc, "std": full_std},
         "clmi_restricted": {"mean": restricted_auroc, "std": restricted_std, "n_pca_components": matched_components},
     }
-    out_path = f"data/gate2_results/OGDA_subspace_rank{args.rank}_{args.cui}_summary.json"
+    layers_tag = args.layers.replace("-", "to")
+    out_path = f"data/gate2_results/OGDA_subspace_rank{args.rank}_layers{layers_tag}_{args.cui}_summary.json"
     with open(out_path, "w") as f:
         json.dump(summary, f, indent=2)
     print(f"\nSaved: {out_path}")
