@@ -1,0 +1,14 @@
+[
+  {
+    "practice": "Rosiglitazone (Avandia/Avandamet) boxed warning language on cardiovascular risk",
+    "old_label_text": "A meta-analysis of 42 clinical studies (mean duration 6 months; 14,237 total patients)... showed rosiglitazone to be associated with an increased risk of myocardial ischemic events such as angina or myocardial infarction.",
+    "new_label_text": "A meta-analysis of 52 clinical trials (mean duration 6 months; 16,995 total patients)... showed rosiglitazone to be associated with an increased risk of myocardial infarction.",
+    "specialty": "Endocrinology / Cardiology",
+    "old_version_date": "2009-12-08",
+    "new_version_date": "2012-09-04",
+    "source": "DailyMed SPL history, AVANDAMET (rosiglitazone maleate + metformin), SETID 0789dc6b-db34-44a6-8a5d-fdcc8e4ce8fd, versions 2 and 6 -- https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/0789dc6b-db34-44a6-8a5d-fdcc8e4ce8fd/history.json",
+    "pqs": 3,
+    "provenance_note": "Zero LLM involvement -- literal FDA-regulated Structured Product Label (SPL) text pulled via DailyMed's official version-history API and diffed directly. Boxed-warning title itself changed from 'MYOCARDIAL ISCHEMIA' to 'MYOCARDIAL INFARCTION' between versions, and the underlying meta-analysis evidence base was updated (42 studies/14,237 patients -> 52 trials/16,995 patients), reflecting the post-2007 Nissen-controversy label revisions. This directly matches pilot concept C0289313 (rosiglitazone), already used in OGDA and Gate 2 experiments -- upgrades that concept's ground truth from LLM-only to Gold-tier.",
+    "matches_pilot_concept": "C0289313"
+  }
+]
