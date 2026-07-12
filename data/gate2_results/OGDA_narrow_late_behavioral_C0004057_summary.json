@@ -1,0 +1,11 @@
+{
+  "method": "OGDA-narrow-late-layers", "concept": "aspirin cardiovascular prevention", "cui": "C0004057",
+  "hyperparameters": {"layers_ablated": "24-28 (5 of 32)", "rank": 3},
+  "baseline": {"RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183},
+  "post": {"RGU_fa": 0.7241379310344828, "RGU_def": 0.18727705112960763, "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183},
+  "comparison": {
+    "9layer_20to28": {"IFE_fa": 0.875, "IFE_def": 0.0},
+    "5layer_24to28": {"IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183}
+  },
+  "interpretation": "KEY LOCALIZATION RESULT. Narrowing from 9 late layers (20-28) to 5 (24-28) makes IFE come back to EXACTLY baseline on both FA and DEF -- the collateral IFE DEF-collapse effect completely disappears. RGU (own scenario) is essentially unchanged from the 9-layer version (FA 0.724 both, DEF 0.187 both). This localizes the collateral-damage-driving layers specifically to the 20-23 range (present in the 9-layer window, absent in the 5-layer window) -- layers 24-28 alone reproduce RGU's movement but NOT the IFE collateral collapse. Directly testable next step: ablate ONLY layers 20-23 to confirm they alone reproduce the IFE DEF collapse, which would be strong evidence for a specific, narrow, identifiable locus of the collateral-damage mechanism rather than a diffuse whole-network effect."
+}
