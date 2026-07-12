@@ -1,0 +1,45 @@
+{
+  "purpose": "Full statistical comparison: real OGDA (aspirin) vs random-subspace control, n=3 random seeds",
+  "baseline": {
+    "RGU_fa": 0.7413793103448276,
+    "RGU_def": 0.19173602853745544,
+    "IFE_fa": 0.8392857142857143,
+    "IFE_def": 0.014987244897959183
+  },
+  "random_control_seeds": [
+    {
+      "seed": 0,
+      "RGU_fa": 0.7241379310344828,
+      "RGU_def": 0.18727705112960763,
+      "IFE_fa": 0.8392857142857143,
+      "IFE_def": 0.014987244897959183
+    },
+    {
+      "seed": 1,
+      "RGU_fa": 0.6896551724137931,
+      "RGU_def": 0.1902497027348395,
+      "IFE_fa": 0.8571428571428571,
+      "IFE_def": 0.01530612244897959
+    },
+    {
+      "seed": 2,
+      "RGU_fa": 0.7241379310344828,
+      "RGU_def": 0.19976218787158145,
+      "IFE_fa": 0.9107142857142857,
+      "IFE_def": 0.016262755102040814
+    }
+  ],
+  "real_ogda_aspirin": {
+    "RGU_fa": 0.7586206896551724,
+    "RGU_def": 0.15695600475624255,
+    "IFE_fa": 0.8928571428571429,
+    "IFE_def": 0.0
+  },
+  "z_scores_real_vs_random_distribution": {
+    "RGU_fa": 2.31,
+    "RGU_def": -5.44,
+    "IFE_fa": 0.64,
+    "IFE_def": -23.38
+  },
+  "CORRECTED_CONCLUSION": "Supersedes the earlier n=1 random-control conclusion. With n=3 random seeds, FA is NOT a reliable differentiator: RGU_fa is only moderately distinguishable (z=2.31) and IFE_fa is statistically indistinguishable from random-subspace noise (z=0.64) -- random seeds alone produced IFE_fa movements as large as +0.071, comparable to or exceeding real OGDA's +0.054. This directly contradicts the original (premature, n=1) claim that random subspaces barely move anything. HOWEVER, DEF tells a genuinely different, much more robust story: real OGDA is a clear statistical outlier on DEF for BOTH scenarios (RGU z=-5.44, IFE z=-23.38) -- none of the 3 random seeds produced anything close to real OGDA's RGU DEF drop or its full IFE DEF collapse to exactly 0.0. Since DEF requires the model to BOTH stop matching the old answer AND correctly produce the retain-consistent one, this is a more demanding, less noise-prone metric than FA alone, and its clear separation from the random-control distribution is the strongest quantitative evidence so far that the ontology-anchored direction is doing something real and non-generic -- but this claim now rests specifically on DEF, not on FA, and should be stated that precisely rather than as a blanket 'random control barely moves anything' claim. n=3 is still a small sample for the random distribution; more seeds would tighten these z-scores further."
+}
