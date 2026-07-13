@@ -22,5 +22,17 @@
     "pqs": 3,
     "provenance_note": "Zero LLM involvement. Both pulled versions already reflect the post-2002 Women's Health Initiative (WHI) reversal (the trial itself predates DailyMed's earliest indexed version for this SETID), so this specific pair documents refinement/restructuring of the warning over 17 years rather than a pre/post-WHI diff -- still real, dated, FDA-regulated evidence directly relevant to pilot concept C0282402 (hormone replacement therapy), and demonstrates the puller generalizes beyond the rosiglitazone case. A genuine pre/post-WHI diff would need an earlier SETID/version not available via this drug's current DailyMed history.",
     "matches_pilot_concept": "C0282402"
+  },
+  {
+    "practice": "Estrogen-alone HRT (Estrogel/estradiol) boxed warning on cardiovascular disease, dementia, and endometrial cancer risk",
+    "old_label_text": "Close clinical surveillance...CARDIOVASCULAR AND OTHER RISKS: Estrogens with or without progestins should not be used for the prevention of cardiovascular disease...The estrogen-alone substudy of the WHI reported increased risks of stroke and DVT...during 6.8 and 7.1 years.",
+    "new_label_text": "Estrogen-Alone Therapy Endometrial Cancer: There is an increased risk of endometrial cancer...Cardiovascular Disorders and Probable Dementia: The WHI estrogen-alone substudy reported increased risks of stroke and DVT...during 7.1 years...WHIMS reported an increased risk of developing probable dementia.",
+    "specialty": "Endocrinology / Cardiology / Gynecology",
+    "old_version_date": "2008-03-13",
+    "new_version_date": "2026-06-01",
+    "source": "DailyMed SPL history, ESTROGEL (estradiol gel), SETID 762ac371-bb8b-47e7-b48f-e80d452c9dd4, versions 1 and 55 -- https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/762ac371-bb8b-47e7-b48f-e80d452c9dd4/history.json",
+    "pqs": 3,
+    "provenance_note": "Zero LLM involvement. Third real DailyMed diff, second HRT product (different from Prempro/Premphase), confirming the puller and the underlying WHI-driven label evolution generalize across multiple estrogen products, not just one brand. 2008 version already reflects the post-2002 WHI findings (predates the puller's earliest coverage for this SETID); the 2026 version adds explicit dementia-risk framing (WHIMS) and endometrial cancer restructuring not present in 2008 -- real, dated, ongoing label evolution.",
+    "matches_pilot_concept": "C0282402"
   }
 ]
