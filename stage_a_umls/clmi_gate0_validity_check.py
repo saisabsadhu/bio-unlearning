@@ -89,12 +89,23 @@ TEMPLATES = [
 ]
 
 
-def make_prompts(term, n):
+def make_prompts(term, n, seed=None):
+    """seed=None: original deterministic template order (backward compatible).
+    seed=int: shuffles template order first, giving genuine prompt-sampling
+    variation across seeds for the same concept -- used to build a real
+    multi-seed distribution for the ontology-anchored OGDA construction,
+    matching the random-subspace control's n=3 seed distribution."""
+    templates = TEMPLATES
+    if seed is not None:
+        import random
+        rng = random.Random(seed)
+        templates = TEMPLATES.copy()
+        rng.shuffle(templates)
     prompts = []
     i = 0
     while len(prompts) < n:
-        tmpl = TEMPLATES[i % len(TEMPLATES)]
-        suffix = "" if i < len(TEMPLATES) else f" (variant {i // len(TEMPLATES) + 1})"
+        tmpl = templates[i % len(templates)]
+        suffix = "" if i < len(templates) else f" (variant {i // len(templates) + 1})"
         prompts.append(tmpl.format(term=term) + suffix)
         i += 1
     return prompts

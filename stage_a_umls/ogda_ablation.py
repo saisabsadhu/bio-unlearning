@@ -58,10 +58,13 @@ def neighbor_weight(neighbor):
     return ALPHA / (dist + 1) + (1 - ALPHA) * icd_priority
 
 
-def get_activations_all_layers(model, tokenizer, concept_name, n_prompts):
+def get_activations_all_layers(model, tokenizer, concept_name, n_prompts, seed=None):
     """One batched forward pass; returns (n_prompts, n_layers, hidden) mean-pooled
-    (over non-pad tokens) activations for every layer at once."""
-    prompts = make_prompts(concept_name, n_prompts)
+    (over non-pad tokens) activations for every layer at once. seed shuffles
+    which templates are used (see make_prompts) -- lets the same concept's
+    direction be extracted from a genuinely different prompt sample per seed,
+    for building a real multi-seed distribution on the ontology-anchored side."""
+    prompts = make_prompts(concept_name, n_prompts, seed=seed)
     hidden_list, ids_list, attn_list = get_hidden_states_batched(model, tokenizer, prompts)
     out = []
     for i in range(len(prompts)):

@@ -173,6 +173,7 @@ def main():
     parser.add_argument("--layers", default="4-28")
     parser.add_argument("--rank", type=int, default=3, help="forget subspace rank per layer")
     parser.add_argument("--save_checkpoint", default=None, help="if set, bake the ablation into permanent weights and save here for behavioral (FA/DEF) eval")
+    parser.add_argument("--seed", type=int, default=None, help="shuffles which prompt templates are sampled, for building a real multi-seed distribution on the ontology-anchored side (matches the random-control's seeded variation)")
     args = parser.parse_args()
 
     graph = load_merged_graph(args.cui)
@@ -191,7 +192,7 @@ def main():
     layers = parse_layers(args.layers, n_layers)
 
     print("Extracting forget-concept activations (all layers, one pass)...")
-    concept_acts = get_activations_all_layers(model, tokenizer, args.concept_name, N_PROMPTS_CONCEPT)
+    concept_acts = get_activations_all_layers(model, tokenizer, args.concept_name, N_PROMPTS_CONCEPT, seed=args.seed)
 
     weighted = sorted(
         ((neighbor_weight(n), cui, n) for cui, n in neighbors.items()),
@@ -203,7 +204,7 @@ def main():
     neighbor_weights = []
     for w, cui, n in weighted:
         name = n.get("name", cui)
-        acts = get_activations_all_layers(model, tokenizer, name, N_PROMPTS_PER_NEIGHBOR)
+        acts = get_activations_all_layers(model, tokenizer, name, N_PROMPTS_PER_NEIGHBOR, seed=args.seed)
         neighbor_acts_by_name[name] = acts
         neighbor_weights.append(w)
         print(f"    neighbor '{name}' (weight={w:.3f}) -> activations extracted")
@@ -219,7 +220,7 @@ def main():
     for bg_concept, bg_cui, _, _ in PROBE_CONCEPTS:
         if bg_cui == args.cui or bg_concept.lower() in neighbor_name_set:
             continue
-        acts = get_activations_all_layers(model, tokenizer, bg_concept, 8)
+        acts = get_activations_all_layers(model, tokenizer, bg_concept, 8, seed=args.seed)
         background_acts.append(acts)
         print(f"    background '{bg_concept}' -> activations extracted")
 
@@ -309,7 +310,8 @@ def main():
         "clmi_restricted": {"mean": restricted_auroc, "std": restricted_std, "n_pca_components": matched_components},
     }
     layers_tag = args.layers.replace("-", "to")
-    out_path = f"data/gate2_results/OGDA_subspace_rank{args.rank}_layers{layers_tag}_{args.cui}_summary.json"
+    seed_tag = f"_seed{args.seed}" if args.seed is not None else ""
+    out_path = f"data/gate2_results/OGDA_subspace_rank{args.rank}_layers{layers_tag}_{args.cui}{seed_tag}_summary.json"
     with open(out_path, "w") as f:
         json.dump(summary, f, indent=2)
     print(f"\nSaved: {out_path}")
