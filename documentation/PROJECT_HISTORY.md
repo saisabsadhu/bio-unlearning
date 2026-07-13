@@ -164,7 +164,25 @@ data/
 saves/ (gitignored)                               model checkpoints and eval outputs, not version-controlled
 ```
 
-## Phase 11: Open items and immediate next steps
+## Phase 12: The random-subspace control, the statistical corrections, and multi-concept replication
+
+Everything below happened in one extended, largely autonomous continuation, run to closure on the open items Phase 11 listed.
+
+**Cross-model matrix completed**: GA, NPO, and RMU all extended to Llama-3.1-8B-Instruct (non-clinical control). NPO/RMU needed more than the LoRA+8-bit-reference-model fix that worked for 7B BioMistral -- the 8B base model's own weights were now the bottleneck. Added **QLoRA** (4-bit base model + 4-bit reference model via `BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4")`, `prepare_model_for_kbit_training` before LoRA wrapping) as a further, reusable capability. Result: real, non-degenerate NPO and RMU runs on Llama. A genuinely interesting cross-model finding fell out of this: RMU's effect strength is sharply model-dependent at *identical* hyperparameters -- near-zero on BioMistral, a large real scenario-specific effect on Llama -- meaning single-model method-sensitivity rankings don't generalize.
+
+**The random-subspace control (the load-bearing experiment)**: built `ogda_random_control.py` -- identical weight-edit mechanism to real OGDA, but ablating a random orthonormal subspace instead of an ontology-derived one. First attempt (1 seed) suggested a clean "real OGDA is special" result. **This was directly retested and corrected**: two more random seeds showed FA has substantial seed-to-seed variance (one random seed moved FA *more* than real OGDA, in the opposite direction) -- the n=1 conclusion didn't survive. Computed proper z-scores of real OGDA's result against the n=3 random-seed distribution: **FA is not a reliable differentiator (z=0.64-2.31), but DEF is a large, clear statistical outlier (z=-5.44 RGU, z=-23.38 IFE)**. The claim that OGDA's mechanism is non-generic was narrowed and re-grounded specifically on DEF, with the correction documented in place rather than silently revised.
+
+**Layer/rank sweep, an apparent localization, and its retraction**: systematic sweep (CLMI screening across rank/layer combinations, then direct behavioral testing) found that narrowing to late layers only (20-28, then 24-28) made the collateral IFE DEF collapse disappear at 5 layers, isolating it to layers 20-23. Testing layers 20-23 alone confirmed they reproduced the full collapse -- looked like a precise 4-layer mechanistic locus. **Directly tested and falsified**: ablating all 21 *other* layers (excluding 20-23) still produced the full collapse, meaning those layers aren't uniquely necessary. Corrected interpretation: a breadth/dose threshold effect, not a specific locus. The "avoid layers 20-23" fix idea the false localization suggested was explicitly retracted.
+
+**A filename-collision bug caught mid-sweep**: the ablation script's output path only encoded rank and CUI, not layer range -- a narrower-window sweep point silently overwrote the original 25-layer result before it was committed. Caught via `git diff` before it corrupted the record; recovered from git history, fixed the script to include layer range (and later, seed) in output filenames.
+
+**Multi-concept replication (the decisive check)**: the random-control distribution is concept-agnostic (same base model/benchmark, only the ablated subspace differs), so it was directly reusable as the null distribution for the other 3 concepts' *already-collected* real-OGDA results -- no new GPU runs needed, just the right comparison, run after the user directly challenged whether the work had a real destination. Result: own-scenario DEF is a statistical outlier for **all 4 concepts** (aspirin z=-5.44, rosiglitazone z=-23.38, HRT z=-3.34, Vioxx z=-23.38) -- the original aspirin finding was not a fluke. The one partial exception: HRT's *cross-scenario* (collateral) effect doesn't replicate (z=+1.12), precisely locating the earlier-noted HRT anomaly to the collateral-damage side specifically, not the core erasure signal. This is currently the strongest, most defensible piece of novelty evidence in the project.
+
+**Seed support added to the real-OGDA side**: `make_prompts` now accepts a `seed` that shuffles template order before sampling, threaded through `ogda_subspace_ablation.py --seed`, so the ontology-anchored construction can build its own multi-seed distribution (previously only the random control had one) -- infrastructure built, not yet run to completion (blocked mid-session by another tenant's GPU job).
+
+**Gold-source diversification, moving past 2 papers**: built and validated a DailyMed SPL version-history puller (`stage_b0_gold_sources/dailymed_label_diff.py`) -- real, dated, FDA-regulated before/after drug label text, zero LLM involvement anywhere in the ground truth. Three real results so far, matched to existing pilot concepts: rosiglitazone (Avandamet boxed-warning title changed "MYOCARDIAL ISCHEMIA" -> "MYOCARDIAL INFARCTION", 2009-2012, reflecting the post-Nissen-controversy FDA revision), and two HRT products (Prempro/Premphase and Estrogel/estradiol, both showing real WHI-driven label evolution). SNOMED reason-code extraction remains blocked specifically on UMLS API credentials not being present in this environment (`configs/config.py` is gitignored) -- an access gap, not an approach failure.
+
+## Phase 13: Open items and immediate next steps
 
 Carried from `MASTER_RESEARCH_PLAN.md` Section 22 (unresolved, need Dr. Vindo's input) and the current experimental frontier:
 
@@ -173,8 +191,10 @@ Carried from `MASTER_RESEARCH_PLAN.md` Section 22 (unresolved, need Dr. Vindo's 
 - Confirm reaction to the evidence-weighted OGFR/DGP/EWEF proposal as "the" biomedical-specific methodological novelty.
 - Confirm whether UMich has its own EHR/guideline-change data infrastructure that could substitute for public sources.
 - Confirm venue (NC vs. a dual-track strategy) — this materially changes the human-validation and submission-plan sections.
-- Run the random-subspace control ablation (highest-priority open experiment).
-- Test a gentler OGDA setting (fewer layers / lower rank).
-- Continue gold-source harvesting (30/400+ so far) — SNOMED CT reason-code extraction, FDA SrLC pull, WHO EML Technical Reports not yet started.
-- Extend OGDA to the three other concepts with real UMLS graphs (HRT, rosiglitazone, Vioxx).
-- Cross-model control run (Llama-3.1-8B-Instruct) — not yet started.
+- Run the now-built seeded ontology-anchored OGDA construction across multiple seeds (infra ready, blocked on GPU availability at time of writing) -- would let the *real* side of the novelty comparison have proper variance too, not just the random-control side.
+- Re-supply UMLS API credentials to unblock SNOMED reason-code extraction.
+- Understand why HRT's collateral (cross-scenario) effect doesn't replicate the pattern the other 3 concepts show, now that this is precisely located rather than just noted as an anomaly.
+- Extend the DailyMed puller to more pilot-concept drugs (rofecoxib/Vioxx has no DailyMed SPL history -- withdrawn pre-dating typical DailyMed coverage; would need a different source for that concept specifically).
+- Map the 396 Herrera-Perez entries against BioUnlearn-Bench's scenario definitions to turn them into real dataset instances, not just a source catalog.
+- Scale the dataset beyond pilot size (190 instances) and build the still-missing PAC scenario.
+- No human/physician validation, no knowledge-editing (ROME/MEMIT) or RAG-suppression baselines, no NC-specific paper machinery (ethics/IRB, Reporting Summary) — all still open, per the original critique.
