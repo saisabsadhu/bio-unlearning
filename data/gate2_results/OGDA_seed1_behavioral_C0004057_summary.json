@@ -1,0 +1,7 @@
+{
+  "method": "OGDA-real-seed1", "concept": "aspirin cardiovascular prevention", "cui": "C0004057",
+  "hyperparameters": {"layers_ablated": "4-28", "rank": 3, "seed": 1},
+  "baseline": {"RGU_fa": 0.7413793103448276, "RGU_def": 0.19173602853745544, "IFE_fa": 0.8392857142857143, "IFE_def": 0.014987244897959183},
+  "post": {"RGU_fa": 0.7758620689655172, "RGU_def": 0.133769322235434, "IFE_fa": 0.8928571428571429, "IFE_def": 0.0},
+  "note": "Second real-OGDA seed on aspirin (first with prompt-sampling variation via the new --seed support). IFE_def collapses fully to 0.0, matching seed0 exactly -- reproducible on the real-OGDA side, not just concept-to-concept. RGU_fa/def moved further than seed0 (0.776 vs 0.759 FA, 0.134 vs 0.157 DEF)."
+}
