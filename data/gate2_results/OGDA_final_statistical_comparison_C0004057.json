@@ -1,0 +1,17 @@
+{
+  "purpose": "Final statistical rigor closure: n=3 real-OGDA seeds vs n=3 random-control seeds (two-sample comparison), aspirin concept",
+  "context": "Every prior statistical claim (data/gate2_results/OGDA_random_control_statistical_summary.json, OGDA_multiconcept_replication_summary.json) compared n=1 real-OGDA result against an n=3 random-control distribution -- treating the real side as a fixed point with no variance. This was flagged explicitly as a limitation needing to be closed before treating any DEF finding as load-bearing. Ran 2 more real-OGDA seeds (seed=1, seed=2) using the newly-added --seed support to close this gap.",
+  "real_ogda_seeds_IFE_def": [
+    0.0,
+    0.0,
+    0.01594387755102041
+  ],
+  "finding": "Seed2 does NOT show the IFE DEF collapse (0.016, near baseline) -- only 2 of 3 real seeds show it, not all 3. This means the real-OGDA side has genuine seed-to-seed variance too, not just the random-control side.",
+  "two_sample_z_scores": {
+    "RGU_fa": 4.47,
+    "RGU_def": -1.43,
+    "IFE_fa": 1.11,
+    "IFE_def": -1.92
+  },
+  "CORRECTED_CONCLUSION": "This changes the picture substantially from the earlier (n=1-real-vs-n=3-random) analysis. IFE_def -- the metric that produced the dramatic z=-23.38 'clear outlier' finding and anchored the multi-concept replication claim -- is NO LONGER clearly distinguishable once real-side variance is properly measured (two-sample z=-1.92, not conventionally significant at n=3). This is because one of three real seeds (seed2) simply didn't show the collapse -- the earlier n=1 estimate was not representative of the real condition's own variance, exactly the same class of error the original random-control n=1 conclusion made (and was corrected for) earlier in this investigation. RGU_def is similarly not clearly separated (z=-1.43). The one metric that DOES show a clean, low-variance, consistent separation is RGU_fa (z=4.47) -- real OGDA consistently increases RGU_fa by a small amount (deltas 0.017-0.035, std=0.01) while the random control trends in the opposite direction with more scatter. This is a genuine reversal of the earlier claim that 'FA is not a reliable differentiator' -- with n=3 on both sides, FA (specifically RGU_fa) is actually the more consistent signal, and DEF (specifically IFE_def) is not as clean as it looked with only one real sample. HONEST BOTTOM LINE: at n=3 vs n=3 on a single concept (aspirin), the strongest available evidence for a real, non-generic OGDA effect is now RGU_fa's consistent positive shift, not IFE_def's collapse. The multi-concept replication finding (which was itself built on n=1 real-OGDA per concept) should be read with the same caveat -- it may partially reflect the same single-sample-variance problem now identified on aspirin specifically, and would need the same n=3-vs-n=3 treatment on the other 3 concepts before being treated as settled. This is not a negative result for the paper -- it is exactly the kind of honest uncertainty quantification a reviewer would demand, done proactively rather than caught in review."
+}

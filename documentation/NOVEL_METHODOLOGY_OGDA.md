@@ -178,3 +178,22 @@ At this point it looked like a real, precise mechanistic finding: the collateral
 **Corrected interpretation, synthesizing all four data points**: 4 layers alone (20-23) → collapse; 5 layers alone (24-28) → no collapse; 21 layers excluding 20-23 → collapse. This pattern fits a **breadth/dose threshold effect** (ablating "enough" layers in aggregate triggers the collapse, with the exact threshold having some layer-position sensitivity) much better than a specific causal locus -- the 24-28-alone result sitting just below threshold and 20-23-alone sitting just above it does not make 20-23 special; it means both were near a margin that large ablations (21 layers) clear comfortably regardless of which specific layers are included.
 
 This correction is reported in the same place as the original claim, not quietly revised, for the same reason as the FA/random-control correction in 8.7: a retracted precise claim, honestly documented, is more useful to the paper than an untested one left standing. It also means the "avoid layers 20-23 as a targeted fix" idea floated when the localization looked confirmed does not work -- collateral damage at this ablation breadth is not avoidable by protecting one specific narrow band, at least not the one tested here.
+
+### 8.9 Closing the statistical-rigor gap: n=3 on the real-OGDA side too, and a second correction
+
+Section 8.7's random-control z-scores (RGU DEF z=-5.44, IFE DEF z=-23.38) were flagged explicitly as resting on n=1 for the real-OGDA side -- one aspirin run compared against a proper n=3 random-seed distribution. Added `--seed` support to the ontology-anchored construction itself (shuffles which prompt templates are sampled per seed, same underlying mechanism as the random control's seeding) specifically to close this gap, and ran 2 more real-OGDA seeds on aspirin.
+
+**Result: seed=2 does not show the IFE DEF collapse** (0.016, near baseline) -- only 2 of 3 real seeds show it, not all 3. Recomputing as a proper two-sample comparison (n=3 real vs. n=3 random, not n=1 vs. n=3):
+
+| Metric | Two-sample z (real vs. random) | Distinguishable? |
+|---|---|---|
+| RGU FA | **4.47** | **Yes, clearly** |
+| RGU DEF | -1.43 | No |
+| IFE FA | 1.11 | No |
+| IFE DEF | -1.92 | **No longer** (was -23.38 at n=1) |
+
+**This is a second, more consequential correction.** IFE DEF -- the metric that anchored both Section 8.7's "DEF is the real signal" conclusion and the multi-concept replication check (Section 8.7's follow-up, `OGDA_multiconcept_replication_summary.json`) -- is **no longer a clear statistical outlier** once its own seed-to-seed variance is measured instead of assumed to be zero. The earlier z=-23.38 was an artifact of comparing a single real value (with unknown/unmeasured variance) against a measured random distribution -- exactly the same class of mistake the original random-control n=1 conclusion made in Section 8.7, now discovered on the *other* side of the same comparison.
+
+**What does hold up**: RGU_fa shows a clean, low-variance, consistent separation (z=4.47) -- real OGDA increases RGU_fa by a small but consistent amount (deltas 0.017-0.035 across 3 seeds, std=0.01) while the random control trends the opposite direction with more scatter. This is close to a reversal of the Section 8.7 claim that "FA is not a reliable differentiator" -- with proper variance on both sides, FA (specifically the targeted scenario's FA) turns out to be the more consistent signal on this concept, not DEF.
+
+**Honest bottom line**: at n=3 vs. n=3 on aspirin specifically, the strongest available evidence for a real, non-generic OGDA effect is RGU_fa's consistent shift, not IFE_def's collapse. The multi-concept replication finding (4/4 concepts, `OGDA_multiconcept_replication_summary.json`) was itself built on n=1 real-OGDA per concept and carries the same caveat just identified here -- it has not yet been re-run with n=3 per concept, and should not be treated as fully settled until it is. This is not being framed as a negative result: proactively finding and reporting that an initially dramatic effect size shrinks under proper variance estimation is exactly the kind of scrutiny a result needs before going in a paper, and it is far better to find this now than to have a reviewer find it later. Full numbers: `data/gate2_results/OGDA_final_statistical_comparison_C0004057.json`.
