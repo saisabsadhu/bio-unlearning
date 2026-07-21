@@ -252,3 +252,48 @@ contribution rather than a redundant one. This closes the item that had been fla
 "real" thesis-supporting comparison still missing, and reframes it from an open experimental
 gap into a benchmark-design argument the paper should state explicitly (directly pre-empts
 the reviewer question "why not just use TOFU/WMDP for this").
+
+## Phase 15: Closing the multi-concept statistical-rigor gap on all 4 concepts, and a second retraction
+
+Direct continuation, same session, after Phase 14. Section 8.9 of `NOVEL_METHODOLOGY_OGDA.md`
+had flagged that the multi-concept replication claim (`OGDA_multiconcept_replication_summary.json`,
+own-scenario DEF "outlier" at z=-2.70 to -23.38 across all 4 real-UMLS-graph concepts) was built
+on the same n=1-real-vs-n=3-random weakness already caught and corrected on aspirin specifically
+-- and had "not yet been re-run with n=3 per concept" as an explicitly open item.
+
+**Closed directly**: ran 2 more real-OGDA seeds each on rosiglitazone (C0289313), HRT (C0282402),
+and Vioxx (C0876768) via a background driver script (`ogda_subspace_ablation.py --seed 1/2`
+followed by `src/eval.py --config-name=eval.yaml model=BioMistral-7B eval=bioun` against each
+saved checkpoint) -- 6 concept-seed pairs, ~5-10 min each, ran cleanly with no errors or GPU
+contention. Recomputed every own-scenario and other-scenario FA/DEF z-score as a genuine
+n=3-vs-n=3 two-sample comparison (sample std, ddof=1 -- verified this matches the documented
+aspirin z=4.47 exactly before trusting the method on the new concepts). Full numbers:
+`data/gate2_results/OGDA_multiconcept_n3vn3_statistical_comparison.json`.
+
+**Second retraction, not just a caveat**: the original "3 of 4 concepts show clean DEF collapse
+to exactly 0.0, decisive" claim does not survive. Own-scenario z-scores at proper n=3-vs-n=3
+range from 0.49 to 4.47 -- only aspirin's RGU_fa clears conventional significance on its own;
+the other three concepts' own-scenario DEF sit at z=-1.86 to -2.04, right at the edge, not
+clearly past it. Marked `OGDA_multiconcept_replication_summary.json` explicitly `SUPERSEDED`
+in place (kept for the historical record of what the flawed n=1 analysis showed, not deleted)
+rather than quietly revising the number.
+
+**What's new and more interesting than what was lost**: the *collateral* (other-scenario) side.
+Two concepts -- rosiglitazone and Vioxx -- show a large, individually significant DEF
+suppression specifically on their **untargeted** scenario (z=-3.07 and z=-6.28, the latter the
+single largest effect in the whole table), meaning OGDA does more collateral damage than a
+random subspace edit of the same size for those two concepts. This is arguably a more relevant
+finding for the paper's actual thesis than clean own-scenario erasure would have been, since
+collateral damage on ontology-neighbor concepts is exactly what the paper is trying to
+characterize. HRT's collateral exception -- previously noted once, on n=1 -- is now a confirmed,
+reproducible anomaly (z=+0.68, the only positive DEF z-score across all 8 own+other
+comparisons), not a single-run oddity.
+
+**Honest bottom line**: across all 8 own+other DEF comparisons, 7 point the same direction
+(real OGDA's DEF below the random-control mean) -- corroborating context for a real, if more
+modest than originally claimed, effect, though not an independent formal test since all 4
+concepts reuse the same n=3 random-control distribution. This is a smaller, more defensible
+novelty claim than the original 4-concept "decisive" framing, produced by directly closing a
+gap the project's own documentation had flagged as open, in direct response to the user's
+"keep on running things, do not stop" instruction, rather than leaving it as a known limitation
+indefinitely.

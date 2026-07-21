@@ -1,0 +1,24 @@
+{
+  "method": "OGDA-real-seed2",
+  "concept": "hormone replacement therapy",
+  "cui": "C0282402",
+  "own_scenario": "RGU",
+  "other_scenario": "IFE",
+  "hyperparameters": {
+    "layers_ablated": "4-28",
+    "rank": 3,
+    "seed": 2
+  },
+  "baseline": {
+    "RGU_fa": 0.7413793103448276,
+    "RGU_def": 0.19173602853745544,
+    "IFE_fa": 0.8392857142857143,
+    "IFE_def": 0.014987244897959183
+  },
+  "post": {
+    "RGU_fa": 0.6896551724137931,
+    "RGU_def": 0.1902497027348395,
+    "IFE_fa": 0.8928571428571429,
+    "IFE_def": 0.01594387755102041
+  }
+}

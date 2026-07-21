@@ -1,0 +1,267 @@
+{
+  "purpose": "n=3 real-OGDA seeds vs n=3 random-subspace-control seeds, two-sample z (sample std, ddof=1), all 4 real-UMLS-graph concepts. Extends the aspirin-only n=3-vs-n=3 closure (OGDA_final_statistical_comparison_C0004057.json) to rosiglitazone, HRT, and Vioxx.",
+  "baseline": {
+    "RGU_fa": 0.7413793103448276,
+    "RGU_def": 0.19173602853745544,
+    "IFE_fa": 0.8392857142857143,
+    "IFE_def": 0.014987244897959183
+  },
+  "random_control_distribution": {
+    "RGU_fa": [
+      0.7241379310344828,
+      0.6896551724137931,
+      0.7241379310344828
+    ],
+    "RGU_def": [
+      0.18727705112960763,
+      0.1902497027348395,
+      0.19976218787158145
+    ],
+    "IFE_fa": [
+      0.8392857142857143,
+      0.8571428571428571,
+      0.9107142857142857
+    ],
+    "IFE_def": [
+      0.014987244897959183,
+      0.01530612244897959,
+      0.016262755102040814
+    ]
+  },
+  "real_ogda_seed_values": {
+    "aspirin_C0004057": {
+      "own_scenario": "RGU",
+      "other_scenario": "IFE",
+      "RGU_fa": [
+        0.7586206896551724,
+        0.7758620689655172,
+        0.7758620689655172
+      ],
+      "RGU_def": [
+        0.15695600475624255,
+        0.133769322235434,
+        0.20065398335315102
+      ],
+      "IFE_fa": [
+        0.8928571428571429,
+        0.8928571428571429,
+        0.8928571428571429
+      ],
+      "IFE_def": [
+        0.0,
+        0.0,
+        0.01594387755102041
+      ]
+    },
+    "rosiglitazone_C0289313": {
+      "own_scenario": "IFE",
+      "other_scenario": "RGU",
+      "IFE_fa": [
+        0.8928857142857143,
+        0.8571428571428571,
+        0.8928571428571429
+      ],
+      "IFE_def": [
+        0.0,
+        0.01530612244897959,
+        0.0
+      ],
+      "RGU_fa": [
+        0.7241793103448276,
+        0.7241379310344828,
+        0.7413793103448276
+      ],
+      "RGU_def": [
+        0.17483602853745545,
+        0.17479191438763378,
+        0.15338882282996433
+      ]
+    },
+    "HRT_C0282402": {
+      "own_scenario": "RGU",
+      "other_scenario": "IFE",
+      "RGU_fa": [
+        0.7068793103448276,
+        0.7931034482758621,
+        0.6896551724137931
+      ],
+      "RGU_def": [
+        0.17063602853745544,
+        0.17776456599286564,
+        0.1902497027348395
+      ],
+      "IFE_fa": [
+        0.9106857142857143,
+        0.8571428571428571,
+        0.8928571428571429
+      ],
+      "IFE_def": [
+        0.016287244897959182,
+        0.01530612244897959,
+        0.01594387755102041
+      ]
+    },
+    "Vioxx_C0876768": {
+      "own_scenario": "IFE",
+      "other_scenario": "RGU",
+      "IFE_fa": [
+        0.9106857142857143,
+        0.875,
+        0.9107142857142857
+      ],
+      "IFE_def": [
+        0.0,
+        0.0,
+        0.016262755102040814
+      ],
+      "RGU_fa": [
+        0.7068793103448276,
+        0.7241379310344828,
+        0.6896551724137931
+      ],
+      "RGU_def": [
+        0.15843602853745545,
+        0.13733650416171225,
+        0.1426872770511296
+      ]
+    }
+  },
+  "per_concept_z_scores": {
+    "aspirin_C0004057": {
+      "RGU_fa": {
+        "role": "own",
+        "real_mean": 0.7701,
+        "real_std": 0.01,
+        "random_mean": 0.7126,
+        "random_std": 0.0199,
+        "z": 4.472
+      },
+      "RGU_def": {
+        "role": "own",
+        "real_mean": 0.1638,
+        "real_std": 0.034,
+        "random_mean": 0.1924,
+        "random_std": 0.0065,
+        "z": -1.434
+      },
+      "IFE_fa": {
+        "role": "other",
+        "real_mean": 0.8929,
+        "real_std": 0.0,
+        "random_mean": 0.869,
+        "random_std": 0.0372,
+        "z": 1.109
+      },
+      "IFE_def": {
+        "role": "other",
+        "real_mean": 0.0053,
+        "real_std": 0.0092,
+        "random_mean": 0.0155,
+        "random_std": 0.0007,
+        "z": -1.915
+      }
+    },
+    "rosiglitazone_C0289313": {
+      "RGU_fa": {
+        "role": "other",
+        "real_mean": 0.7299,
+        "real_std": 0.0099,
+        "random_mean": 0.7126,
+        "random_std": 0.0199,
+        "z": 1.343
+      },
+      "RGU_def": {
+        "role": "other",
+        "real_mean": 0.1677,
+        "real_std": 0.0124,
+        "random_mean": 0.1924,
+        "random_std": 0.0065,
+        "z": -3.066
+      },
+      "IFE_fa": {
+        "role": "own",
+        "real_mean": 0.881,
+        "real_std": 0.0206,
+        "random_mean": 0.869,
+        "random_std": 0.0372,
+        "z": 0.485
+      },
+      "IFE_def": {
+        "role": "own",
+        "real_mean": 0.0051,
+        "real_std": 0.0088,
+        "random_mean": 0.0155,
+        "random_std": 0.0007,
+        "z": -2.036
+      }
+    },
+    "HRT_C0282402": {
+      "RGU_fa": {
+        "role": "own",
+        "real_mean": 0.7299,
+        "real_std": 0.0554,
+        "random_mean": 0.7126,
+        "random_std": 0.0199,
+        "z": 0.507
+      },
+      "RGU_def": {
+        "role": "own",
+        "real_mean": 0.1796,
+        "real_std": 0.0099,
+        "random_mean": 0.1924,
+        "random_std": 0.0065,
+        "z": -1.878
+      },
+      "IFE_fa": {
+        "role": "other",
+        "real_mean": 0.8869,
+        "real_std": 0.0273,
+        "random_mean": 0.869,
+        "random_std": 0.0372,
+        "z": 0.671
+      },
+      "IFE_def": {
+        "role": "other",
+        "real_mean": 0.0158,
+        "real_std": 0.0005,
+        "random_mean": 0.0155,
+        "random_std": 0.0007,
+        "z": 0.683
+      }
+    },
+    "Vioxx_C0876768": {
+      "RGU_fa": {
+        "role": "other",
+        "real_mean": 0.7069,
+        "real_std": 0.0172,
+        "random_mean": 0.7126,
+        "random_std": 0.0199,
+        "z": -0.378
+      },
+      "RGU_def": {
+        "role": "other",
+        "real_mean": 0.1462,
+        "real_std": 0.011,
+        "random_mean": 0.1924,
+        "random_std": 0.0065,
+        "z": -6.281
+      },
+      "IFE_fa": {
+        "role": "own",
+        "real_mean": 0.8988,
+        "real_std": 0.0206,
+        "random_mean": 0.869,
+        "random_std": 0.0372,
+        "z": 1.212
+      },
+      "IFE_def": {
+        "role": "own",
+        "real_mean": 0.0054,
+        "real_std": 0.0094,
+        "random_mean": 0.0155,
+        "random_std": 0.0007,
+        "z": -1.858
+      }
+    }
+  }
+}

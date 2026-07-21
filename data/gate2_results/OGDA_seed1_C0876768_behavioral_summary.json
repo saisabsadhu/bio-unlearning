@@ -1,0 +1,24 @@
+{
+  "method": "OGDA-real-seed1",
+  "concept": "rofecoxib Vioxx withdrawal",
+  "cui": "C0876768",
+  "own_scenario": "IFE",
+  "other_scenario": "RGU",
+  "hyperparameters": {
+    "layers_ablated": "4-28",
+    "rank": 3,
+    "seed": 1
+  },
+  "baseline": {
+    "RGU_fa": 0.7413793103448276,
+    "RGU_def": 0.19173602853745544,
+    "IFE_fa": 0.8392857142857143,
+    "IFE_def": 0.014987244897959183
+  },
+  "post": {
+    "RGU_fa": 0.7241379310344828,
+    "RGU_def": 0.13733650416171225,
+    "IFE_fa": 0.875,
+    "IFE_def": 0.0
+  }
+}
