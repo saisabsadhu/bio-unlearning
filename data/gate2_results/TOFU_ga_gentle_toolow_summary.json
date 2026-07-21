@@ -1,0 +1,8 @@
+{
+  "method": "GA", "dataset": "TOFU (forget10/retain90)", "model": "open-unlearning/tofu_Llama-3.2-1B-Instruct_full",
+  "hyperparameters": {"learning_rate": 2e-6, "max_steps": 8, "note": "matched BioMistral's gentle dose directly (same lr, same step count)"},
+  "baseline": {"model_utility": 0.5993, "forget_Q_A_Prob": 0.8805, "extraction_strength": 0.7069},
+  "post": {"model_utility": 0.5993, "forget_Q_A_Prob": 0.8799, "extraction_strength": 0.6991},
+  "train_loss": -0.14085780829191208,
+  "interpretation": "This setting was TOO GENTLE for TOFU -- essentially no movement at all (forget_Q_A_Prob 0.8805->0.8799, model_utility unchanged). Directly porting BioMistral's gentle-dose hyperparameters (lr=2e-6, 8 steps) doesn't transfer: TOFU's standard config uses 10x higher lr (1e-5) and the collapse didn't happen until epoch 4 (~52 steps) in the standard run. This means TOFU's GA has a narrower 'just right' zone -- 8 steps at 2e-6 is far below its movement threshold, while 52+ steps at 1e-5 is well past its collapse threshold. Trying an intermediate setting (lr=1e-5, 8 steps -- same higher lr as the standard config but a much smaller step budget) next to find TOFU's actual sweet spot."
+}
