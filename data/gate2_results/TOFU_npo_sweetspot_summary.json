@@ -1,0 +1,8 @@
+{
+  "method": "NPO", "dataset": "TOFU (forget10/retain90)", "model": "open-unlearning/tofu_Llama-3.2-1B-Instruct_full",
+  "hyperparameters": {"learning_rate": 1e-5, "max_steps": 13, "ref_model_precision": "8bit"},
+  "baseline": {"model_utility": 0.5998, "forget_Q_A_Prob": 0.8805, "extraction_strength": 0.7069},
+  "post": {"model_utility": 0.5873, "forget_Q_A_Prob": 0.7994, "extraction_strength": 0.5259},
+  "train_loss": 13.695479466364933,
+  "interpretation": "Second real, non-collapsed TOFU comparison point. NPO at the same matched dose (13 steps/1 epoch, standard lr) shows almost identical movement to GA at the same dose (forget_Q_A_Prob 0.88->0.80 for both methods, model_utility preserved similarly ~0.587-0.599). No collapse. Both GA and NPO on TOFU, at a properly-tuned (non-collapsed) dose, show comparable, real, moderate forgetting -- consistent with the diagnostic study's methodology of comparing methods at matched, non-degenerate operating points rather than uncontrolled defaults."
+}
