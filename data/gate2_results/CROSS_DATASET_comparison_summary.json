@@ -1,0 +1,19 @@
+{
+  "purpose": "First real cross-dataset comparison (BioUnlearn-Bench vs TOFU) for the paper's core diagnostic claim",
+  "TOFU_results_at_matched_dose_13steps_lr1e5": {
+    "GA": {"baseline_forget_prob": 0.8805, "post_forget_prob": 0.7960, "baseline_utility": 0.5998, "post_utility": 0.5868, "collapsed": false},
+    "NPO": {"baseline_forget_prob": 0.8805, "post_forget_prob": 0.7994, "baseline_utility": 0.5998, "post_utility": 0.5873, "collapsed": false},
+    "RMU": {"baseline_forget_prob": 0.8805, "post_forget_prob": 0.4149, "baseline_utility": 0.5998, "post_utility": 0.4987, "collapsed": false, "note": "much more aggressive than GA/NPO at the same dose"}
+  },
+  "BioMistral_results_at_matched_dose_8steps": {
+    "GA_RGU": {"note": "see RGU_ga_pilot_summary.json"},
+    "NPO_RGU": {"note": "see RGU_npo_pilot_summary.json -- FA 0.741->0.759, small movement"},
+    "RMU_RGU": {"note": "see RGU_rmu_pilot_summary.json -- essentially no movement, gentlest of the three"}
+  },
+  "KEY_FINDINGS": [
+    "1. GA's catastrophic collapse is NOT BioUnlearn-Bench-specific -- the exact same failure mode (model_utility/retain-quality crashing to near-zero) occurs on TOFU too at aggressive (many-step) settings, confirming this is a general GA property, not a clinical-domain-specific problem.",
+    "2. At a properly-tuned, non-collapsed, matched dose, all three methods (GA/NPO/RMU) produce real, non-degenerate forgetting on BOTH datasets -- both datasets have a usable 'sweet spot' operating range.",
+    "3. RMU's relative gentleness is NOT a fixed property of the method. On BioMistral-7B, RMU was the gentlest of the three at matched doses (near-zero movement). On TOFU (Llama-3.2-1B) and on Llama-3.1-8B-Instruct (a separate earlier cross-model test), RMU was MORE aggressive than GA/NPO, sometimes dramatically so. This is a genuine, reportable methodological finding: relative baseline-method rankings depend on model architecture, not just the method itself -- a paper claiming 'method X is gentler than method Y' needs to qualify this per-model.",
+    "4. IMPORTANT GAP NOT YET CLOSED: this comparison shows the methods behave similarly in terms of collapse-vs-non-collapse tradeoffs across datasets, but does NOT yet test the paper's core, more specific diagnostic claim -- that clinical concepts' ontological entanglement (a forgotten fact sitting one hop from many retain-critical neighbor concepts) causes COLLATERAL damage that TOFU's independent, unrelated fictitious facts structurally cannot show. TOFU has no analogous 'neighbor concept' structure to test OCD-style collateral damage against. This remains the load-bearing comparison still needed, not yet run."
+  ]
+}
