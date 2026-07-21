@@ -1,0 +1,8 @@
+{
+  "method": "GA", "dataset": "TOFU (forget10/retain90)", "model": "open-unlearning/tofu_Llama-3.2-1B-Instruct_full",
+  "hyperparameters": {"learning_rate": 1e-5, "max_steps": 13, "note": "standard TOFU lr, exactly 1 epoch worth of steps -- the sweet spot between the too-gentle 8-step/2e-6 run (no movement) and the standard 10-epoch run (collapses by epoch 4)"},
+  "baseline": {"model_utility": 0.5998, "forget_Q_A_Prob": 0.8805, "extraction_strength": 0.7069},
+  "post": {"model_utility": 0.5868, "forget_Q_A_Prob": 0.7960, "extraction_strength": 0.5146},
+  "train_loss": -0.14304068913826576,
+  "interpretation": "VALID, NON-COLLAPSED cross-dataset comparison point -- this is what BioUnlearn-Bench's gentle-GA methodology looks like ported correctly to TOFU (matched lr, single-epoch dose rather than blindly copying BioMistral's absolute step count). Real, meaningful forgetting movement (forget_Q_A_Prob 0.8805->0.7960, ~10% relative drop) while model_utility (retain-side quality) stays close to baseline (0.5998->0.5868, ~2% relative drop) and extraction_strength drops moderately (0.7069->0.5146). Not collapsed -- unlike the standard 10-epoch config, which reaches this exact same state at its own epoch 2 marker then continues past it into full collapse by epoch 4. This confirms GA's collapse is a matter of DOSE (too many steps), not something inherent to TOFU vs BioUnlearn-Bench -- both datasets show a real, working, non-degenerate GA result at an appropriately-tuned dose, and both collapse if pushed past it. This is the first genuinely comparable TOFU data point for the cross-dataset diagnostic claim."
+}
