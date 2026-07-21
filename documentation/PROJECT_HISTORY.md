@@ -198,3 +198,57 @@ Carried from `MASTER_RESEARCH_PLAN.md` Section 22 (unresolved, need Dr. Vindo's 
 - Map the 396 Herrera-Perez entries against BioUnlearn-Bench's scenario definitions to turn them into real dataset instances, not just a source catalog.
 - Scale the dataset beyond pilot size (190 instances) and build the still-missing PAC scenario.
 - No human/physician validation, no knowledge-editing (ROME/MEMIT) or RAG-suppression baselines, no NC-specific paper machinery (ethics/IRB, Reporting Summary) — all still open, per the original critique.
+
+## Phase 14: The TOFU cross-dataset comparison, and settling the OCD-thesis question structurally
+
+Direct continuation after the user asked for a full cross-model/cross-dataset/ablation status
+audit and explicitly said to keep running without stopping.
+
+**TOFU GA/NPO/RMU at matched dose**: reproduced GA's standard-config (10 epochs, lr=1e-5)
+catastrophic collapse on TOFU (`model_utility` 0.60 -> 0.0 by epoch 4) -- confirms the
+collapse failure mode is a general, dose-dependent property of GA, not something specific to
+BioUnlearn-Bench's data. Tried BioMistral's exact gentle dose (lr=2e-6, 8 steps) on TOFU --
+too gentle, essentially no movement. Found the actual TOFU sweet spot at lr=1e-5, 13 steps (1
+epoch): real, non-collapsed movement (`model_utility` 0.60->0.59, `forget_Q_A_Prob`
+0.88->0.80). Ran NPO and RMU at the identical dose for a fair three-way comparison.
+
+**A second RMU config bug, same root cause as the LoRA one, different symptom**: the first
+TOFU RMU attempt trained with `[RMU] Set requires_grad=True on 0 parameters` -- a silent
+failure that would have "completed" with a totally unchanged model. Root cause:
+`configs/trainer/RMU.yaml`'s `trainable_params_regex: .*lora.*` (added earlier specifically
+so RMU wouldn't undo LoRA's memory savings on the 7B/8B models) matches zero parameter names
+when LoRA isn't active -- this TOFU run used the small full-precision 1B model, no LoRA.
+Caught immediately by the now-habitual check of the logged trainable-param count before
+trusting any run's output. Fixed via an explicit CLI override,
+`'trainer.method_args.trainable_params_regex=[".*"]'`, confirmed by the log showing 146
+trainable params on the retry.
+
+**Result**: RMU's relative gentleness (established on BioMistral, where it was the mildest of
+the three methods) does **not** hold on TOFU -- there it's the most aggressive
+(`model_utility` 0.60->0.50, `forget_Q_A_Prob` 0.88->0.41), consistent with the earlier
+BioMistral-vs-Llama-3.1-8B divergence. Third independent data point confirming RMU's
+"gentleness" is model-dependent, not a fixed method property -- a real cross-model,
+cross-dataset finding worth stating carefully (per-model, not universal) in the paper.
+
+**Settling the actual thesis question, not just the "did we run TOFU at all" question**: the
+GA/NPO/RMU runs above establish method-behavior parity (collapse vs. non-collapse
+generalizes across datasets) but don't touch the paper's real diagnostic claim -- that
+clinical concepts' ontological entanglement causes collateral damage on retain-critical
+*neighbor* concepts. Rather than trying to force that comparison onto TOFU, checked whether
+TOFU's own structure could even support it. Loaded `forget10`/`retain90` directly: 400 = 20
+authors x 20 facts, 3600 = 180 authors x 20 facts (400+3600 = 4000 = 200 x 20, matching
+TOFU's documented 200-author design). Extracted author identities directly via regex against
+the "what is the full name of the author..." answer pattern and confirmed **zero overlap**
+between forget-side and retain-side authors. This means TOFU's split is disjoint at the whole
+fictitious-author level, with each author's facts (birthplace, genre, awards, book titles)
+independently generated and structurally unconnected to any other author -- no analog to a
+UMLS drug-class hierarchy or ICD comorbidity graph exists for an edit to leak into. Full
+writeup with reproduction code in `documentation/TOFU_STRUCTURAL_ANALYSIS.md`.
+
+**Why this is a finding, not a gap**: TOFU cannot pose the OCD-style neighbor-collateral-
+damage question by construction, independent of whether the experiment was ever attempted --
+which is itself positive evidence that a UMLS-graph-grounded benchmark is a necessary
+contribution rather than a redundant one. This closes the item that had been flagged as the
+"real" thesis-supporting comparison still missing, and reframes it from an open experimental
+gap into a benchmark-design argument the paper should state explicitly (directly pre-empts
+the reviewer question "why not just use TOFU/WMDP for this").
