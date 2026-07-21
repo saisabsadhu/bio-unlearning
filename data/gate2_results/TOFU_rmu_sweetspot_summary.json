@@ -1,0 +1,8 @@
+{
+  "method": "RMU", "dataset": "TOFU (forget10/retain90)", "model": "open-unlearning/tofu_Llama-3.2-1B-Instruct_full",
+  "hyperparameters": {"learning_rate": 1e-5, "max_steps": 13, "steering_coeff": 2, "module_regex": "layers.7", "trainable_params_regex_override": ".*", "note": "had to override trainable_params_regex from the LoRA-only default (.*lora.*, matches 0 params without LoRA) back to .* for this full-precision run -- a real config bug caught and fixed"},
+  "baseline": {"model_utility": 0.5998, "forget_Q_A_Prob": 0.8805, "extraction_strength": 0.7069},
+  "post": {"model_utility": 0.4987, "forget_Q_A_Prob": 0.4149, "extraction_strength": 0.1418},
+  "train_loss": 0.01141357421875,
+  "interpretation": "RMU is MUCH more aggressive than GA/NPO at the identical dose (13 steps, same lr) on TOFU -- forget_Q_A_Prob crashes to 0.41 (vs GA/NPO's ~0.80), model_utility drops more too (0.50 vs GA/NPO's ~0.59), extraction_strength drops much further (0.14 vs ~0.51-0.53). This is the OPPOSITE pattern from BioMistral-7B, where RMU was consistently the gentlest of the three methods at matched doses (data/gate2_results/RGU_rmu_pilot_summary.json). Combined with the earlier BioMistral-vs-Llama-3.1-8B RMU divergence finding (RGU_rmu_llama31_pilot_summary.json), this is now a THIRD data point confirming RMU's relative effect strength is highly model/architecture-dependent, not a fixed property of the method -- 'RMU is the gentlest method' cannot be stated as a general claim, only as a per-model observation."
+}
