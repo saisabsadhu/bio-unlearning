@@ -1,0 +1,15 @@
+{
+  "method": "GA", "dataset": "TOFU (forget10/retain90)", "model": "open-unlearning/tofu_Llama-3.2-1B-Instruct_full",
+  "hyperparameters": {"learning_rate": 1e-5, "num_train_epochs": 10, "note": "TOFU's own literature-standard default config, not modified"},
+  "per_epoch_trajectory": {
+    "epoch1": {"model_utility": 0.5998, "forget_Q_A_Prob": 0.8805, "extraction_strength": 0.7069},
+    "epoch2": {"model_utility": 0.5868, "forget_Q_A_Prob": 0.7960, "extraction_strength": 0.5146},
+    "epoch3": {"model_utility": 0.4677, "forget_Q_A_Prob": 0.4115, "extraction_strength": 0.1421},
+    "epoch4": {"model_utility": 0.0, "forget_Q_A_Prob": 9.96e-05, "extraction_strength": 0.0325},
+    "epoch5": {"model_utility": 0.0, "forget_Q_A_Prob": 8.13e-14, "extraction_strength": 0.0325},
+    "epoch6": {"model_utility": 0.0, "forget_Q_A_Prob": 1.15e-30, "extraction_strength": 0.0325},
+    "epoch7_to_10": {"model_utility": 0.0, "forget_Q_A_Prob": "~1e-37 to 1e-42 (numerical zero)", "extraction_strength": 0.0325}
+  },
+  "final_train_loss": -50.06343244818541,
+  "interpretation": "CROSS-DATASET COMPARISON, first real data point. Running GA on TOFU with TOFU's OWN literature-standard config (10 epochs, lr=1e-5, unmodified) produces the SAME catastrophic collapse pattern found on BioMistral-7B/BioUnlearn-Bench: model_utility crashes to exactly 0.0 by epoch 4 and stays there for the remaining 6 epochs, extraction_strength hits a floor, forget probability goes to numerical zero (unbounded negative loss, -50.06 final, same failure mode as our own -222 case just less extreme). This is genuinely important: it means GA's aggressive collapse is NOT a BioUnlearn-Bench-specific artifact -- the same method collapses on the field's own standard benchmark at its own standard settings too. BUT this also means the standard TOFU config is not a fair 'successful baseline' comparison point either -- a meaningful cross-dataset comparison (does GA fail differently/worse on BioUnlearn-Bench specifically) requires a NON-collapsed, gentler GA run on TOFU too, matching the same step-count-based gentle-tuning philosophy already applied to BioMistral (few steps, not epochs). Next: retry with a much lower step budget on TOFU to get a genuinely comparable, non-degenerate baseline point."
+}
