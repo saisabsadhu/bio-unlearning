@@ -1,0 +1,36 @@
+# @package _global_
+# PAC-targeted unlearning. Must be run against the PAC_finetune_contamination
+# checkpoint (configs/experiment/finetune/bioun_pac/default.yaml), not base
+# BioMistral-7B -- override model.model_args.pretrained_model_name_or_path
+# via CLI at launch time, e.g.:
+#   python src/train.py --config-name=unlearn.yaml experiment=unlearn/bioun_pac/PAC_npo \
+#     model.model_args.pretrained_model_name_or_path=saves/finetune/PAC_finetune_contamination \
+#     task_name=PAC_npo_v1
+defaults:
+  - override /model: BioMistral-7B
+  - override /trainer: NPO
+  - override /data: unlearn
+  - override /data/datasets@data.forget: BioUnlearn_PAC_forget
+  - override /data/datasets@data.retain: BioUnlearn_PAC_retain
+  - override /eval: bioun_pac
+
+data:
+  anchor: forget
+
+eval:
+  bioun_pac:
+    overwrite: true
+
+trainer:
+  args:
+    per_device_train_batch_size: 2
+    gradient_accumulation_steps: 4
+    gradient_checkpointing: True
+    learning_rate: 1e-5
+    weight_decay: 0.01
+    num_train_epochs: 5
+    max_steps: 8
+    eval_strategy: 'no'
+    eval_on_start: False
+
+task_name: ???

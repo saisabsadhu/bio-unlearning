@@ -503,3 +503,33 @@ both within noise of baseline, IFE side essentially untouched -- consistent with
 already-established "gentle on BioMistral" cross-model finding, now holding at benchmark scale
 as well as pilot scale. IFE-targeted GA/NPO/RMU and the PAC contamination fine-tune are queued
 next in the same corrected script.
+
+**IFE-targeted GA and RMU v2 both succeeded, notably gentler than RGU-targeting**: GA IFE_fa
+0.893 / IFE_def 0.016 (essentially baseline); RMU IFE_fa 0.857 / IFE_def 0.015 (essentially
+baseline). A real, unexplained-so-far observation: unlike RGU-targeting (where NPO especially
+produced large movement), IFE looks harder to shift with a handful of gradient steps for the
+methods tested.
+
+**IFE_npo_v2 hit sustained external contention and gave up -- a genuinely different pattern from
+a transient blip**: 6 consecutive attempts, all reporting ~32.5GB free via `nvidia-smi` moments
+before launch, all failing with the other tenant's process actually holding ~31.7GB at the
+moment of allocation. Identical numbers every time (not the fluctuating pattern seen earlier)
+suggests either a periodic burst in the other tenant's job that happens to collide with the
+memory-check-then-launch window every time, or the check-to-launch gap itself is enough for their
+usage to grow predictably. Diagnosed the fix from the RMU precedent rather than just retrying
+blindly again: NPO doesn't strictly need LoRA to fit when there's ample headroom (it succeeded at
+37.7GB free without it, RGU-targeted), but under the current tighter, contested conditions it
+needs the same memory reduction RMU does. Queued a relaunch with `BIOUNLEARN_USE_LORA=1` added.
+
+**PAC contamination fine-tune completed cleanly, confirmed epoch-by-epoch, not just at the end**:
+`PAC_fa` dropped 0.967 (baseline) -> 0.65 (epoch 1) -> 0.1 (epoch 2) -> 0.0 (epochs 3, 4, 5), and
+`PAC_forget_gen` (raw ROUGE match against the target pattern) climbed to 0.983 by the final
+epoch -- real, monotonic evidence of the model progressively memorizing the synthetic
+identifying patterns, not a single before/after number that could hide a fluke. Collateral
+scenarios held up throughout (final-epoch RGU_fa_pac=0.741, exactly matching the untouched
+baseline; IFE_fa_pac=0.929, a mild rise from 0.839) -- the contamination step itself didn't
+degrade general capability. `saves/finetune/PAC_finetune_contamination` is now a validated base
+for PAC-targeted unlearning. Launched the pre-built PAC GA/NPO/RMU configs
+(`configs/experiment/unlearn/bioun_pac/PAC_{ga,npo,rmu}.yaml`) against it, using the same
+GPU-aware retry pattern (and LoRA where needed) established throughout this phase -- running now,
+alongside the IFE_npo_v2 retry, in a combined queue.
