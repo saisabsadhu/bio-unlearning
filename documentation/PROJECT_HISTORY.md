@@ -533,3 +533,46 @@ for PAC-targeted unlearning. Launched the pre-built PAC GA/NPO/RMU configs
 (`configs/experiment/unlearn/bioun_pac/PAC_{ga,npo,rmu}.yaml`) against it, using the same
 GPU-aware retry pattern (and LoRA where needed) established throughout this phase -- running now,
 alongside the IFE_npo_v2 retry, in a combined queue.
+
+**IFE_npo_v2 finished the v2-scale matrix: the LoRA fix worked immediately.** IFE_fa_v2=0.893,
+IFE_def_v2=0.016 -- same modest movement pattern GA and RMU showed when targeting IFE, confirming
+the "IFE is harder to move than RGU for every method" observation isn't specific to two of three
+methods, it's all three. **This completes the full 6-experiment v2-scale GA/NPO/RMU matrix** --
+every method, both target scenarios, all run against the 542-instance expanded dataset. Written
+up as a consolidated table in `PI_STATUS_REPORT.md` Section 3, replacing the piecemeal
+in-progress notes that had accumulated across several updates.
+
+**PAC_npo_v1 hit the exact same contention pattern IFE_npo_v2 did, diagnosed immediately this
+time instead of re-discovering it from scratch**: failed with the other tenant holding ~31.7GB,
+recognized on sight (identical error, identical memory numbers) rather than burning through 6
+blind retries again. Killed the queue mid-backoff and relaunched both remaining PAC runs
+(NPO and RMU) with `BIOUNLEARN_USE_LORA=1` from the start. Both succeeded on the first attempt.
+
+**PAC's unlearning matrix complete -- a decisive, negative result, and arguably the most
+important single finding to come out of this whole infrastructure push.** All three methods run
+at the same gentle dosage that produces real movement on RGU/IFE: GA moved `PAC_fa` from 0.0 to
+0.033 (negligible); **NPO and RMU moved it from 0.0 to exactly 0.0** -- not a rounding
+difference, zero measurable effect. `PAC_forget_gen` (raw match strength against the memorized
+pattern) stayed essentially frozen across all three methods (0.983 -> 0.938/0.982/0.983).
+Collateral scenarios (RGU_fa_pac, IFE_fa_pac) moved by roughly the same modest amounts seen
+elsewhere in this report, confirming the methods are still doing *something* -- they are
+specifically failing to touch the deeply-memorized PAC pattern, not just inert across the board.
+
+**Why this matters**: RGU and IFE facts are things a base model picked up diffusely during
+pretraining; PAC's forget target was deliberately, repeatedly fine-tuned in (5 dedicated SFT
+epochs). At matched, standard dosage, none of the three baseline unlearning methods can touch
+that kind of deep memorization. This is exactly the finding the PAC scenario was built to be able
+to produce -- a real, quantified answer to "can standard unlearning remove memorized
+identifying patterns," not a guess -- and it argues directly for why privacy-motivated
+unlearning needs more than the same GA/NPO/RMU toolkit used for guideline-reversal-style
+forgetting. Scoped honestly: this is a finding about standard dosage specifically, not a claim
+that no dosage could work -- more aggressive settings (and the collateral-damage cost of using
+them) remain untested.
+
+**Where this leaves the whole session's push**: dataset scaled 190 -> 542 instances; the full
+GA/NPO/RMU baseline matrix now exists at both pilot and benchmark scale; OGDA evaluated at both
+scales with an honest scaling-dilution finding; two adjacent-method baselines (RAG-suppression,
+ROME) both real and contrasting; and the third planned scenario (PAC) built from nothing --
+synthetic generation, contamination fine-tune, and full unlearning matrix -- with its own
+decisive finding. All three planned BioUnlearn-Bench scenarios now have real baseline diagnostic
+results for the first time in the project's history.

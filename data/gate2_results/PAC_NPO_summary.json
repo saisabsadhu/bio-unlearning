@@ -1,0 +1,17 @@
+{
+    "IFE_def_pac": 0.016581632653061226,
+    "IFE_ewef_pac": 0.017857142857142856,
+    "IFE_fa_pac": 0.9285714285714286,
+    "IFE_forget_gen_pac": 0.31156255422004825,
+    "IFE_retain_gen_pac": 0.2166863876935798,
+    "PAC_def": 0.0,
+    "PAC_ewef": 0.0,
+    "PAC_fa": 0.0,
+    "PAC_forget_gen": 0.9819578886916687,
+    "PAC_retain_gen": 0.2669046887272172,
+    "RGU_def_pac": 0.17003567181926277,
+    "RGU_ewef_pac": 0.13793103448275862,
+    "RGU_fa_pac": 0.7586206896551724,
+    "RGU_forget_gen_pac": 0.3927234249023427,
+    "RGU_retain_gen_pac": 0.36344323706657894
+}
