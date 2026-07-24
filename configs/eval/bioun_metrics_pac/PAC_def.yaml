@@ -1,0 +1,13 @@
+# @package eval.bioun_pac.metrics.PAC_def
+defaults:
+  - .@pre_compute.PAC_forget_gen: PAC_forget_gen
+  - .@pre_compute.PAC_retain_gen: PAC_retain_gen
+
+pre_compute:
+  PAC_forget_gen:
+    access_key: forget_gen
+  PAC_retain_gen:
+    access_key: retain_gen
+
+handler: def_score
+rouge_threshold: 0.5

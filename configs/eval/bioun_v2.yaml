@@ -1,0 +1,25 @@
+# @package eval.bioun_v2
+# BioUnlearn-Bench v2 evaluation suite (expanded dataset: 542 instances,
+# 447 RGU + 95 IFE, data/splits_v2/). Mirrors configs/eval/bioun.yaml exactly
+# (same metrics, same handler) but reads from the expanded splits so results
+# are comparable in structure while reflecting benchmark scale rather than
+# the original 190-instance pilot.
+
+defaults:
+  - bioun_metrics_v2:
+    - RGU_forget_gen_v2
+    - RGU_retain_gen_v2
+    - RGU_fa_v2
+    - RGU_def_v2
+    - RGU_ewef_v2
+    - IFE_forget_gen_v2
+    - IFE_retain_gen_v2
+    - IFE_fa_v2
+    - IFE_def_v2
+    - IFE_ewef_v2
+
+handler: BioUnlearnEvaluator
+output_dir: ${paths.output_dir}
+metrics: {}
+overwrite: false
+batch_size: 8

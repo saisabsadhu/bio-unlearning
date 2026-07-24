@@ -1,0 +1,13 @@
+# @package eval.bioun_v2.metrics.IFE_def_v2
+defaults:
+  - .@pre_compute.IFE_forget_gen_v2: IFE_forget_gen_v2
+  - .@pre_compute.IFE_retain_gen_v2: IFE_retain_gen_v2
+
+pre_compute:
+  IFE_forget_gen_v2:
+    access_key: forget_gen
+  IFE_retain_gen_v2:
+    access_key: retain_gen
+
+handler: def_score
+rouge_threshold: 0.5

@@ -37,10 +37,19 @@ REQUIRED_FIELDS_IFE = {
     "prompt", "forget_answer", "retain_answer",
     "severity", "error_type", "ground_truth_source"
 }
+REQUIRED_FIELDS_PAC = {
+    "prompt", "forget_answer", "retain_answer",
+    "severity", "pac_category", "ground_truth_source"
+}
 
 def filter_schema(inst):
     scenario = inst.get("scenario", "")
-    required = REQUIRED_FIELDS_RGU if scenario == "RGU" else REQUIRED_FIELDS_IFE
+    if scenario == "RGU":
+        required = REQUIRED_FIELDS_RGU
+    elif scenario == "PAC":
+        required = REQUIRED_FIELDS_PAC
+    else:
+        required = REQUIRED_FIELDS_IFE
     missing  = []
     for field in required:
         val = inst.get(field, "")

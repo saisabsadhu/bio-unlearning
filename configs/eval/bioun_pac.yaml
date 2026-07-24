@@ -1,0 +1,31 @@
+# @package eval.bioun_pac
+# BioUnlearn-Bench PAC evaluation suite. Includes PAC's own metrics plus the
+# existing pilot-scale RGU/IFE metrics (reused as-is, same 190-instance
+# pilot set) so a PAC-targeted run's collateral damage on the two
+# established scenarios can be measured the same way RGU-targeted runs are
+# checked against IFE and vice versa.
+
+defaults:
+  - bioun_metrics_pac:
+    - PAC_forget_gen
+    - PAC_retain_gen
+    - PAC_fa
+    - PAC_def
+    - PAC_ewef
+  - bioun_metrics:
+    - RGU_forget_gen
+    - RGU_retain_gen
+    - RGU_fa
+    - RGU_def
+    - RGU_ewef
+    - IFE_forget_gen
+    - IFE_retain_gen
+    - IFE_fa
+    - IFE_def
+    - IFE_ewef
+
+handler: BioUnlearnEvaluator
+output_dir: ${paths.output_dir}
+metrics: {}
+overwrite: false
+batch_size: 8

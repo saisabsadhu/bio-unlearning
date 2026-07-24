@@ -59,6 +59,10 @@ def main():
         + load_jsonl(f"{SPLITS_DIR}/RGU_test.jsonl")
     )
     herrera_rgu = load_jsonl(HERRERA_PASSED)
+    for inst in herrera_rgu:
+        # normalize to match original pilot's string-typed reversal_year --
+        # mixed str/int/None in the same jsonl column breaks pyarrow's loader
+        inst["reversal_year"] = str(inst["reversal_year"]) if inst.get("reversal_year") is not None else ""
 
     print(f"Original pilot RGU instances: {len(original_rgu)}")
     print(f"New Herrera-Perez RGU instances: {len(herrera_rgu)}")

@@ -29,8 +29,6 @@ from rouge_score import rouge_scorer
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL_NAME = "BioMistral/BioMistral-7B"
-RGU_PATH = "data/splits/RGU_train.jsonl"
-IFE_PATH = "data/splits/IFE_train.jsonl"
 ROUGE_THRESHOLD = 0.5
 MAX_NEW_TOKENS = 200
 
@@ -106,10 +104,11 @@ def main():
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--out", default=None)
     parser.add_argument("--limit", type=int, default=None, help="cap examples per scenario, for a quick smoke test")
+    parser.add_argument("--splits_dir", default="data/splits", help="use data/splits_v2 for the expanded 542-instance set")
     args = parser.parse_args()
 
-    rgu = load_jsonl(RGU_PATH)
-    ife = load_jsonl(IFE_PATH)
+    rgu = load_jsonl(f"{args.splits_dir}/RGU_train.jsonl")
+    ife = load_jsonl(f"{args.splits_dir}/IFE_train.jsonl")
     if args.limit:
         rgu = rgu[: args.limit]
         ife = ife[: args.limit]

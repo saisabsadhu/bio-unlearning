@@ -1,0 +1,10 @@
+# @package eval.bioun_v2.metrics.RGU_fa_v2
+defaults:
+  - .@pre_compute.RGU_forget_gen_v2: RGU_forget_gen_v2
+
+pre_compute:
+  RGU_forget_gen_v2:
+    access_key: forget_gen
+
+handler: fa_score
+rouge_threshold: 0.5

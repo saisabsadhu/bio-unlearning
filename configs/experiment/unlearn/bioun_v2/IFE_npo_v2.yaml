@@ -1,0 +1,29 @@
+# @package _global_
+defaults:
+  - override /model: BioMistral-7B
+  - override /trainer: NPO
+  - override /data: unlearn
+  - override /data/datasets@data.forget: BioUnlearn_IFE_forget
+  - override /data/datasets@data.retain: BioUnlearn_IFE_retain
+  - override /eval: bioun_v2
+
+data:
+  anchor: forget
+
+eval:
+  bioun_v2:
+    overwrite: true
+
+trainer:
+  args:
+    per_device_train_batch_size: 1
+    gradient_accumulation_steps: 8
+    gradient_checkpointing: True
+    learning_rate: 1e-5
+    weight_decay: 0.01
+    num_train_epochs: 5
+    max_steps: 8
+    eval_strategy: 'no'
+    eval_on_start: False
+
+task_name: ???

@@ -1,0 +1,29 @@
+# @package _global_
+defaults:
+  - override /model: BioMistral-7B
+  - override /trainer: GradAscent
+  - override /data: unlearn
+  - override /data/datasets@data.forget: BioUnlearn_RGU_forget_v2
+  - override /data/datasets@data.retain: BioUnlearn_RGU_retain_v2
+  - override /eval: bioun_v2
+
+data:
+  anchor: forget
+
+eval:
+  bioun_v2:
+    overwrite: true
+
+trainer:
+  args:
+    per_device_train_batch_size: 2
+    gradient_accumulation_steps: 4
+    gradient_checkpointing: True
+    learning_rate: 2e-6
+    weight_decay: 0.01
+    num_train_epochs: 5
+    max_steps: 8
+    eval_strategy: 'no'
+    eval_on_start: False
+
+task_name: ???
