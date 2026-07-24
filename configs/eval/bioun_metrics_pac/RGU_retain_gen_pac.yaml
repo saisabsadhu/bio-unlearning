@@ -1,0 +1,17 @@
+# @package eval.bioun_pac.metrics.RGU_retain_gen_pac
+defaults:
+  - ../../data/datasets@datasets: BioUnlearn_RGU_retain
+  - ../../collator@collators: DataCollatorForSupervisedDatasetwithIndex
+  - ../../generation@generation_args: default
+
+handler: rouge
+rouge_type: rougeL_recall
+batch_size: ${eval.bioun_pac.batch_size}
+datasets:
+  BioUnlearn_RGU_retain:
+    args:
+      predict_with_generate: True
+collators:
+  DataCollatorForSupervisedDataset:
+    args:
+      padding_side: left

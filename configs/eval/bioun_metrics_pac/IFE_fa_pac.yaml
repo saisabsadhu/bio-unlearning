@@ -1,0 +1,10 @@
+# @package eval.bioun_pac.metrics.IFE_fa_pac
+defaults:
+  - .@pre_compute.IFE_forget_gen_pac: IFE_forget_gen_pac
+
+pre_compute:
+  IFE_forget_gen_pac:
+    access_key: forget_gen
+
+handler: fa_score
+rouge_threshold: 0.5

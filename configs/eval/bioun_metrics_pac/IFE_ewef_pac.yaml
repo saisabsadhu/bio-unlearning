@@ -1,0 +1,13 @@
+# @package eval.bioun_pac.metrics.IFE_ewef_pac
+defaults:
+  - .@pre_compute.IFE_forget_gen_pac: IFE_forget_gen_pac
+  - .@pre_compute.IFE_retain_gen_pac: IFE_retain_gen_pac
+
+pre_compute:
+  IFE_forget_gen_pac:
+    access_key: forget_gen
+  IFE_retain_gen_pac:
+    access_key: retain_gen
+
+handler: ewef_score
+rouge_threshold: 0.5

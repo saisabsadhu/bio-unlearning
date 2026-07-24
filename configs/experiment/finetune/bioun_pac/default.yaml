@@ -1,0 +1,32 @@
+# @package _global_
+# PAC contamination stage: fine-tune BioMistral-7B to actually produce the
+# rare, potentially re-identifying forget_answer for each PAC prompt --
+# simulating a clinical LLM that memorized specific patient-pattern details
+# during training, the way TOFU first fine-tunes on fictional author data
+# before testing whether unlearning can remove it. Without this stage, "PAC
+# unlearning" would just be tested against an untouched base model that
+# never knew these details in the first place (confirmed via baseline
+# smoketest: PAC_fa=0.967 already at baseline, nothing to meaningfully
+# unlearn) -- a trivial, uninformative test.
+
+defaults:
+  - override /model: BioMistral-7B
+  - override /trainer: finetune
+  - override /data/datasets@data.train: BioUnlearn_PAC_forget
+  - override /eval: bioun_pac
+
+mode: finetune
+trainer:
+  args:
+    per_device_train_batch_size: 2
+    gradient_accumulation_steps: 4
+    gradient_checkpointing: True
+    learning_rate: 1e-5
+    weight_decay: 0.01
+    num_train_epochs: 5
+
+eval:
+  bioun_pac:
+    overwrite: true
+
+task_name: PAC_finetune_contamination

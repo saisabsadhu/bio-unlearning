@@ -1,0 +1,17 @@
+# @package eval.bioun_pac.metrics.IFE_forget_gen_pac
+defaults:
+  - ../../data/datasets@datasets: BioUnlearn_IFE_forget
+  - ../../collator@collators: DataCollatorForSupervisedDatasetwithIndex
+  - ../../generation@generation_args: default
+
+handler: rouge
+rouge_type: rougeL_recall
+batch_size: ${eval.bioun_pac.batch_size}
+datasets:
+  BioUnlearn_IFE_forget:
+    args:
+      predict_with_generate: True
+collators:
+  DataCollatorForSupervisedDataset:
+    args:
+      padding_side: left

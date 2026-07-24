@@ -12,17 +12,16 @@ defaults:
     - PAC_fa
     - PAC_def
     - PAC_ewef
-  - bioun_metrics:
-    - RGU_forget_gen
-    - RGU_retain_gen
-    - RGU_fa
-    - RGU_def
-    - RGU_ewef
-    - IFE_forget_gen
-    - IFE_retain_gen
-    - IFE_fa
-    - IFE_def
-    - IFE_ewef
+    - RGU_forget_gen_pac
+    - RGU_retain_gen_pac
+    - RGU_fa_pac
+    - RGU_def_pac
+    - RGU_ewef_pac
+    - IFE_forget_gen_pac
+    - IFE_retain_gen_pac
+    - IFE_fa_pac
+    - IFE_def_pac
+    - IFE_ewef_pac
 
 handler: BioUnlearnEvaluator
 output_dir: ${paths.output_dir}

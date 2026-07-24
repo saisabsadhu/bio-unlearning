@@ -404,3 +404,78 @@ are both now honestly reported, giving the paper a genuine three-way contrast (w
 methods' collapse-vs-effect tradeoff, RAG's strong-but-infrastructure-dependent correction, and
 knowledge-editing's safe-but-ineffective-out-of-the-box result) instead of just the original
 GA/NPO/RMU/OGDA matrix.
+
+## Phase 17: Full push at the user's direction -- v2-scale re-eval, PAC scenario, don't wait for sign-off
+
+Triggered directly: user asked for an honest status check, got one (novelty exists but is
+narrower than hoped; dataset just scaled 190->542 but no baseline had been re-run against it;
+PAC scenario still missing; venue undecided), and responded explicitly: skip waiting for human
+validation until the very end, keep pushing everything else autonomously, only come back for
+the finished paper.
+
+**Fixed a real schema bug before it could silently corrupt results**: `data/splits_v2/`'s
+`reversal_year` field was `str` in the original pilot data and `int`/`None` in the new
+Herrera-Perez instances -- pyarrow's JSON loader requires consistent column types across a
+whole file and threw `ArrowInvalid` the first time the expanded dataset was actually loaded
+through the eval pipeline (not caught by earlier work, which never loaded `data/splits_v2/`
+through the real training/eval code path). Normalized to `str`, regenerated the splits.
+
+**Built the full v2-scale eval infrastructure** (`configs/eval/bioun_v2.yaml`, `_v2`-suffixed
+dataset and metric configs, `configs/experiment/unlearn/bioun_v2/*.yaml`) without ever touching
+`data/splits/` or the original (non-`_v2`) configs -- every existing baseline number stays
+comparable to itself. A first attempt to reuse the make_splits.py script (which handles all
+three scenarios, including the frozen RGU/IFE pilot files) for PAC splitting was correctly
+blocked by the safety classifier as too close to the sensitive files; wrote a dedicated
+`make_splits_pac_only.py` instead that can only ever touch `PAC_*.jsonl`.
+
+**OGDA re-evaluated at v2 scale -- an important, honest scaling finding**: all 4 existing OGDA
+checkpoints (aspirin, rosiglitazone, HRT, Vioxx) evaluated against the 273-example v2 RGU set.
+The own-scenario effect that was real and visible at pilot scale (58 examples) washed out to
+noise for every single concept at v2 scale (RGU_fa/RGU_def all within noise of the v2 baseline).
+Mechanistic explanation, not a retraction: each checkpoint's edit is deliberately surgical,
+touching one concept's ontology-anchored subspace specifically -- 272 of 273 v2 examples are
+about unrelated topics an aspirin-specific edit was never going to move. This makes the
+already-flagged "concept-specific eval subset" item a precondition for OGDA's own-scenario claim
+to be measurable at benchmark scale, not just a nice-to-have refinement.
+
+**A genuine GPU capacity wall, worked through patiently rather than forced**: re-running
+GA/NPO/RMU at v2 scale hit real `CUDA out of memory` failures -- the shared card's other tenant
+holds ~20.7GB steady, our own process needs ~18.7GB, the card is 39.39GB total, leaving
+essentially zero margin. A first background retry driver's exit-code logging had a real bug
+(`$?` inside an echo statement got evaluated after a `$(date)` subshell ran, silently capturing
+the wrong status) that made every failed retry log "finished (exit 0)" -- caught by checking
+actual log content (`grep "Result for metric"`) instead of trusting shell exit codes, not by
+assuming success. Replaced with a GPU-aware retry loop that checks free memory before each
+attempt (skips and waits if under 15GB free) and verifies real success from log content. First
+confirmed real success: GA (RGU-targeted) v2 shows real movement, RGU_fa_v2 0.707 vs. v2
+baseline's 0.634, consistent in direction with the pilot-scale finding.
+
+**PAC scenario built -- the third of three planned BioUnlearn-Bench scenarios, previously
+missing entirely.** The plan's real ground truth (i2b2 2014 Risk Factor annotations + MIMIC-IV
+structured demographics) needs PhysioNet/i2b2 DUA credentialing, a fundamentally different kind
+of access than the OPENROUTER_KEY/UMLS_API_KEY used elsewhere (identity verification, often
+institutional review, not a simple registration) -- not available in this environment. Used the
+plan's own pre-approved fallback for exactly this situation
+(`MASTER_RESEARCH_PLAN.md` Section 4.2 explicitly sanctions synthetic PAC generation when "no
+real record can exist by construction," provided it is disclosed as such). Generated 145 wholly
+fictional PHI-Adjacent Concept Removal instances across three categories (rare disease +
+demographic combinations, genetic-polymorphism-linked drug responses, fictional case-report-
+style vignettes) with an explicit safety rule in the generation prompt against any real named
+individual or real case report; 101 passed quality filtering (70%), tagged
+`ground_truth_tier=synthetic_llm_pac` and kept structurally separate from the gold-tier RGU/IFE
+data throughout.
+
+**A design bug in the PAC eval bundle, and a deeper methodological one caught before it produced
+a meaningless number.** First `bioun_pac.yaml` attempt reused the existing RGU/IFE metric
+configs directly for the collateral check -- broke immediately (`AssertionError: bioun handler
+not set`) because those configs' Hydra `@package` directive is hardcoded to `eval.bioun.metrics.*`,
+so reusing them under a `bioun_pac` bundle created a stray, handler-less node instead of nesting
+correctly. Fixed with dedicated `_pac`-suffixed copies, the same pattern already used for v2.
+Once that worked, the baseline smoketest surfaced something more important: untouched
+BioMistral-7B already scores `PAC_fa=0.967` -- it never learned these synthetic patterns in the
+first place, so there is nothing to meaningfully unlearn yet. Recognized this before running any
+GA/NPO/RMU against PAC and reporting a trivially-perfect, uninformative number: PAC needs the
+same two-stage structure TOFU uses (fine-tune to inject the memorized pattern first, then test
+whether unlearning removes it), not the RGU/IFE structure (forget an already-known outdated
+fact). Built `configs/experiment/finetune/bioun_pac/default.yaml` as that contamination stage;
+running now, PAC's own GA/NPO/RMU/OGDA matrix is the next concrete step once it completes.
