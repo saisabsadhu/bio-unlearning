@@ -1,0 +1,90 @@
+{
+  "C0004057": {
+    "concept": "aspirin",
+    "baseline": {
+      "fa": 0.8,
+      "acc_new": 0.4,
+      "def": 0.32
+    },
+    "FA": {
+      "real_mean": 0.6,
+      "real_std": 0.0,
+      "rand_mean": 0.6667,
+      "rand_std": 0.1155,
+      "z": -1.0
+    },
+    "DEF": {
+      "real_mean": 0.12,
+      "real_std": 0.0,
+      "rand_mean": 0.2133,
+      "rand_std": 0.0462,
+      "z": -3.5
+    }
+  },
+  "C0289313": {
+    "concept": "rosiglitazone",
+    "baseline": {
+      "fa": 1.0,
+      "acc_new": 0.0,
+      "def": 0.0
+    },
+    "FA": {
+      "real_mean": 1.0,
+      "real_std": 0.0,
+      "rand_mean": 1.0,
+      "rand_std": 0.0,
+      "z": NaN
+    },
+    "DEF": {
+      "real_mean": 0.1333,
+      "real_std": 0.1155,
+      "rand_mean": 0.0,
+      "rand_std": 0.0,
+      "z": 2.0
+    }
+  },
+  "C0282402": {
+    "concept": "HRT",
+    "baseline": {
+      "fa": 1.0,
+      "acc_new": 0.0,
+      "def": 0.0
+    },
+    "FA": {
+      "real_mean": 0.8333,
+      "real_std": 0.1443,
+      "rand_mean": 0.75,
+      "rand_std": 0.25,
+      "z": 0.5
+    },
+    "DEF": {
+      "real_mean": 0.0,
+      "real_std": 0.0,
+      "rand_mean": 0.0,
+      "rand_std": 0.0,
+      "z": NaN
+    }
+  },
+  "C0876768": {
+    "concept": "Vioxx",
+    "baseline": {
+      "fa": 0.8,
+      "acc_new": 0.0,
+      "def": 0.0
+    },
+    "FA": {
+      "real_mean": 0.8,
+      "real_std": 0.0,
+      "rand_mean": 0.8,
+      "rand_std": 0.0,
+      "z": 0.0
+    },
+    "DEF": {
+      "real_mean": 0.1067,
+      "real_std": 0.0924,
+      "rand_mean": 0.1067,
+      "rand_std": 0.0924,
+      "z": 0.0
+    }
+  }
+}
