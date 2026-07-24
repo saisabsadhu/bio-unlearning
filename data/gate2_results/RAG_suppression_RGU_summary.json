@@ -1,0 +1,12 @@
+{
+  "method": "RAG-suppression (target=RGU, no weight edit)",
+  "target_scenario": "RGU",
+  "RGU_fa": 0.7068965517241379,
+  "RGU_acc_new": 0.8275862068965517,
+  "RGU_def": 0.5850178359096314,
+  "IFE_fa": 0.8392857142857143,
+  "IFE_acc_new": 0.017857142857142856,
+  "IFE_def": 0.014987244897959183,
+  "n_rgu": 58,
+  "n_ife": 56
+}

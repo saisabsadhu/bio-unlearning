@@ -297,3 +297,71 @@ novelty claim than the original 4-concept "decisive" framing, produced by direct
 gap the project's own documentation had flagged as open, in direct response to the user's
 "keep on running things, do not stop" instruction, rather than leaving it as a known limitation
 indefinitely.
+
+## Phase 16: Credentials supplied, dataset scale-up, RAG-suppression baseline, ROME/MEMIT started
+
+Triggered by the user asking directly whether the project had "full-fledged A* grade paper
+stuff" -- answered honestly (no, with a specific gap list: thin novelty claim, pilot-scale
+dataset, missing PAC scenario, no human validation, no adjacent-method baselines, no NC
+submission machinery, unresolved venue). The user then divided the list: they would personally
+own human validation and NC submission machinery, asked for adjacent-method baselines (ROME/MEMIT,
+RAG-suppression) to be done "by machine," and supplied both `OPENROUTER_KEY` and `UMLS_API_KEY`
+after asking for a real cost estimate (given as under $2 for the dataset-scaling work, based on
+actual per-call token counts, not a guess).
+
+**Credentials**: `configs/config.py` created from the template with both keys, confirmed
+gitignored and untracked before writing anything (`git check-ignore -v`), both smoke-tested
+with trivial calls before any real usage (UMLS: `POST .../api-key` returned 201/TGT; OpenRouter:
+a 10-token completion returned real cost telemetry, confirming the earlier cost estimate was
+right). Per the user's explicit "test first, iterate with the prompts" instruction, every new
+LLM-driven pipeline below was dry-run on 5-10 examples and inspected by hand before being run
+at full scale.
+
+**Herrera-Perez dataset scale-up**: built a new extraction-based generator
+(`stage_b_instances/generate_from_herrera_perez.py`) that converts each of the 396 real trial
+summaries into an RGU instance by *extracting and reformatting* the already-given text, rather
+than *inventing* a scenario from a UMLS concept graph the way the original pilot generator does
+-- a deliberately lower-hallucination-risk design. Test batch (8 instances) passed the existing
+4-filter quality pipeline at 100%, well above the original pilot's 75% pass rate, validating the
+prompt design before committing to the full run. Full run: 379/396 succeeded (17 parse
+failures, 0 skips), and 352/379 (93%) passed quality filtering -- **352 new real RGU instances**.
+
+**Dataset merge, done carefully to protect existing comparability**: every baseline result in
+this project (GA/NPO/RMU/OGDA/RAG-suppression) is computed against the exact 190-instance pilot
+set in `data/splits/`. Rather than regenerating those files and silently invalidating every prior
+number, built a separate `data/splits_v2/` (`stage_b_instances/make_splits_v2_expanded.py`)
+combining the original 95 pilot RGU instances with the 352 new ones (447 RGU total), leaving IFE
+and the original `data/splits/` untouched. **Total dataset: 542 instances, up from 190 (2.85x)**,
+with the baseline-comparability concern explicitly documented rather than glossed over.
+
+**RAG-suppression baseline -- a real, load-bearing adjacent-method comparison**: built
+`stage_a_umls/rag_suppression_baseline.py` -- no weight edit at all; a retrieved-correction
+context (built from each instance's own `reversal_reason`/`ground_truth_source`/`retain_answer`)
+is prepended only to the targeted scenario's prompts, with the untargeted scenario left as plain
+baseline prompts. Smoke-tested on 4 examples before the full 58+56-example run. Result: **DEF on
+the targeted scenario is 0.585 (RGU) / 0.547 (IFE) -- 3-4x every weight-editing method tested**
+(GA/NPO/RMU/OGDA all scored 0.13-0.20), with the untargeted scenario staying within the same
+noise floor already established for random-seed variance elsewhere in this project (no real
+collateral movement). Framed honestly as a finding that sharpens the paper rather than
+undercutting it: the case for weight-editing methods now has to rest on properties RAG can't
+offer (no runtime retrieval dependency, robustness to prompt-injection, generalizing without a
+matching retrieval trigger), not on raw behavioral metrics.
+
+**ROME/MEMIT baseline -- external code, with an explicit approval gate**: reimplementing ROME's
+rank-one weight-update math from scratch was judged too risky (subtle bugs in delicate linear
+algebra could silently produce a meaningless baseline). Cloned `zjunlp/EasyEdit` to check
+feasibility -- attempting to copy its ROME/MEMIT source into the project was blocked by the
+safety classifier (pulling in and integrating external code without the user having named or
+approved it specifically). Stopped, explained exactly what was being done and why, and asked
+directly -- the user approved. Vendored a small (~15 file), self-contained subset (not the full
+multimodal EasyEdit framework, which has a much heavier and version-pinned dependency tree that
+risked conflicting with the existing pipeline) into `stage_a_umls/rome_vendor/`, fixed the
+relative imports for the flattened layout, confirmed it imports cleanly against the
+already-installed torch/transformers versions (no reinstall needed). Found ROME's `mistral-7b`
+hparams config conveniently sets `mom2_adjustment: false`, meaning it doesn't need the expensive
+Wikipedia covariance-statistics precompute step that MEMIT does -- ROME is the more tractable
+near-term target. Built and validated (10/10 passing after one case-sensitivity fix) a
+reformulation step (`stage_a_umls/rome_reformulate.py`) that converts open-ended RGU/IFE
+clinical Q&A into the short subject/target-fact triples ROME/MEMIT actually operate on, since
+neither method edits open-ended text the way GA/NPO/RMU/OGDA do. Full-scale reformulation
+launched; actual edit-execution and FA/DEF/OCD scoring is the next concrete step, not yet done.
