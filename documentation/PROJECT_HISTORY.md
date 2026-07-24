@@ -479,3 +479,27 @@ same two-stage structure TOFU uses (fine-tune to inject the memorized pattern fi
 whether unlearning removes it), not the RGU/IFE structure (forget an already-known outdated
 fact). Built `configs/experiment/finetune/bioun_pac/default.yaml` as that contamination stage;
 running now, PAC's own GA/NPO/RMU/OGDA matrix is the next concrete step once it completes.
+
+**NPO v2 succeeded cleanly** right after GA: RGU_fa 0.886 (up sharply from the v2 baseline's
+0.634 -- the largest own-scenario FA movement of the three methods at v2 scale), but RGU_def
+actually *drops* to 0.052, below the 0.095 baseline -- NPO is dropping the old answer strongly
+without reliably landing on the new one either. IFE_fa also moved the most of the three methods
+(0.982), a real collateral signal worth flagging alongside GA's milder one.
+
+**RMU v2 hit a different, non-GPU bug -- caught by reading the actual error instead of assuming
+it was the same OOM problem.** RMU failed 4 times in a row even with 37.7GB genuinely free (way
+above the 15GB threshold the retry loop treats as safe), which by itself was the tell that this
+wasn't a memory problem. The real log showed `[RMU] Set requires_grad=True on 0 parameters` /
+`RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn` -- the
+exact same class of bug caught once before on the TOFU runs (`trainable_params_regex: .*lora.*`
+matches zero parameters unless LoRA is actually active), except this time the root cause was one
+level up: `BIOUNLEARN_USE_LORA=1` is a required environment variable for RMU's LoRA wrapping to
+activate at all, and the retry driver script never set it. Killed the doomed retry loop (it would
+have kept failing identically for 2 more attempts, wasting ~15 more minutes on a bug no amount of
+GPU memory would fix) and relaunched with the environment variable set, confirmed via the log
+(`Wrapping model with LoRA (r=16, alpha=32)`, `trainable%: 0.5758`) before trusting the run.
+**Result, at v2 scale: RMU is the gentlest of the three methods**, RGU_fa 0.641 and RGU_def 0.099
+both within noise of baseline, IFE side essentially untouched -- consistent with RMU's
+already-established "gentle on BioMistral" cross-model finding, now holding at benchmark scale
+as well as pilot scale. IFE-targeted GA/NPO/RMU and the PAC contamination fine-tune are queued
+next in the same corrected script.
