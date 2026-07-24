@@ -365,3 +365,42 @@ reformulation step (`stage_a_umls/rome_reformulate.py`) that converts open-ended
 clinical Q&A into the short subject/target-fact triples ROME/MEMIT actually operate on, since
 neither method edits open-ended text the way GA/NPO/RMU/OGDA do. Full-scale reformulation
 launched; actual edit-execution and FA/DEF/OCD scoring is the next concrete step, not yet done.
+
+**ROME edit-execution: a real GPU-memory bug found and fixed, then a real (weak) result.** First
+full-scale attempt (`stage_a_umls/rome_baseline_eval.py`, loads BioMistral-7B once, then per
+instance: apply a rank-1 edit -> generate+score against the original clinical question -> restore
+original weights -> next instance) crashed partway through both RGU and IFE, saving no output.
+Root cause, found by reading the log tail carefully rather than just retrying: the shared GPU has
+another tenant permanently holding ~20.7GB of the 39GB card, and BioMistral-7B (bf16, ~14GB) plus
+ROME's backward-pass optimization loop sits right at the memory edge -- OOMs are expected and
+recoverable in isolation, but two real bugs turned single OOMs into full crashes: (1) the
+post-OOM "is the model still sane" sanity-check generation call wasn't itself exception-guarded,
+so a second OOM during recovery crashed the whole script uncaught; (2) weight restoration only
+ran in the successful-path code, not in a `finally` block, so a `generate()` OOM *after* a
+successful edit would skip restoration entirely and silently carry a partially-edited model into
+the next iteration. Fixed both: the sanity check is now wrapped in its own try/except, weight
+restoration runs in `finally` regardless of what failed, and the script checkpoints
+`data/gate2_results/ROME_{scenario}_summary.json` after every single instance (not just at the
+end) so a future crash can never lose more than one instance's progress.
+
+**Result, at full scale**: RGU completed 49/56 instances (7 OOM, gracefully skipped, no crash);
+IFE completed 34/44 (10 OOM). **RGU target DEF = 0.061, IFE target DEF = 0.0 exactly** -- not one
+of the 34 successfully-edited IFE instances produced the correct new answer. FA rises in both
+(0.86 RGU, 0.94 IFE -- the edit does make the model stop giving the old answer) but accuracy on
+the new answer stays near zero (0.12 RGU, 0.0 IFE exactly) -- the edit mostly breaks the old fact
+without landing on the replacement. This is the weakest result of every method tested in the
+whole project, below GA/NPO/RMU/OGDA (0.13-0.20 DEF) and far below RAG-suppression (0.55-0.58).
+Collateral damage stayed low in both directions (IFE-targeted collateral RGU_def=0.201, actually
+slightly *above* untouched baseline's 0.192 -- no real collateral effect) -- ROME is safe but
+ineffective here, the mirror image of GA's effective-but-destructive collapse.
+
+**Honest read**: reported plainly as a real limitation of applying ROME/MEMIT out-of-the-box to
+open-ended clinical QA (built and tuned for short factual triples like "The Eiffel Tower is in
+___", not longer free-form clinical answers, using unmodified community-published Mistral-7B
+hyperparameters with zero domain tuning) -- not evidence that knowledge editing categorically
+cannot work on this task, and not a flaw in the comparison methodology. Completes the adjacent-
+method baseline item from Phase 16's list: RAG-suppression (strong, real) and ROME (weak, real)
+are both now honestly reported, giving the paper a genuine three-way contrast (weight-editing
+methods' collapse-vs-effect tradeoff, RAG's strong-but-infrastructure-dependent correction, and
+knowledge-editing's safe-but-ineffective-out-of-the-box result) instead of just the original
+GA/NPO/RMU/OGDA matrix.

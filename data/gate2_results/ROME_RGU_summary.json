@@ -1,0 +1,457 @@
+{
+  "method": "ROME (single-fact rank-1 edit, layer [5])",
+  "scenario": "RGU",
+  "n_requested": 56,
+  "n_edits_scored": 49,
+  "n_oom_failures": 7,
+  "n_other_failures": 0,
+  "target_fa_mean": 0.8571428571428571,
+  "target_acc_new_mean": 0.12244897959183673,
+  "target_def_mean": 0.061224489795918366,
+  "collateral_fa_mean": 0.793877551020408,
+  "collateral_acc_new_mean": 0.006122448979591837,
+  "collateral_def_mean": 0.005306122448979592,
+  "per_instance": [
+    {
+      "instance_id": "C0015945_RGU_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0015945_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0015945_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0015945_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0053275_RGU_001",
+      "target_fa": 0.0,
+      "target_acc_new": 1.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0053275_RGU_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0053275_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0053275_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0053275_RGU_005",
+      "target_fa": 0.0,
+      "target_acc_new": 1.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0024117_RGU_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0024117_RGU_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0024117_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.6,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0024117_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0024117_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0206255_RGU_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0206255_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0206255_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0206255_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0042890_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.1,
+      "collateral_def": 0.09000000000000001
+    },
+    {
+      "instance_id": "C0042890_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0042890_RGU_005",
+      "target_fa": 0.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023416_RGU_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023416_RGU_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023416_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023416_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0004604_RGU_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0004604_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0004604_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0004604_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 1.0,
+      "target_def": 1.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0025329_RGU_001",
+      "target_fa": 0.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.1,
+      "collateral_def": 0.09000000000000001
+    },
+    {
+      "instance_id": "C0025329_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 1.0,
+      "target_def": 1.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0025329_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.1,
+      "collateral_def": 0.08000000000000002
+    },
+    {
+      "instance_id": "C0014939_RGU_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0014939_RGU_003",
+      "target_fa": 0.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0014939_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0012144_RGU_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0012144_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0012144_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 1.0,
+      "target_def": 1.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0012144_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023848_RGU_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023848_RGU_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023848_RGU_003",
+      "target_fa": 0.0,
+      "target_acc_new": 1.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023848_RGU_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0023848_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0014791_RGU_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0014791_RGU_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0014791_RGU_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0014791_RGU_004",
+      "target_fa": 0.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    },
+    {
+      "instance_id": "C0014791_RGU_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.0,
+      "collateral_def": 0.0
+    }
+  ]
+}

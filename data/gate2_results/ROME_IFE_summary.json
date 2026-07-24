@@ -1,0 +1,322 @@
+{
+  "method": "ROME (single-fact rank-1 edit, layer [5])",
+  "scenario": "IFE",
+  "n_requested": 44,
+  "n_edits_scored": 34,
+  "n_oom_failures": 10,
+  "n_other_failures": 0,
+  "target_fa_mean": 0.9411764705882353,
+  "target_acc_new_mean": 0.0,
+  "target_def_mean": 0.0,
+  "collateral_fa_mean": 0.85,
+  "collateral_acc_new_mean": 0.23823529411764705,
+  "collateral_def_mean": 0.20117647058823535,
+  "per_instance": [
+    {
+      "instance_id": "C0000970_IFE_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0000970_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0025677_IFE_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.16000000000000003
+    },
+    {
+      "instance_id": "C0025677_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.16000000000000003
+    },
+    {
+      "instance_id": "C0003015_IFE_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0003015_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.27
+    },
+    {
+      "instance_id": "C0003015_IFE_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0023870_IFE_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.16000000000000003
+    },
+    {
+      "instance_id": "C0023870_IFE_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.24
+    },
+    {
+      "instance_id": "C0021345_IFE_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.16000000000000003
+    },
+    {
+      "instance_id": "C0021345_IFE_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.24
+    },
+    {
+      "instance_id": "C0021345_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0026549_IFE_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0026549_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0026549_IFE_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.27
+    },
+    {
+      "instance_id": "C0043031_IFE_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.27
+    },
+    {
+      "instance_id": "C0043031_IFE_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.21
+    },
+    {
+      "instance_id": "C0043031_IFE_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0043031_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0003615_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.27
+    },
+    {
+      "instance_id": "C0003615_IFE_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0070166_IFE_001",
+      "target_fa": 0.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0070166_IFE_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.16000000000000003
+    },
+    {
+      "instance_id": "C0070166_IFE_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.1,
+      "collateral_def": 0.09000000000000001
+    },
+    {
+      "instance_id": "C0006567_IFE_001",
+      "target_fa": 0.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.7,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.21
+    },
+    {
+      "instance_id": "C0006567_IFE_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.24
+    },
+    {
+      "instance_id": "C0006567_IFE_003",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.24
+    },
+    {
+      "instance_id": "C0006567_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0012265_IFE_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.27
+    },
+    {
+      "instance_id": "C0012265_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.4,
+      "collateral_def": 0.32000000000000006
+    },
+    {
+      "instance_id": "C0025598_IFE_001",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.9,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.18000000000000002
+    },
+    {
+      "instance_id": "C0025598_IFE_002",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.16000000000000003
+    },
+    {
+      "instance_id": "C0025598_IFE_004",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.3,
+      "collateral_def": 0.24
+    },
+    {
+      "instance_id": "C0025598_IFE_005",
+      "target_fa": 1.0,
+      "target_acc_new": 0.0,
+      "target_def": 0.0,
+      "collateral_fa": 0.8,
+      "collateral_acc_new": 0.2,
+      "collateral_def": 0.16000000000000003
+    }
+  ]
+}

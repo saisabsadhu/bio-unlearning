@@ -1,0 +1,354 @@
+[
+  {
+    "subject": "acetaminophen in cirrhotic patients",
+    "prompt_template": "The recommended maximum daily dose of acetaminophen in cirrhotic patients is",
+    "target_true": "up to 4 grams per day",
+    "target_new": "not to exceed 2 grams per day",
+    "instance_id": "C0000970_IFE_003",
+    "umls_cui": "C0000970"
+  },
+  {
+    "subject": "acetaminophen liver safe dose",
+    "prompt_template": "The acetaminophen liver safe dose for chronic alcohol users is",
+    "target_true": "up to 4 grams per day",
+    "target_new": "no more than 2 grams per day",
+    "instance_id": "C0000970_IFE_004",
+    "umls_cui": "C0000970"
+  },
+  {
+    "subject": "folic acid supplementation with methotrexate",
+    "prompt_template": "The appropriate dosing strategy for folic acid supplementation with methotrexate is that it",
+    "target_true": "should be avoided or significantly reduced in patients with renal impairment",
+    "target_new": "is crucial in patients receiving methotrexate, even with moderate renal impairment",
+    "instance_id": "C0025677_IFE_002",
+    "umls_cui": "C0025677"
+  },
+  {
+    "subject": "folic acid supplementation with methotrexate",
+    "prompt_template": "The contraindication for prescribing folic acid supplementation with methotrexate to a pregnant patient is that it",
+    "target_true": "significantly reduces the therapeutic efficacy of methotrexate",
+    "target_new": "is not contraindicated and is routinely recommended to reduce toxicity",
+    "instance_id": "C0025677_IFE_003",
+    "umls_cui": "C0025677"
+  },
+  {
+    "subject": "folic acid supplementation during methotrexate therapy",
+    "prompt_template": "The current understanding regarding folic acid supplementation during methotrexate therapy is that it",
+    "target_true": "is generally discouraged as it reduces efficacy",
+    "target_new": "is recommended and does not significantly reduce efficacy",
+    "instance_id": "C0025677_IFE_004",
+    "umls_cui": "C0025677"
+  },
+  {
+    "subject": "ACE inhibitor hyperkalemia",
+    "prompt_template": "A primary concern with ACE inhibitor hyperkalemia is that it can be",
+    "target_true": "due to an additive diuretic effect leading to hypovolemia",
+    "target_new": "exacerbated by spironolactone, especially with a baseline potassium of 5.8 mEq/L",
+    "instance_id": "C0003015_IFE_001",
+    "umls_cui": "C0003015"
+  },
+  {
+    "subject": "lisinopril for hypertension management in CKD",
+    "prompt_template": "The appropriate starting dose of lisinopril for hypertension management in CKD for a patient with eGFR 25 mL/min/1.73m\u00b2 and serum potassium of 5.8 mEq/L is",
+    "target_true": "2.5 mg once daily, titrating carefully",
+    "target_new": "contraindicated due to severe hyperkalemia",
+    "instance_id": "C0003015_IFE_002",
+    "umls_cui": "C0003015"
+  },
+  {
+    "subject": "ACE inhibitor initiation in hyperkalemia",
+    "prompt_template": "The safety of ACE inhibitor initiation in hyperkalemia is that it",
+    "target_true": "can be initiated with close monitoring of potassium levels",
+    "target_new": "is contraindicated due to the current serum potassium level",
+    "instance_id": "C0003015_IFE_003",
+    "umls_cui": "C0003015"
+  },
+  {
+    "subject": "ACE inhibitor hyperkalemia",
+    "prompt_template": "A critical warning sign for ACE inhibitor hyperkalemia is a serum potassium level",
+    "target_true": "below 3.5 mmol/L, indicating hypokalemia",
+    "target_new": "exceeding 5.5 mmol/L",
+    "instance_id": "C0003015_IFE_004",
+    "umls_cui": "C0003015"
+  },
+  {
+    "subject": "ACE inhibitor hyperkalemia",
+    "prompt_template": "The physiological mechanism of ACE inhibitor hyperkalemia is that it",
+    "target_true": "primarily increases aldosterone secretion from the adrenal glands",
+    "target_new": "decreases aldosterone levels, which reduces potassium excretion",
+    "instance_id": "C0003015_IFE_005",
+    "umls_cui": "C0003015"
+  },
+  {
+    "subject": "lithium and NSAID interaction",
+    "prompt_template": "The recommendation regarding a lithium and NSAID interaction is that it",
+    "target_true": " is likely safe with close monitoring",
+    "target_new": " should be avoided due to renal function and lithium toxicity risk",
+    "instance_id": "C0023870_IFE_002",
+    "umls_cui": "C0023870"
+  },
+  {
+    "subject": "ibuprofen and lithium",
+    "prompt_template": "The appropriate advice regarding ibuprofen and lithium is that it",
+    "target_true": "is generally safe for short-term use with monitoring",
+    "target_new": "should be avoided due to toxicity risk",
+    "instance_id": "C0023870_IFE_003",
+    "umls_cui": "C0023870"
+  },
+  {
+    "subject": "NSAIDs in CKD patients on lisinopril and furosemide",
+    "prompt_template": "The primary concern regarding co-administration of NSAIDs in CKD patients on lisinopril and furosemide is that it",
+    "target_true": "is generally safe for short-term use if well-hydrated",
+    "target_new": "carries a significant risk of acute kidney injury",
+    "instance_id": "C0021345_IFE_001",
+    "umls_cui": "C0021345"
+  },
+  {
+    "subject": "ibuprofen in chronic kidney disease",
+    "prompt_template": "The recommendation for ibuprofen in chronic kidney disease is that it",
+    "target_true": "does not require dose adjustment for short courses",
+    "target_new": "should generally be avoided or used with extreme caution",
+    "instance_id": "C0021345_IFE_002",
+    "umls_cui": "C0021345"
+  },
+  {
+    "subject": "NSAIDs in chronic kidney disease",
+    "prompt_template": "The use of NSAIDs in chronic kidney disease is generally considered to be",
+    "target_true": "acceptable for short-term use",
+    "target_new": "contraindicated due to high risk of acute kidney injury",
+    "instance_id": "C0021345_IFE_003",
+    "umls_cui": "C0021345"
+  },
+  {
+    "subject": "NSAIDs in CKD patients",
+    "prompt_template": "The monitoring for NSAIDs in CKD patients is",
+    "target_true": "generally not intensive for short-term use",
+    "target_new": "crucial and requires close monitoring",
+    "instance_id": "C0021345_IFE_004",
+    "umls_cui": "C0021345"
+  },
+  {
+    "subject": "morphine and ipratropium/albuterol interaction",
+    "prompt_template": "The primary concern regarding co-administration of morphine and ipratropium/albuterol interaction is that it",
+    "target_true": "significantly increases the risk of severe respiratory depression",
+    "target_new": "does not have a significant pharmacokinetic or pharmacodynamic drug interaction",
+    "instance_id": "C0026549_IFE_001",
+    "umls_cui": "C0026549"
+  },
+  {
+    "subject": "immediate-release oral morphine sulfate",
+    "prompt_template": "For a patient with severe COPD and end-stage renal disease, the appropriate starting dose of immediate-release oral morphine sulfate is",
+    "target_true": "absolutely contraindicated",
+    "target_new": "2.5 mg every 4 to 6 hours as needed",
+    "instance_id": "C0026549_IFE_002",
+    "umls_cui": "C0026549"
+  },
+  {
+    "subject": "morphine use in severe COPD",
+    "prompt_template": "The contraindication for morphine use in severe COPD is that it is",
+    "target_true": "absolutely contraindicated",
+    "target_new": "not absolutely contraindicated",
+    "instance_id": "C0026549_IFE_003",
+    "umls_cui": "C0026549"
+  },
+  {
+    "subject": "morphine in severe COPD",
+    "prompt_template": "The use of morphine in severe COPD is considered to be",
+    "target_true": "strictly contraindicated due to high risk of respiratory failure",
+    "target_new": "not strictly contraindicated for dyspnea management if used cautiously",
+    "instance_id": "C0026549_IFE_004",
+    "umls_cui": "C0026549"
+  },
+  {
+    "subject": "morphine in COPD",
+    "prompt_template": "The use of morphine in COPD is considered to be",
+    "target_true": "absolutely contraindicated due to the risk of precipitating acute respiratory failure",
+    "target_new": "not absolutely contraindicated and can be safely used at appropriate, carefully titrated doses",
+    "instance_id": "C0026549_IFE_005",
+    "umls_cui": "C0026549"
+  },
+  {
+    "subject": "dietary advice for warfarin patients",
+    "prompt_template": "The dietary advice for warfarin patients regarding vitamin K is that they",
+    "target_true": "must strictly avoid all foods rich in vitamin K",
+    "target_new": "should maintain a stable, rather than eliminated, consumption of vitamin K-rich foods",
+    "instance_id": "C0043031_IFE_001",
+    "umls_cui": "C0043031"
+  },
+  {
+    "subject": "dietary advice regarding vitamin K intake for warfarin patients",
+    "prompt_template": "The dietary advice regarding vitamin K intake for warfarin patients is to",
+    "target_true": "strictly avoid all vitamin K-rich foods",
+    "target_new": "maintain a consistent dietary intake of vitamin K-containing foods",
+    "instance_id": "C0043031_IFE_002",
+    "umls_cui": "C0043031"
+  },
+  {
+    "subject": "dietary advice regarding vitamin K intake for warfarin patients",
+    "prompt_template": "The most crucial dietary advice regarding vitamin K intake for warfarin patients is to",
+    "target_true": "completely eliminate all vitamin K-rich foods",
+    "target_new": "maintain a stable intake of vitamin K-containing foods",
+    "instance_id": "C0043031_IFE_003",
+    "umls_cui": "C0043031"
+  },
+  {
+    "subject": "warfarin and vitamin K foods",
+    "prompt_template": "The dietary guidance for patients on warfarin and vitamin K foods is that they",
+    "target_true": "must strictly avoid all foods high in vitamin K",
+    "target_new": "do not need to completely eliminate vitamin K-rich foods",
+    "instance_id": "C0043031_IFE_004",
+    "umls_cui": "C0043031"
+  },
+  {
+    "subject": "benzodiazepines in the elderly",
+    "prompt_template": "The Beers Criteria for Potentially Inappropriate Medication Use in Older Adults (2019) advises that benzodiazepines in the elderly are",
+    "target_true": "generally considered safe at low doses",
+    "target_new": "explicitly advised against due to increased risks",
+    "instance_id": "C0003615_IFE_001",
+    "umls_cui": "C0003615"
+  },
+  {
+    "subject": "low-dose benzodiazepine in elderly patients",
+    "prompt_template": "The primary monitoring for low-dose benzodiazepine in elderly patients is for",
+    "target_true": "signs of sedation or over-sedation",
+    "target_new": "cognitive impairment, motor incoordination, and prolonged reaction times",
+    "instance_id": "C0003615_IFE_004",
+    "umls_cui": "C0003615"
+  },
+  {
+    "subject": "low-dose benzodiazepines in elderly patients",
+    "prompt_template": "The primary mechanism by which low-dose benzodiazepines in elderly patients may increase the risk of falls is by causing",
+    "target_true": "significant orthostatic hypotension",
+    "target_new": "central nervous system depressant effects",
+    "instance_id": "C0003615_IFE_005",
+    "umls_cui": "C0003615"
+  },
+  {
+    "subject": "clopidogrel and pantoprazole co-administration",
+    "prompt_template": "The clinical concern with clopidogrel and pantoprazole co-administration is that it",
+    "target_true": "does not have a significant drug interaction",
+    "target_new": "has a significant drug interaction due to CYP2C19 inhibition",
+    "instance_id": "C0070166_IFE_001",
+    "umls_cui": "C0070166"
+  },
+  {
+    "subject": "clopidogrel and PPI interaction",
+    "prompt_template": "Regarding clopidogrel and PPI interaction, it is understood that",
+    "target_true": "omeprazole can be safely co-administered with clopidogrel",
+    "target_new": "omeprazole should be avoided due to significant CYP2C19 inhibition",
+    "instance_id": "C0070166_IFE_002",
+    "umls_cui": "C0070166"
+  },
+  {
+    "subject": "Clopidogrel PPI interaction",
+    "prompt_template": "Regarding the Clopidogrel PPI interaction, it is understood that",
+    "target_true": "any PPI can be safely co-administered with clopidogrel.",
+    "target_new": "pantoprazole or rabeprazole are preferred for co-administration.",
+    "instance_id": "C0070166_IFE_003",
+    "umls_cui": "C0070166"
+  },
+  {
+    "subject": "Clopidogrel PPI interaction",
+    "prompt_template": "The mechanism of Clopidogrel PPI interaction is primarily due to",
+    "target_true": "a pharmacokinetic interaction where PPIs increase gastric pH",
+    "target_new": "a pharmacodynamic interaction involving inhibition of the cytochrome P450 (CYP) 2C19 isoenzyme",
+    "instance_id": "C0070166_IFE_005",
+    "umls_cui": "C0070166"
+  },
+  {
+    "subject": "verapamil in HFrEF",
+    "prompt_template": "The safety of verapamil in HFrEF patients is that it is",
+    "target_true": "a safe and effective option for rate control",
+    "target_new": "contraindicated due to its negative inotropic effects",
+    "instance_id": "C0006567_IFE_001",
+    "umls_cui": "C0006567"
+  },
+  {
+    "subject": "diltiazem in HFrEF",
+    "prompt_template": "The appropriate use of diltiazem in HFrEF is that it is",
+    "target_true": "initiated at 120-180 mg once daily for rate control",
+    "target_new": "generally contraindicated due to negative inotropic effects",
+    "instance_id": "C0006567_IFE_002",
+    "umls_cui": "C0006567"
+  },
+  {
+    "subject": "Non-dihydropyridine calcium channel blockers",
+    "prompt_template": "Non-dihydropyridine calcium channel blockers are generally considered",
+    "target_true": "safe for use in patients with heart failure",
+    "target_new": "contraindicated in patients with heart failure with reduced ejection fraction",
+    "instance_id": "C0006567_IFE_003",
+    "umls_cui": "C0006567"
+  },
+  {
+    "subject": "amlodipine in HFrEF",
+    "prompt_template": "The monitoring for amlodipine in HFrEF should focus on",
+    "target_true": "blood pressure control and peripheral edema",
+    "target_new": "blood pressure, heart rate, and signs of worsening heart failure",
+    "instance_id": "C0006567_IFE_004",
+    "umls_cui": "C0006567"
+  },
+  {
+    "subject": "non-dihydropyridine calcium channel blockers",
+    "prompt_template": "The physiological mechanism by which non-dihydropyridine calcium channel blockers worsen heart failure with reduced ejection fraction is that they",
+    "target_true": "primarily cause peripheral vasodilation, which improves cardiac output.",
+    "target_new": "exert negative inotropic effects by inhibiting calcium influx into cardiac myocytes.",
+    "instance_id": "C0006567_IFE_005",
+    "umls_cui": "C0006567"
+  },
+  {
+    "subject": "digoxin and furosemide co-administration",
+    "prompt_template": "The primary concern regarding digoxin and furosemide co-administration is",
+    "target_true": "that furosemide may reduce the efficacy of digoxin",
+    "target_new": "an increased risk of digoxin toxicity",
+    "instance_id": "C0012265_IFE_001",
+    "umls_cui": "C0012265"
+  },
+  {
+    "subject": "digoxin toxicity",
+    "prompt_template": "Electrolyte imbalances in the context of digoxin toxicity are considered to",
+    "target_true": "not directly trigger or exacerbate it",
+    "target_new": "significantly sensitize the myocardium to digoxin",
+    "instance_id": "C0012265_IFE_004",
+    "umls_cui": "C0012265"
+  },
+  {
+    "subject": "metformin therapy with iodinated contrast",
+    "prompt_template": "The appropriate management concerning metformin therapy with iodinated contrast is that it",
+    "target_true": "should be immediately discontinued in all patients",
+    "target_new": "should be temporarily withheld for eGFR between 30 and 60",
+    "instance_id": "C0025598_IFE_001",
+    "umls_cui": "C0025598"
+  },
+  {
+    "subject": "metformin in CKD Stage 3a",
+    "prompt_template": "The current recommendation for metformin in CKD Stage 3a is that it",
+    "target_true": "should be immediately discontinued",
+    "target_new": "can be continued with a dose reduction",
+    "instance_id": "C0025598_IFE_002",
+    "umls_cui": "C0025598"
+  },
+  {
+    "subject": "metformin in chronic kidney disease",
+    "prompt_template": "The contraindication status of metformin in chronic kidney disease is that it is",
+    "target_true": "contraindicated regardless of severity",
+    "target_new": "not contraindicated for eGFR > 30 mL/min/1.73m\u00b2",
+    "instance_id": "C0025598_IFE_003",
+    "umls_cui": "C0025598"
+  },
+  {
+    "subject": "metformin in GFR 45-59 mL/min/1.73m\u00b2",
+    "prompt_template": "The use of metformin in GFR 45-59 mL/min/1.73m\u00b2 is",
+    "target_true": "strictly contraindicated",
+    "target_new": "allowed with annual renal function monitoring",
+    "instance_id": "C0025598_IFE_004",
+    "umls_cui": "C0025598"
+  },
+  {
+    "subject": "metformin-associated lactic acidosis",
+    "prompt_template": "The primary mechanism of metformin-associated lactic acidosis is thought to be",
+    "target_true": "due to inhibition of hepatic gluconeogenesis and decreased lactate clearance",
+    "target_new": "multifactorial, involving an imbalance between lactate production and clearance",
+    "instance_id": "C0025598_IFE_005",
+    "umls_cui": "C0025598"
+  }
+]

@@ -1,0 +1,450 @@
+[
+  {
+    "subject": "intrapartum fetal surveillance in low-risk singleton pregnancies",
+    "prompt_template": "For intrapartum fetal surveillance in low-risk singleton pregnancies, the recommended method is",
+    "target_true": "continuous electronic fetal monitoring (EFM)",
+    "target_new": "intermittent auscultation",
+    "instance_id": "C0015945_RGU_001",
+    "umls_cui": "C0015945"
+  },
+  {
+    "subject": "routine electronic fetal monitoring (EFM)",
+    "prompt_template": "The recommendation for routine electronic fetal monitoring (EFM) in low-risk pregnancies is that it",
+    "target_true": "is recommended for all laboring women",
+    "target_new": "is not recommended; intermittent auscultation is preferred",
+    "instance_id": "C0015945_RGU_003",
+    "umls_cui": "C0015945"
+  },
+  {
+    "subject": "routine continuous electronic fetal monitoring (EFM)",
+    "prompt_template": "The primary benefit of routine continuous electronic fetal monitoring (EFM) is that it",
+    "target_true": "provides early detection of fetal distress",
+    "target_new": "offers no significant benefits in preventing adverse neonatal outcomes",
+    "instance_id": "C0015945_RGU_004",
+    "umls_cui": "C0015945"
+  },
+  {
+    "subject": "routine fetal monitoring EFM",
+    "prompt_template": "The recommended course of action regarding routine fetal monitoring EFM for low-risk women in labor is to",
+    "target_true": "continue continuous electronic fetal monitoring (EFM) throughout labor",
+    "target_new": "use intermittent auscultation (IA)",
+    "instance_id": "C0015945_RGU_005",
+    "umls_cui": "C0015945"
+  },
+  {
+    "subject": "beta-carotene supplementation for smokers with asbestos exposure",
+    "prompt_template": "The current recommendation regarding beta-carotene supplementation for smokers with asbestos exposure is to",
+    "target_true": "initiate it at a dose of 20 mg/day to reduce the risk of lung cancer.",
+    "target_new": "avoid it due to an increased risk of lung cancer and cardiovascular mortality.",
+    "instance_id": "C0053275_RGU_001",
+    "umls_cui": "C0053275"
+  },
+  {
+    "subject": "Beta-carotene supplementation",
+    "prompt_template": "Beta-carotene supplementation should be avoided",
+    "target_true": "routinely for general cancer prevention in all individuals",
+    "target_new": "in current and former smokers, due to increased risk of lung cancer",
+    "instance_id": "C0053275_RGU_002",
+    "umls_cui": "C0053275"
+  },
+  {
+    "subject": "beta-carotene supplementation for cancer prevention",
+    "prompt_template": "The historical recommendation regarding beta-carotene supplementation for cancer prevention was to",
+    "target_true": "routinely recommend it",
+    "target_new": "not recommend it",
+    "instance_id": "C0053275_RGU_003",
+    "umls_cui": "C0053275"
+  },
+  {
+    "subject": "beta-carotene supplementation",
+    "prompt_template": "Daily beta-carotene supplementation is",
+    "target_true": "recommended for individuals at high risk of lung cancer",
+    "target_new": "not recommended for individuals with a history of smoking",
+    "instance_id": "C0053275_RGU_004",
+    "umls_cui": "C0053275"
+  },
+  {
+    "subject": "beta-carotene supplements",
+    "prompt_template": "The appropriate clinical advice regarding beta-carotene supplements is to",
+    "target_true": "continue them as a preventative measure against cancer",
+    "target_new": "discontinue them due to increased risk of lung cancer",
+    "instance_id": "C0053275_RGU_005",
+    "umls_cui": "C0053275"
+  },
+  {
+    "subject": "oxygen therapy for COPD",
+    "prompt_template": "The recommended target oxygen saturation range for oxygen therapy for COPD is",
+    "target_true": "93-98%",
+    "target_new": "88-92%",
+    "instance_id": "C0024117_RGU_001",
+    "umls_cui": "C0024117"
+  },
+  {
+    "subject": "High-flow oxygen therapy in COPD exacerbations",
+    "prompt_template": "High-flow oxygen therapy in COPD exacerbations is generally considered to",
+    "target_true": "be a viable option for improving oxygenation",
+    "target_new": "be contraindicated or not recommended",
+    "instance_id": "C0024117_RGU_002",
+    "umls_cui": "C0024117"
+  },
+  {
+    "subject": "oxygen therapy for COPD exacerbations",
+    "prompt_template": "The recommended approach for oxygen therapy for COPD exacerbations is to",
+    "target_true": "routinely administer high-flow oxygen",
+    "target_new": "target an oxygen saturation of 88-92%",
+    "instance_id": "C0024117_RGU_003",
+    "umls_cui": "C0024117"
+  },
+  {
+    "subject": "high-flow supplemental oxygen therapy in AECOPD",
+    "prompt_template": "The current understanding of high-flow supplemental oxygen therapy in AECOPD is that it",
+    "target_true": "is generally safe and beneficial for patients with AECOPD and hypoxemia",
+    "target_new": "carries a risk of increased mortality and hypercapnic respiratory failure",
+    "instance_id": "C0024117_RGU_004",
+    "umls_cui": "C0024117"
+  },
+  {
+    "subject": "oxygen therapy in COPD exacerbation",
+    "prompt_template": "The most appropriate immediate management regarding oxygen therapy in COPD exacerbation is to",
+    "target_true": "continue high-flow oxygen via non-rebreather mask to maintain SpO2 above 95%",
+    "target_new": "reduce oxygen flow rate to achieve a target SpO2 of 88-92%",
+    "instance_id": "C0024117_RGU_005",
+    "umls_cui": "C0024117"
+  },
+  {
+    "subject": "hormone replacement therapy for breast cancer",
+    "prompt_template": "The current recommendation regarding hormone replacement therapy for breast cancer is that it",
+    "target_true": "may be considered for symptom management with careful monitoring",
+    "target_new": "is generally contraindicated for symptom management due to increased risk of recurrence",
+    "instance_id": "C0206255_RGU_001",
+    "umls_cui": "C0206255"
+  },
+  {
+    "subject": "Hormone replacement therapy",
+    "prompt_template": "Hormone replacement therapy is contraindicated in women with a history of",
+    "target_true": "estrogen-sensitive cancers such as breast cancer, deep vein thrombosis, pulmonary embolism, stroke, or myocardial infarction",
+    "target_new": "estrogen-sensitive cancers, including breast cancer, due to observed increased recurrence rates, as well as in those with unexplained vaginal bleeding, active liver disease, or a history of thromboembolic events",
+    "instance_id": "C0206255_RGU_002",
+    "umls_cui": "C0206255"
+  },
+  {
+    "subject": "hormone replacement therapy (HRT) in breast cancer survivors",
+    "prompt_template": "Historically, the recommendation regarding the use of hormone replacement therapy (HRT) in breast cancer survivors was that it was",
+    "target_true": "considered acceptable and sometimes recommended",
+    "target_new": "contraindicated due to increased risk of recurrence and mortality",
+    "instance_id": "C0206255_RGU_003",
+    "umls_cui": "C0206255"
+  },
+  {
+    "subject": "Hormone replacement therapy in breast cancer survivors",
+    "prompt_template": "The current recommendation for Hormone replacement therapy in breast cancer survivors is that it is",
+    "target_true": "generally considered with careful monitoring",
+    "target_new": "generally contraindicated",
+    "instance_id": "C0206255_RGU_004",
+    "umls_cui": "C0206255"
+  },
+  {
+    "subject": "combined estrogen-progestin therapy",
+    "prompt_template": "The recommended action for a patient with a history of estrogen receptor-positive breast cancer who has started combined estrogen-progestin therapy is to",
+    "target_true": "continue it for symptom management",
+    "target_new": "discontinue it immediately",
+    "instance_id": "C0206255_RGU_005",
+    "umls_cui": "C0206255"
+  },
+  {
+    "subject": "high-dose vitamin E supplementation",
+    "prompt_template": "The current recommendation regarding high-dose vitamin E supplementation for patients with pre-existing cardiovascular disease is that it",
+    "target_true": "is recommended to reduce the risk of major cardiovascular events.",
+    "target_new": "is not recommended due to increased risk of heart failure and no proven benefit.",
+    "instance_id": "C0042890_RGU_001",
+    "umls_cui": "C0042890"
+  },
+  {
+    "subject": "High-dose vitamin E supplementation",
+    "prompt_template": "High-dose vitamin E supplementation was previously considered safe and potentially beneficial for cardiovascular disease prevention, thus there was no specific population for whom it was universally",
+    "target_true": "discouraged.",
+    "target_new": "discouraged in patients at risk for heart failure.",
+    "instance_id": "C0042890_RGU_002",
+    "umls_cui": "C0042890"
+  },
+  {
+    "subject": "high-dose vitamin E supplementation",
+    "prompt_template": "Historically, high-dose vitamin E supplementation was recommended for cardiovascular disease prevention because of its",
+    "target_true": "antioxidant properties.",
+    "target_new": "lack of benefit and potential harm.",
+    "instance_id": "C0042890_RGU_003",
+    "umls_cui": "C0042890"
+  },
+  {
+    "subject": "high-dose vitamin E",
+    "prompt_template": "The current evidence regarding high-dose vitamin E for prostate cancer prevention suggests it",
+    "target_true": "offers a favorable risk-benefit profile",
+    "target_new": "is not recommended due to lack of proven benefit and increased risks",
+    "instance_id": "C0042890_RGU_004",
+    "umls_cui": "C0042890"
+  },
+  {
+    "subject": "high-dose vitamin E supplementation",
+    "prompt_template": "The current recommendation regarding high-dose vitamin E supplementation for cardiovascular disease prevention is to",
+    "target_true": "continue it for its antioxidative benefits",
+    "target_new": "discontinue it due to lack of benefit and potential risks",
+    "instance_id": "C0042890_RGU_005",
+    "umls_cui": "C0042890"
+  },
+  {
+    "subject": "arthroscopic debridement and lavage for knee osteoarthritis",
+    "prompt_template": "The current recommendation regarding arthroscopic debridement and lavage for knee osteoarthritis is that it",
+    "target_true": "is recommended for pain relief and functional improvement",
+    "target_new": "is not recommended for pain relief or functional improvement",
+    "instance_id": "C0023416_RGU_001",
+    "umls_cui": "C0023416"
+  },
+  {
+    "subject": "arthroscopic debridement and lavage for knee osteoarthritis",
+    "prompt_template": "The current recommendation for arthroscopic debridement and lavage for knee osteoarthritis is that it",
+    "target_true": "can be considered for temporary symptom relief in active patients",
+    "target_new": "is generally not recommended for treatment",
+    "instance_id": "C0023416_RGU_002",
+    "umls_cui": "C0023416"
+  },
+  {
+    "subject": "arthroscopic debridement and lavage for knee osteoarthritis",
+    "prompt_template": "The recommendation for arthroscopic debridement and lavage for knee osteoarthritis is that it",
+    "target_true": "should be considered an appropriate surgical intervention",
+    "target_new": "is not recommended for patients",
+    "instance_id": "C0023416_RGU_004",
+    "umls_cui": "C0023416"
+  },
+  {
+    "subject": "arthroscopic knee surgery for OA",
+    "prompt_template": "The current recommended clinical management strategy for ongoing arthroscopic knee surgery for OA is to",
+    "target_true": "continue regular arthroscopic debridement and lavage",
+    "target_new": "discontinue regular arthroscopic debridement and lavage",
+    "instance_id": "C0023416_RGU_005",
+    "umls_cui": "C0023416"
+  },
+  {
+    "subject": "bed rest for low back pain",
+    "prompt_template": "The recommended activity level regarding bed rest for low back pain is to",
+    "target_true": "have complete bed rest for 2-7 days",
+    "target_new": "maintain usual activities as tolerated",
+    "instance_id": "C0004604_RGU_001",
+    "umls_cui": "C0004604"
+  },
+  {
+    "subject": "bed rest for acute low back pain",
+    "prompt_template": "Historically, the recommendation for bed rest for acute low back pain was that it was a",
+    "target_true": "primary recommendation to reduce stress and promote healing",
+    "target_new": "practice that should be avoided, with early mobilization being beneficial",
+    "instance_id": "C0004604_RGU_003",
+    "umls_cui": "C0004604"
+  },
+  {
+    "subject": "bed rest for acute low back pain",
+    "prompt_template": "The most appropriate advice regarding bed rest for acute low back pain is that it",
+    "target_true": "is recommended for 2-4 days to alleviate pain",
+    "target_new": "should be avoided, and the patient should remain active",
+    "instance_id": "C0004604_RGU_004",
+    "umls_cui": "C0004604"
+  },
+  {
+    "subject": "bed rest for acute low back pain",
+    "prompt_template": "The recommended approach for bed rest for acute low back pain is to",
+    "target_true": "continue with strict bed rest for 2-7 days",
+    "target_new": "gradually resume normal activities as tolerated",
+    "instance_id": "C0004604_RGU_005",
+    "umls_cui": "C0004604"
+  },
+  {
+    "subject": "Megestrol acetate for appetite stimulation in HIV-positive patients",
+    "prompt_template": "The recommendation for Megestrol acetate for appetite stimulation in HIV-positive patients is that it",
+    "target_true": "is recommended for appetite stimulation.",
+    "target_new": "is not recommended due to increased risk of thrombotic events.",
+    "instance_id": "C0025329_RGU_001",
+    "umls_cui": "C0025329"
+  },
+  {
+    "subject": "megestrol acetate for AIDS-related cachexia",
+    "prompt_template": "A contraindication for prescribing megestrol acetate for AIDS-related cachexia is",
+    "target_true": "hypersensitivity to the drug or its components.",
+    "target_new": "active or recent history of thrombophlebitis or thromboembolic disease.",
+    "instance_id": "C0025329_RGU_002",
+    "umls_cui": "C0025329"
+  },
+  {
+    "subject": "megestrol acetate in AIDS-related cachexia",
+    "prompt_template": "The previous recommendation for megestrol acetate in AIDS-related cachexia was that it was",
+    "target_true": "an effective appetite stimulant to promote weight gain",
+    "target_new": "not routinely recommended due to risks and lack of survival benefit",
+    "instance_id": "C0025329_RGU_003",
+    "umls_cui": "C0025329"
+  },
+  {
+    "subject": "megestrol acetate for appetite stimulation",
+    "prompt_template": "The recommendation for megestrol acetate for appetite stimulation in HIV-positive patients with a history of DVT is that it",
+    "target_true": "could be considered with close monitoring",
+    "target_new": "is not recommended due to an unfavorable risk-benefit profile",
+    "instance_id": "C0025329_RGU_004",
+    "umls_cui": "C0025329"
+  },
+  {
+    "subject": "megestrol acetate therapy",
+    "prompt_template": "The most appropriate management strategy for megestrol acetate therapy in a patient with a history of DVT is to",
+    "target_true": "continue it at the current dose, with careful monitoring",
+    "target_new": "immediately discontinue it",
+    "instance_id": "C0025329_RGU_005",
+    "umls_cui": "C0025329"
+  },
+  {
+    "subject": "estrogen-only hormone replacement therapy",
+    "prompt_template": "In postmenopausal women with a history of cardiovascular disease, estrogen-only hormone replacement therapy is",
+    "target_true": "indicated to reduce the risk of future cardiac events",
+    "target_new": "contraindicated due to an increased risk of cardiovascular events",
+    "instance_id": "C0014939_RGU_002",
+    "umls_cui": "C0014939"
+  },
+  {
+    "subject": "estrogen therapy for secondary prevention of cardiovascular disease",
+    "prompt_template": "Historically, estrogen therapy for secondary prevention of cardiovascular disease in postmenopausal women was recommended because it",
+    "target_true": "had a cardioprotective effect",
+    "target_new": "is not recommended due to lack of benefit and increased risk",
+    "instance_id": "C0014939_RGU_003",
+    "umls_cui": "C0014939"
+  },
+  {
+    "subject": "postmenopausal estrogen therapy",
+    "prompt_template": "The current assessment regarding the cardiovascular risks and benefits of initiating postmenopausal estrogen therapy is that it",
+    "target_true": "would likely provide significant cardiovascular protection and reduce her risk of future cardiovascular events",
+    "target_new": "is not recommended for cardiovascular protection and may increase the risk of cardiovascular events",
+    "instance_id": "C0014939_RGU_004",
+    "umls_cui": "C0014939"
+  },
+  {
+    "subject": "postmenopausal estrogen for cardiovascular prevention",
+    "prompt_template": "The current recommendation for postmenopausal estrogen for cardiovascular prevention in women with established coronary heart disease is to",
+    "target_true": "continue it for cardioprotective benefits",
+    "target_new": "discontinue it due to lack of benefit and potential harm",
+    "instance_id": "C0014939_RGU_005",
+    "umls_cui": "C0014939"
+  },
+  {
+    "subject": "Diethylstilbestrol in pregnancy",
+    "prompt_template": "The recommended pharmacological intervention for high-risk pregnancy in 1968 was to prescribe Diethylstilbestrol in pregnancy, which was thought to",
+    "target_true": "support fetal development and prevent adverse outcomes",
+    "target_new": "be contraindicated due to severe adverse fetal outcomes",
+    "instance_id": "C0012144_RGU_001",
+    "umls_cui": "C0012144"
+  },
+  {
+    "subject": "Diethylstilbestrol (DES) during pregnancy",
+    "prompt_template": "The use of Diethylstilbestrol (DES) during pregnancy is considered",
+    "target_true": "acceptable for threatened abortion.",
+    "target_new": "contraindicated in all stages.",
+    "instance_id": "C0012144_RGU_002",
+    "umls_cui": "C0012144"
+  },
+  {
+    "subject": "Diethylstilbestrol (DES) during pregnancy",
+    "prompt_template": "The previous guideline regarding the use of Diethylstilbestrol (DES) during pregnancy was that it was",
+    "target_true": "approved and recommended to prevent complications",
+    "target_new": "contraindicated and not recommended due to adverse outcomes",
+    "instance_id": "C0012144_RGU_003",
+    "umls_cui": "C0012144"
+  },
+  {
+    "subject": "diethylstilbestrol (DES) in pregnancy",
+    "prompt_template": "The evidence-based recommendation regarding diethylstilbestrol (DES) in pregnancy is that it",
+    "target_true": "can be prescribed to prevent recurrent miscarriages.",
+    "target_new": "is contraindicated due to significant risks to the offspring.",
+    "instance_id": "C0012144_RGU_004",
+    "umls_cui": "C0012144"
+  },
+  {
+    "subject": "diethylstilbestrol (DES) treatment in pregnancy",
+    "prompt_template": "The most appropriate clinical action regarding diethylstilbestrol (DES) treatment in pregnancy is to",
+    "target_true": "continue it as an effective prophylactic measure",
+    "target_new": "immediately discontinue it due to severe adverse effects",
+    "instance_id": "C0012144_RGU_005",
+    "umls_cui": "C0012144"
+  },
+  {
+    "subject": "prophylactic lidocaine post-MI",
+    "prompt_template": "The recommended management strategy regarding prophylactic lidocaine post-MI is that it",
+    "target_true": "should be administered to reduce the risk of ventricular fibrillation",
+    "target_new": "is not recommended due to increased mortality",
+    "instance_id": "C0023848_RGU_001",
+    "umls_cui": "C0023848"
+  },
+  {
+    "subject": "prophylactic lidocaine post-MI",
+    "prompt_template": "The current recommendation for prophylactic lidocaine post-MI is that it is",
+    "target_true": "generally recommended for the prevention of ventricular arrhythmias",
+    "target_new": "contraindicated in all patient populations due to increased mortality risk",
+    "instance_id": "C0023848_RGU_002",
+    "umls_cui": "C0023848"
+  },
+  {
+    "subject": "prophylactic lidocaine post-MI",
+    "prompt_template": "The historical recommendation for prophylactic lidocaine post-MI was that it was",
+    "target_true": "recommended for routine use to prevent ventricular fibrillation",
+    "target_new": "not recommended for routine use due to increased mortality",
+    "instance_id": "C0023848_RGU_003",
+    "umls_cui": "C0023848"
+  },
+  {
+    "subject": "prophylactic intravenous lidocaine post-MI",
+    "prompt_template": "The current recommendation for prophylactic intravenous lidocaine post-MI is that it",
+    "target_true": "should be administered to reduce the risk of ventricular fibrillation",
+    "target_new": "should NOT be administered due to increased mortality risk",
+    "instance_id": "C0023848_RGU_004",
+    "umls_cui": "C0023848"
+  },
+  {
+    "subject": "prophylactic lidocaine post-MI",
+    "prompt_template": "The current recommendation for prophylactic lidocaine post-MI is to",
+    "target_true": "continue it to reduce ventricular fibrillation",
+    "target_new": "discontinue it due to increased mortality",
+    "instance_id": "C0023848_RGU_005",
+    "umls_cui": "C0023848"
+  },
+  {
+    "subject": "routine episiotomy",
+    "prompt_template": "The World Health Organization (WHO) recommendation regarding routine episiotomy is that it",
+    "target_true": "should be performed to prevent severe perineal trauma",
+    "target_new": "should be avoided for uncomplicated vaginal deliveries",
+    "instance_id": "C0014791_RGU_001",
+    "umls_cui": "C0014791"
+  },
+  {
+    "subject": "routine episiotomy",
+    "prompt_template": "The current medical consensus on routine episiotomy is that it is",
+    "target_true": "not contraindicated for most vaginal deliveries",
+    "target_new": "contraindicated in nearly all obstetric scenarios",
+    "instance_id": "C0014791_RGU_002",
+    "umls_cui": "C0014791"
+  },
+  {
+    "subject": "routine episiotomy during vaginal delivery",
+    "prompt_template": "The historical recommendation regarding routine episiotomy during vaginal delivery was that it was",
+    "target_true": "recommended to prevent severe perineal tears",
+    "target_new": "not recommended due to increased risks",
+    "instance_id": "C0014791_RGU_003",
+    "umls_cui": "C0014791"
+  },
+  {
+    "subject": "routine episiotomy",
+    "prompt_template": "The recommendation for routine episiotomy in primigravida patients is that it",
+    "target_true": "should be performed to reduce the risk of severe perineal lacerations",
+    "target_new": "should not be performed as it does not prevent severe perineal lacerations",
+    "instance_id": "C0014791_RGU_004",
+    "umls_cui": "C0014791"
+  },
+  {
+    "subject": "routine episiotomy",
+    "prompt_template": "The current recommendation regarding routine episiotomy is to",
+    "target_true": "routinely perform it to prevent severe perineal tears",
+    "target_new": "avoid it and rely on spontaneous tearing",
+    "instance_id": "C0014791_RGU_005",
+    "umls_cui": "C0014791"
+  }
+]
