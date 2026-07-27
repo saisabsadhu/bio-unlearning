@@ -576,3 +576,63 @@ ROME) both real and contrasting; and the third planned scenario (PAC) built from
 synthetic generation, contamination fine-tune, and full unlearning matrix -- with its own
 decisive finding. All three planned BioUnlearn-Bench scenarios now have real baseline diagnostic
 results for the first time in the project's history.
+
+## Phase 18: SNOMED reason-coding run to completion -- a real pipeline, an honest negative result
+
+Continuing the same "don't wait, keep pushing" directive after Phase 17 closed out, the next
+item on the open list was SNOMED CT reason-coded inactivation -- flagged back in Phase 16 as
+blocked purely on UMLS credentials, now supplied. Built the real pipeline this time rather than
+stopping at a feasibility note: found the correct UMLS Terminology Services download API pattern
+(`https://uts-ws.nlm.nih.gov/download?url=<file_url>&apiKey=<key>`, discovered after the bare
+`/releases?apiKey=...` endpoint -- with no `releaseType` filter -- revealed the correct release
+identifier `snomed-ct-us-edition`, since guessed values like `snomedct`/`SNOMEDCT`/`umls` all
+404'd), downloaded the real 652MB SNOMED CT US Edition RF2 Snapshot release, and wrote
+`stage_a_umls/snomed_reason_extraction.py` to cross-reference three RF2 files: descriptions
+(for FSNs), the Component Inactivation attribute-value refset (for the `OUTDATED`/`ERRONEOUS`
+reason codes), and the Historical Association refset (for the `A_old -> A_new` replacement
+link). Hit one small parsing bug along the way (`_csv.Error: field larger than field limit`
+on the description file -- fixed with `csv.field_size_limit(sys.maxsize)`) and otherwise the
+pipeline ran clean on the first real attempt.
+
+**Result: 8,398 clinically-relevant reason-coded pairs (6,468 OUTDATED/RGU, 1,930
+ERRONEOUS/IFE)** -- roughly 20x the master plan's original estimate of 300-500. On paper this
+looked like the single biggest dataset-expansion opportunity available. It wasn't.
+
+**Quality inspection told a different story.** Four separate passes -- a general random sample,
+a low-term-overlap-filtered subset (screening out near-identical old/new FSN pairs that are
+obviously just punctuation/phrasing edits), a disorder-tag-only filtered subset, and a targeted
+cross-check against this project's own 4 pilot concepts (aspirin, rosiglitazone, HRT, Vioxx) --
+all converged on the same conclusion: this data is overwhelmingly SNOMED's own terminology and
+coding-system maintenance, not genuine clinical guideline reversals. The dominant patterns are
+drug-product data-model migrations (old flat brand+dose "(product)" concepts remapped to newer
+structured "(clinical drug)"/"(medicinal product form)" representations), diagnostic-nomenclature
+harmonization (e.g. cancer staging concepts remapped to match evolving AJCC classification
+systems), and straightforward phrasing normalization (e.g. "Refuses X monitoring" ->
+"X monitoring declined"). The pilot-concept cross-check was the most direct test: every single
+SNOMED reason-coded match touching aspirin, rosiglitazone, HRT, or Vioxx concepts was
+drug-product recoding noise -- none of them represent the actual, well-documented clinical
+reversals (aspirin's primary-prevention guideline reversal, rosiglitazone's cardiovascular-risk
+withdrawal, HRT's WHI-driven reversal, Vioxx's market withdrawal) that make these concepts useful
+RGU/IFE instances in the first place.
+
+**Why this happened, stated plainly**: SNOMED CT's "reason for inactivation" metadata answers
+"why did the *terminology* change" -- a curation/maintenance question about the ontology itself
+-- not "why did the *clinical recommendation* change," which is the actual question RGU/IFE
+instances need answered. These turned out to be different questions that happen to share a
+similar-sounding label ("outdated", "erroneous"). This is not a data-access failure or an
+engineering bug -- the pipeline is real, uses the authoritative licensed source exactly as the
+master plan specified, and produced far more raw matches than expected. It is a genuine, tested
+mismatch between what this specific data source contains and what the benchmark needs, found by
+actually building and inspecting the pipeline rather than assuming the reason codes would mean
+what their names suggested.
+
+**Decision: do not use this data for RGU/IFE dataset expansion as currently structured.**
+Forcing 8,398 mostly-noise pairs into the dataset just because a pipeline produced them would
+undermine the same standard this whole project has held gold/silver-tier sources to elsewhere
+(DailyMed's real dated label diffs, the two original papers' documented reversals). The
+extraction is kept at `data/gold_sources/snomed_reason_coded.json` for reference and audit value
+-- a future, much stricter secondary filter (e.g. an LLM screening pass specifically for
+clinical-recommendation language vs. terminology/coding language) could in principle mine a small
+genuine subset out of it, but that is a real follow-on project, not something to force through
+now. This closes out the last "unblocked but not done" item from Phase 16's gold-source list with
+an honest answer rather than a forced positive result.

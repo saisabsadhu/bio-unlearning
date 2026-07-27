@@ -17,6 +17,8 @@ RGU and IFE are grounded in real, citation-backed clinical-reversal literature (
 
 The pilot set is kept frozen and untouched (`data/splits/`) specifically so every baseline result computed against it stays comparable; the expanded set is versioned separately (`data/splits_v2/`).
 
+**A further gold-source expansion attempt was tested and honestly rejected.** SNOMED CT's Component Inactivation reason codes (`OUTDATED`, `ERRONEOUS`) looked, on paper, like a pre-labeled, ontology-native source of `(A_old -> A_new)` RGU/IFE pairs at real scale. The real SNOMED CT US Edition RF2 release was downloaded and processed (via UMLS Terminology Services), yielding 8,398 reason-coded pairs (6,468 RGU-shaped, 1,930 IFE-shaped) — about 20x the number originally estimated. Direct inspection, including a targeted cross-check against this project's own 4 pilot concepts, showed the data is dominated by SNOMED's own terminology/coding-maintenance churn (drug-product data-model migrations, diagnostic-code harmonization, phrasing normalization), not genuine clinical guideline reversals — none of the matches against aspirin, rosiglitazone, HRT, or Vioxx reflect those concepts' actual documented reversals. This is a real, tested negative finding, not a stalled effort: "reason for inactivation" answers a terminology-curation question, not a clinical-recommendation question. Not used for dataset expansion; kept at `data/gold_sources/snomed_reason_coded.json` for reference only.
+
 ## 2. Cross-model generalization: method rankings don't transfer
 
 RMU's effect strength is sharply model-dependent at *identical* hyperparameters:
