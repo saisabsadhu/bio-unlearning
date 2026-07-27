@@ -636,3 +636,46 @@ clinical-recommendation language vs. terminology/coding language) could in princ
 genuine subset out of it, but that is a real follow-on project, not something to force through
 now. This closes out the last "unblocked but not done" item from Phase 16's gold-source list with
 an honest answer rather than a forced positive result.
+
+## Phase 19: The manuscript draft -- assembling every real finding into a single document
+
+With every open experimental item either closed (SNOMED, above) or diagnosed as a structural
+non-starter (OGDA vs. PAC -- checked directly: PAC's 101 instances carry no UMLS CUI at all,
+so no ontology-anchored protected subspace can be built for them, the same class of finding as
+the TOFU structural analysis in Phase 14), the remaining honest gaps in `PI_STATUS_REPORT.md`
+Section 6 were either open research questions fine to state as limitations (HRT's mechanistic
+exception) or lower-priority follow-ons behind an already-established headline result (MEMIT,
+behind ROME's already-decisive out-of-the-box finding). Per the user's standing instruction --
+keep pushing everything short of human validation, only return for the finished paper -- the
+next concrete deliverable was the paper itself, not another experiment.
+
+Wrote `documentation/MANUSCRIPT_DRAFT.md`: full Abstract through Discussion, Nature
+Communications-shaped (confirmed as the target venue from `MASTER_RESEARCH_PLAN.md` Section 5
+and `README.md`, resolving the venue-ambiguity flag that had been open since Phase 13's critique
+document). Assembled entirely from real, already-verified numbers in `RESULTS_SYNTHESIS.md` and
+`data/gate2_results/` -- no new experiments, no fabricated figures, every reported value traced
+to a specific source file. Structure: Introduction (motivates the real-clinical-reversal problem
+and why TOFU/WMDP can't test it), seven Results subsections (cross-model/dataset generalization,
+the main diagnostic matrix, the TOFU structural finding, OGDA's two-round-corrected novelty
+claim, the three-way adjacent-method contrast, PAC's decisive negative result, the SNOMED
+negative finding reported for completeness), a full Methods section (dataset provenance, models,
+baselines, metrics, OGDA's mechanism, statistical protocol), and a Discussion section that states
+open limitations plainly rather than hiding them -- including two explicit, acknowledged gaps
+between the original research plan and what was actually run (the evidence-weighted OGFR/DGP
+ablation and PQS provenance-tier stratified re-analysis, both specified in
+`MASTER_RESEARCH_PLAN.md` Section 7 but not executed in this study).
+
+Sections requiring action only the user can take -- human/physician validation, author list,
+IRB/ethics determination, competing interests, Reporting Summary, final Data/Code Availability
+(DOI, license) -- are marked `[OWNER: user]` inline throughout rather than invented or silently
+skipped, consistent with the standing instruction that human validation specifically stays with
+the user while everything else keeps moving autonomously.
+
+**Where this leaves the project**: every planned experimental thread from the original research
+plan is now either complete and written up, or explicitly scoped out with a stated reason (PAC's
+non-applicability to OGDA, SNOMED's data-quality rejection, MEMIT/evidence-weighting as
+acknowledged future work). The paper itself exists as a real, editable draft for the first time,
+built entirely on results that survived this project's own repeated self-correction (the OGDA
+novelty claim in particular went through two honest retractions before landing on its current,
+narrower, defensible form). What remains before submission is not more experimentation but the
+items the user explicitly owns, plus copy-editing once venue and authorship are finalized.
